@@ -1,49 +1,39 @@
-# vintrick-backend/app/services/harvest_load_service.py
-
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import SQLAlchemyError
 from app.models.harvestload import HarvestLoad
 from app.schemas.harvestload import HarvestLoadCreate
 from uuid import UUID
+from typing import Optional, List
 
+def get_all_harvestloads(session: Session, skip: int = 0, limit: int = 100) -> list[HarvestLoad]:
+    return session.query(HarvestLoad).offset(skip).limit(limit).all()
 
-def get_all_harvestloads(session: Session):
-    return session.query(HarvestLoad).all()
-
-
-def get_harvestload_by_uid(session: Session, uid: UUID):
+def get_harvestload_by_uid(session: Session, uid: UUID) -> Optional[HarvestLoad]:
     return session.query(HarvestLoad).filter(HarvestLoad.uid == uid).first()
 
-
-def create_harvestload(session: Session, load_data: HarvestLoadCreate):
+def create_harvestload(session: Session, load_data: HarvestLoadCreate) -> HarvestLoad:
     load = HarvestLoad(**load_data.dict())
     session.add(load)
     session.commit()
     session.refresh(load)
     return load
 
-def update_harvestload(session: Session, uid: UUID, updates):
+def update_harvestload(session: Session, uid: UUID, updates) -> Optional[HarvestLoad]:
     load = get_harvestload_by_uid(session, uid)
-    print("Before Update:", load)
-    print("Updates:", updates)
     if not load:
         return None
 
-    # Convert Pydantic model to dictionary if necessary
     if isinstance(updates, BaseModel):
         updates = updates.dict()
 
-    # Apply updates to the load object
     for key, value in updates.items():
         setattr(load, key, value)
-
-    # Commit the changes and refresh the object
     session.commit()
-    session.refresh(load)  # Ensure the object is updated with the latest database state
+    session.refresh(load)
     return load
 
-
-def delete_harvestload(session: Session, uid: UUID):
+def delete_harvestload(session: Session, uid: UUID) -> Optional[HarvestLoad]:
     load = get_harvestload_by_uid(session, uid)
     if not load:
         return None

@@ -1,7 +1,7 @@
 import pyodbc
 
 conn_str = (
-    "DRIVER={ODBC Driver 17 for SQL Server};"
+    "DRIVER={ODBC Driver 18 for SQL Server};"
     "SERVER=SMWECSMDEV10;"
     "DATABASE=Higgins_Sandbox;"
     "Trusted_Connection=yes;"

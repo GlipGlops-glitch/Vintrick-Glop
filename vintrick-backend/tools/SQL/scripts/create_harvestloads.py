@@ -1,21 +1,20 @@
+# ---  Vintrick/vintrick-backend/Tools/SQL/scripts/create_harvestloads.py
+# --- python tools/SQL/scripts/create_harvestloads.py
+# ---  This script creates the harvestloads table in a SQL Server database using a schema file.
 
-
-from create_table import execute_sql_query
+from execute_sql_query import execute_sql_query
 from dotenv import load_dotenv
 import os
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Database connection details from .env
-server = os.getenv('DB_SERVER')
-database = os.getenv('DB_DATABASE')
-username = os.getenv('DB_USERNAME')
-password = os.getenv('DB_PASSWORD')
+# Database URL from .env
+database_url = os.getenv('DATABASE_URL')
 
-# Load the SQL schema from the file
-with open('schemas/harvestloads_schema.sql', 'r') as file:
+# Load the SQL schema from the file (adjust the path if needed)
+with open('tools/SQL/schemas/harvestloads_schema.sql', 'r') as file:
     create_table_query = file.read()
 
-# Execute the query
-execute_sql_query(server, database, username, password, create_table_query)
+# Execute the query using the connection URL
+execute_sql_query(database_url, create_table_query)

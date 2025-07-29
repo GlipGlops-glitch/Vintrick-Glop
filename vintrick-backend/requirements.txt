@@ -5,4 +5,5 @@ sqlalchemy
 psycopg2-binary
 dotenv
 pandas
+pyodbc
 
