@@ -1,30 +1,31 @@
 from sqlalchemy import Column, String, Float, Boolean, DateTime
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
-from sqlalchemy.ext.declarative import declarative_base
+from app.core.db import Base
 import uuid
-
-Base = declarative_base()
 
 class HarvestLoad(Base):
     __tablename__ = "harvestloads"
 
-    uid = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
-    Vintrace_ST = Column(String(255))
-    Block = Column(String(255))
+    uid = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4, index=True)
+    Vintrace_ST = Column(String)
+    Block = Column(String)
     Tons = Column(Float)
-    Press = Column(String(255))
-    Tank = Column(String(255))
-    WO = Column(String(255))
-    Date_Received = Column(String(50))
-    AgCode_ST = Column(String(255))
-    Time_Received = Column(String(50))
-    Wine_Type = Column(String(255))
+    Press = Column(String)
+    Tank = Column(String)
+    WO = Column(String)
+    Date_Received = Column(String)
+    AgCode_ST = Column(String)
+    Time_Received = Column(String)
+    Wine_Type = Column(String)
     Est_Tons_1 = Column(Float)
     Est_Tons_2 = Column(Float)
     Est_Tons_3 = Column(Float)
-    Press_Pick_2 = Column(String(255))
-    Linked = Column(String(255))
-    Crush_Pad = Column(String(255))
-    Status = Column(String(255))
+    Press_Pick_2 = Column(String)
+    Linked = Column(String)
+    Crush_Pad = Column(String)
+    Status = Column(String)
     last_modified = Column(DateTime)
     synced = Column(Boolean, default=False)
+
+    def __repr__(self):
+        return f"<HarvestLoad uid={self.uid} Vintrace_ST={self.Vintrace_ST} Tons={self.Tons}>"

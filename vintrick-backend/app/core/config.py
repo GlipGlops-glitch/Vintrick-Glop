@@ -1,10 +1,12 @@
-# vintrick-backend/app/core/config.py
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class Settings:
-    DATABASE_URL: str = os.getenv("DATABASE_URL", "postgresql://postgres:Mtbreeze17!@db:5432/vintrick")
+    DATABASE_URL: str = os.getenv(
+        "DATABASE_URL",
+        "mssql+pyodbc://@SMWECSMDEV10/Higgins_Sandbox?driver=ODBC+Driver+17+for+SQL+Server&trusted_connection=yes&encrypt=yes&trustservercertificate=yes"
+    )
 
 settings = Settings()

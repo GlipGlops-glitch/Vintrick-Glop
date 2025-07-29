@@ -1,5 +1,4 @@
-version: "3.8"
-
+version: '3.9'
 services:
   api:
     build: .
@@ -9,24 +8,3 @@ services:
       - .:/app
     env_file:
       - .env
-    # No need for depends_on: db if you are connecting to host PostgreSQL
-
-  db:
-    image: postgres:17
-    restart: always
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: Mtbreeze17!
-      POSTGRES_DB: vintrick
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      retries: 5
-    # You can comment out or remove db service if not needed
-
-volumes:
-  pgdata:

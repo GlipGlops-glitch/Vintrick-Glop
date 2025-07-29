@@ -1,3 +1,5 @@
+# vintrick-backend/vintrick-backend/Tools/SQL/
+
 import pyodbc
 
 def execute_sql_query(server, database, username, password, query):
