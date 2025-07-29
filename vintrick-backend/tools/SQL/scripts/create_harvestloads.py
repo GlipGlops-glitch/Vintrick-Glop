@@ -1,4 +1,5 @@
-# filepath: /c:/Users/cah01/Code/Vintrick/SQL/create_harvestloads.py
+
+
 from create_table import execute_sql_query
 from dotenv import load_dotenv
 import os
