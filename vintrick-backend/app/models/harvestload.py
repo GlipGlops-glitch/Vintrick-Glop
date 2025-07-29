@@ -1,33 +1,30 @@
-# vintrick-backend/app/models/harvestload.py
-
 from sqlalchemy import Column, String, Float, Boolean, DateTime
-from sqlalchemy.dialects.postgresql import UUID
-from app.core.db import Base
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
+from sqlalchemy.ext.declarative import declarative_base
 import uuid
+
+Base = declarative_base()
 
 class HarvestLoad(Base):
     __tablename__ = "harvestloads"
 
-    uid = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    Vintrace_ST = Column(String, nullable=True)
-    Block = Column(String, nullable=True)
-    Tons = Column(Float, nullable=True)
-    Press = Column(String, nullable=True)
-    Tank = Column(String, nullable=True)
-    WO = Column(String, nullable=True)
-    Date_Received = Column(String, nullable=True)
-    AgCode_ST = Column(String, nullable=True)
-    Time_Received = Column(String, nullable=True)
-    Wine_Type = Column(String, nullable=True)
-    Est_Tons_1 = Column(Float, nullable=True)
-    Est_Tons_2 = Column(Float, nullable=True)
-    Est_Tons_3 = Column(Float, nullable=True)
-    Press_Pick_2 = Column(String, nullable=True)
-    Linked = Column(String, nullable=True)
-    Crush_Pad = Column(String, nullable=True)
-    Status = Column(String, nullable=True)
-    last_modified = Column(DateTime, nullable=True)
-    synced = Column(Boolean, default=False, nullable=True)
-
-    def __repr__(self):
-        return f"<harvestload uid={self.uid} vintrace_st={self.Vintrace_ST} tons={self.Tons}>"
+    uid = Column(UNIQUEIDENTIFIER, primary_key=True, default=uuid.uuid4)
+    Vintrace_ST = Column(String(255))
+    Block = Column(String(255))
+    Tons = Column(Float)
+    Press = Column(String(255))
+    Tank = Column(String(255))
+    WO = Column(String(255))
+    Date_Received = Column(String(50))
+    AgCode_ST = Column(String(255))
+    Time_Received = Column(String(50))
+    Wine_Type = Column(String(255))
+    Est_Tons_1 = Column(Float)
+    Est_Tons_2 = Column(Float)
+    Est_Tons_3 = Column(Float)
+    Press_Pick_2 = Column(String(255))
+    Linked = Column(String(255))
+    Crush_Pad = Column(String(255))
+    Status = Column(String(255))
+    last_modified = Column(DateTime)
+    synced = Column(Boolean, default=False)
