@@ -1,0 +1,89 @@
+@import "../styles/theme.css";
+
+.api_screen-container {
+  min-height: 100vh;
+  padding: 42px 0 38px 0;
+  background: var(--primary-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.api-card {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+  padding: 2.3rem 1.5rem 1.4rem 1.5rem;
+}
+
+.api-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #413963;
+}
+
+.api-form-row {
+  margin-bottom: 1.1rem;
+}
+
+.api-label {
+  font-weight: 600;
+  color: #444;
+}
+
+.api-select,
+.api-param-input {
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #dedcef;
+  padding: 5px 10px;
+  margin-left: 0;
+  background: rgba(255, 255, 255, 0.95);
+  font-family: inherit;
+  min-width: 180px;
+}
+
+.api-param-row {
+  margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
+}
+
+.api-no-params {
+  margin-top: 0.7rem;
+  color: #999;
+}
+
+.api-action-bar {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+  margin-bottom: 1.2rem;
+  padding: 10px 0 4px 0;
+}
+
+.api-output {
+  width: 100%;
+  min-height: 140px;
+  max-height: 350px;
+  overflow: auto;
+  margin-top: 14px;
+  font-size: 13px;
+  background: #232234;
+  color: #b6f;
+  padding: 16px;
+  border-radius: 12px;
+  font-family: "JetBrains Mono", "Fira Mono", "Menlo", monospace;
+  box-shadow: 0 2px 12px rgba(80, 80, 120, 0.09);
+  transition: background 0.3s;
+}
+
+[data-theme="dark"] .api-card {
+  background: var(--card-bg);
+}
+
+[data-theme="dark"] .api-output {
+  background: #181625;
+  color: #c6f3e7;
+}

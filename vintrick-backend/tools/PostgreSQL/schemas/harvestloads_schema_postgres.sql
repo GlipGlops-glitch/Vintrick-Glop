@@ -1,0 +1,22 @@
+CREATE TABLE harvestloads (
+    uid UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    Vintrace_ST TEXT NULL,
+    Block TEXT NULL,
+    Tons REAL NULL,
+    Press TEXT NULL,
+    Tank TEXT NULL,
+    WO TEXT NULL,
+    Date_Received TEXT NULL,
+    AgCode_ST TEXT NULL,
+    Time_Received TEXT NULL,
+    Wine_Type TEXT NULL,
+    Est_Tons_1 REAL NULL,
+    Est_Tons_2 REAL NULL,
+    Est_Tons_3 REAL NULL,
+    Press_Pick_2 TEXT NULL,
+    Linked TEXT NULL,
+    Crush_Pad TEXT NULL,
+    Status TEXT NULL,
+    last_modified TIMESTAMP NULL,
+    synced BOOLEAN DEFAULT FALSE
+);

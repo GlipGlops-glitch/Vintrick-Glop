@@ -1,0 +1,37 @@
+@import "../styles/theme.css";
+
+.calculators-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 38px;
+}
+
+.calculators-card {
+  margin-top: 80px;
+  width: 100%;
+  max-width: 600px;
+  min-height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* .card provides bg, border, shadow, radius */
+}
+
+.calculators-coming {
+  color: #64748b;
+  font-size: 1.15rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+@media (max-width: 700px) {
+  .calculators-card {
+    margin-top: 36px;
+    max-width: 98vw;
+    padding: 1.1rem 0.3rem;
+  }
+}

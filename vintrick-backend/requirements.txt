@@ -1,0 +1,8 @@
+# vintrick-backend/requirements.txt
+fastapi
+uvicorn
+sqlalchemy
+psycopg2-binary
+dotenv
+pandas
+

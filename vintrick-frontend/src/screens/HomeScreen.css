@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap");
+@import "../styles/theme.css";
+
+.home-root {
+  min-height: 100vh;
+  width: 100vw;
+  background: var(--primary-bg);
+  overflow: hidden;
+  font-family: var(--brand-font), Arial, sans-serif;
+}
+
+.center-content {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.glass-card.card-logo-bg {
+  position: relative;
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  min-width: 320px;
+  max-width: 430px;
+  width: 96vw;
+  /* No fixed height or aspect ratio! */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: visible;
+  padding: 0;
+}
+
+.card-bg-logo-original {
+  width: 78%;
+  max-width: 310px;
+  margin: 2.2rem auto 1.7rem auto;
+  display: block;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  pointer-events: none;
+}
+
+.card-bottom-nav-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: auto;
+  margin-bottom: 2.2rem;
+  z-index: 2;
+  padding: 0 1.4rem;
+}
+
+.card-bottom-nav-grid .nav-row {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  width: 100%;
+}
+
+.nav-btn.nav-btn-small {
+  flex: 1 1 0;
+  min-width: 110px;
+  max-width: 140px;
+  height: 48px;
+  padding: 0 0.3em;
+  background: var(--btn-gradient);
+  color: white;
+  border: none;
+  border-radius: var(--btn-radius, 10px);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 1.11rem;
+  box-shadow: 0 1px 4px rgba(100, 100, 120, 0.07);
+  cursor: pointer;
+  transition:
+    transform 0.12s,
+    box-shadow 0.14s,
+    background 0.15s;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-btn.nav-btn-small:hover,
+.nav-btn.nav-btn-small:focus {
+  background: var(--btn-gradient-hover);
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 4px 20px rgba(100, 100, 150, 0.13);
+  outline: none;
+}
+
+/* --- Ripple Animation --- */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.53s linear;
+  background-color: rgba(255, 255, 255, 0.39);
+  pointer-events: none;
+  z-index: 10;
+}
+@keyframes ripple {
+  to {
+    transform: scale(2.5);
+    opacity: 0;
+  }
+}
+
+/* --- Icon Styling --- */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 0.49em;
+  font-size: 1.23em;
+}
+
+@media (max-width: 600px) {
+  .nav-btn.nav-btn-small {
+    min-width: 90px;
+    max-width: 120px;
+    height: 40px;
+    font-size: 0.97rem;
+  }
+  .card-bottom-nav-grid {
+    gap: 11px;
+    margin-bottom: 1.2rem;
+    padding: 0 0.2rem;
+  }
+  .card-bottom-nav-grid .nav-row {
+    gap: 9px;
+  }
+  .glass-card.card-logo-bg {
+    max-width: 98vw;
+    min-width: 0;
+    padding: 0;
+    border-radius: 1.1rem;
+    /* No aspect-ratio! */
+  }
+  .card-bg-logo-original {
+    max-width: 170px;
+    margin-top: 1.1rem;
+    margin-bottom: 1.2rem;
+  }
+}

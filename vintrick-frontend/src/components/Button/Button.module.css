@@ -1,0 +1,32 @@
+.Button {
+  padding: var(--space-md);
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease-in-out;
+}
+
+.Button--primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.Button--secondary {
+  background-color: var(--color-secondary);
+  color: white;
+}
+
+.Button--small {
+  font-size: var(--font-sm);
+  padding: var(--space-sm);
+}
+
+.Button--medium {
+  font-size: var(--font-md);
+}
+
+.Button--large {
+  font-size: var(--font-lg);
+  padding: var(--space-lg);
+}

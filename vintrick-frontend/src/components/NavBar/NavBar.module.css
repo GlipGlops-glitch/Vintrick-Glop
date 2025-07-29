@@ -1,0 +1,18 @@
+.NavBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primary);
+  padding: var(--space-md);
+  color: white;
+}
+
+.title {
+  font-size: var(--font-lg);
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}

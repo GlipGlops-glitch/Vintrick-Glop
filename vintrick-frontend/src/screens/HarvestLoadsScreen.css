@@ -1,0 +1,111 @@
+@import "../styles/theme.css";
+
+.harvestloads-root {
+  min-height: 100vh;
+  background: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 0 0;
+}
+
+.harvestloads-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2.3rem auto;
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.1rem 1rem;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  overflow-x: auto;
+}
+
+.harvestloads-controls {
+  display: flex;
+  gap: 13px;
+  margin-bottom: 1.2rem;
+  align-items: center;
+}
+
+.harvestloads-search {
+  flex: 1 1 0;
+  min-width: 130px;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #dedcef;
+  padding: 7px 12px;
+  background: rgba(255, 255, 255, 0.97);
+  font-family: inherit;
+}
+
+.harvestloads-crushpad {
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #dedcef;
+  padding: 7px 14px;
+  background: rgba(255, 255, 255, 0.97);
+  font-family: inherit;
+}
+
+.harvestloads-table-scroll {
+  overflow-x: auto;
+}
+
+.harvestloads-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  color: #37306b;
+  font-size: 1.01rem;
+}
+
+.harvestloads-table thead th {
+  font-weight: 700;
+  background: transparent;
+  border-bottom: 2px solid #e5e1fa;
+  cursor: pointer;
+  color: #58528a;
+  font-size: 1.06rem;
+  user-select: none;
+  padding: 11px 8px;
+  text-align: left;
+  background-clip: padding-box;
+  transition: background 0.16s;
+}
+
+.harvestloads-table tbody tr:hover {
+  background: var(--glass-frost);
+  transition: background 0.18s;
+}
+
+.harvestloads-table td,
+.harvestloads-table th {
+  vertical-align: middle;
+  padding: 8px 7px;
+  border-bottom: 1px solid #e3e1f2;
+}
+
+@media (max-width: 900px) {
+  .harvestloads-card,
+  .header-bar {
+    max-width: 99vw;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .harvestloads-card,
+  .header-bar {
+    padding: 0.5rem 0.2rem;
+    border-radius: 1.1rem;
+  }
+  .harvestloads-root {
+    padding-top: 15px;
+  }
+  .harvestloads-table {
+    font-size: 0.95rem;
+  }
+}

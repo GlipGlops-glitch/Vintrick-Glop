@@ -1,0 +1,67 @@
+{
+  "info": {
+    "name": "Vintrick API",
+    "_postman_id": "abc123",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Harvest Loads",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:3000/api/harvestloads",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "harvestloads"]
+        }
+      }
+    },
+    {
+      "name": "Add Harvest Load",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"loadDate\": \"2025-01-01\",\n  \"weight\": 1000\n}"
+        },
+        "url": {
+          "raw": "http://localhost:3000/api/harvestloads",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "harvestloads"]
+        }
+      }
+    },
+    {
+      "name": "Get Load by ID",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:3000/api/harvestloads/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "harvestloads", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Load by ID",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "http://localhost:3000/api/harvestloads/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "3000",
+          "path": ["api", "harvestloads", "1"]
+        }
+      }
+    }
+  ]
+}

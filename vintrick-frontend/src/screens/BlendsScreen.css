@@ -1,0 +1,125 @@
+@import "../styles/theme.css";
+
+.blendsscreen-root {
+  min-height: 100vh;
+  background: var(--primary-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0 0 0;
+}
+
+.header-bar {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 1.3rem;
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  padding: 1.2rem 1.2rem 1.1rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header-title {
+  flex: 1;
+  margin: 0 1.2rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #413963;
+  text-align: left;
+}
+
+.blends-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto 2.3rem auto;
+  padding: 2.2rem 1.3rem 1.3rem 1.3rem;
+}
+
+.blendsscreen-searchbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.2rem;
+}
+
+.blendsscreen-search {
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #dedcef;
+  padding: 7px 12px;
+  min-width: 180px;
+  font-family: inherit;
+  background: rgba(255, 255, 255, 0.97);
+}
+
+.blends-table-scroll {
+  overflow-x: auto;
+}
+
+.blendsscreen-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: transparent;
+  color: #37306b;
+  font-size: 1.01rem;
+}
+
+.blendsscreen-table thead th {
+  font-weight: 700;
+  background: transparent;
+  border-bottom: 2px solid #e5e1fa;
+  cursor: pointer;
+  color: #58528a;
+  font-size: 1.06rem;
+  user-select: none;
+  padding: 11px 8px;
+  text-align: left;
+  background-clip: padding-box;
+}
+
+.blendsscreen-table tbody tr:hover {
+  background: var(--glass-frost);
+  transition: background 0.18s;
+}
+
+.blendsscreen-row td,
+.blendsscreen-table th {
+  vertical-align: middle;
+  padding: 8px 7px;
+  border-bottom: 1px solid #e3e1f2;
+}
+
+.blendsscreen-loading {
+  color: #998eea;
+  margin: 1.5rem 0 0 0;
+  text-align: center;
+  font-size: 1.05rem;
+}
+
+@media (max-width: 900px) {
+  .blends-card,
+  .header-bar {
+    max-width: 99vw;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .blends-card,
+  .header-bar {
+    padding: 0.7rem 0.2rem;
+    border-radius: 1.1rem;
+  }
+  .blendsscreen-root {
+    padding-top: 15px;
+  }
+  .blendsscreen-table {
+    font-size: 0.95rem;
+  }
+}

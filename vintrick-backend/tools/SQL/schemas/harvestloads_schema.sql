@@ -1,0 +1,22 @@
+CREATE TABLE harvestloads (
+    uid UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    Vintrace_ST NVARCHAR(MAX) NULL,
+    Block NVARCHAR(MAX) NULL,
+    Tons FLOAT NULL,
+    Press NVARCHAR(MAX) NULL,
+    Tank NVARCHAR(MAX) NULL,
+    WO NVARCHAR(MAX) NULL,
+    Date_Received NVARCHAR(MAX) NULL,
+    AgCode_ST NVARCHAR(MAX) NULL,
+    Time_Received NVARCHAR(MAX) NULL,
+    Wine_Type NVARCHAR(MAX) NULL,
+    Est_Tons_1 FLOAT NULL,
+    Est_Tons_2 FLOAT NULL,
+    Est_Tons_3 FLOAT NULL,
+    Press_Pick_2 NVARCHAR(MAX) NULL,
+    Linked NVARCHAR(MAX) NULL,
+    Crush_Pad NVARCHAR(MAX) NULL,
+    Status NVARCHAR(MAX) NULL,
+    last_modified DATETIME NULL,
+    synced BIT DEFAULT 0 NULL
+);
