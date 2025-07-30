@@ -15,13 +15,14 @@ def create_harvestload(db: Session, harvestload: HarvestLoadCreate) -> HarvestLo
     db.refresh(db_obj)
     return db_obj
 
-def get_all_harvestloads(db: Session, skip: int = 0, limit: int = 1000) -> List[HarvestLoad]:
-    query = db.query(HarvestLoad).order_by(HarvestLoad.Date_Received)
+def get_all_harvestloads(db: Session, skip: int = 0, limit: int = 50):
+    query = db.query(HarvestLoad).order_by(HarvestLoad.Date_Received.desc())
+    total = query.count()
     if skip:
         query = query.offset(skip)
     if limit:
         query = query.limit(limit)
-    return query.all()
+    return query.all(), total
 
 def get_harvestload_by_uid(db: Session, uid: str) -> Optional[HarvestLoad]:
     return db.query(HarvestLoad).filter(HarvestLoad.uid == uid).first()
