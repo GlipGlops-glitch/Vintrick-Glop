@@ -1,5 +1,7 @@
 # vintrick-backend/app/crud/harvestload.py
 
+# actual code to do updates to the db
+# 
 from sqlalchemy.orm import Session
 from app.models.harvestload import HarvestLoad
 from app.schemas.harvestload import HarvestLoadCreate
@@ -16,7 +18,8 @@ def create_harvestload(db: Session, harvestload: HarvestLoadCreate) -> HarvestLo
     return db_obj
 
 def get_all_harvestloads(db: Session, skip: int = 0, limit: int = 50):
-    query = db.query(HarvestLoad).order_by(HarvestLoad.Date_Received.desc())
+    # Add secondary sort by uid to guarantee stable pagination
+    query = db.query(HarvestLoad).order_by(HarvestLoad.Date_Received.desc(), HarvestLoad.uid.desc())
     total = query.count()
     if skip:
         query = query.offset(skip)

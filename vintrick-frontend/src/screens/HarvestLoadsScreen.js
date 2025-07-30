@@ -1,4 +1,3 @@
-// src/screens/HarvestLoadsScreen.js
 import "./HarvestLoadsScreen.css";
 import React, { useState, useEffect, useCallback } from "react";
 import HeaderBar from "../components/HeaderBar";
@@ -43,6 +42,7 @@ const fetchHarvestLoadsPage = async (authFetch, skip, limit) => {
       Status: item.Status || "",
       last_modified: item.last_modified || "",
       synced: item.synced || false,
+      Vintage: item.Vintage || "", // Add this line if your API returns a Vintage/year
     })),
     total: typeof data.total === "number" ? data.total : (data.items?.length || 0),
   };
@@ -66,6 +66,10 @@ export default function HarvestLoadsScreen() {
   const [showForm, setShowForm] = useState(false);
   const [formMode, setFormMode] = useState("add");
   const [selectedRecord, setSelectedRecord] = useState(null);
+
+  // NEW FILTERS
+  const [vintageFilter, setVintageFilter] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
 
   const navigate = useNavigate();
   const { authFetch } = useAuth();
@@ -139,6 +143,7 @@ export default function HarvestLoadsScreen() {
         Status: formValues.Status || "",
         last_modified: formValues.last_modified || "",
         synced: formValues.synced || false,
+        Vintage: formValues.Vintage || "", // If using Vintage in your forms too
       };
 
       if (formMode === "add") {
@@ -178,6 +183,11 @@ export default function HarvestLoadsScreen() {
     }
   }
 
+  // Get unique vintages for the dropdown
+  const vintageOptions = Array.from(
+    new Set(data.map((rec) => rec.Vintage).filter(Boolean))
+  ).sort();
+
   // Filtering and sorting are applied client-side to loaded data
   const filtered = data.filter((rec) => {
     let match = true;
@@ -187,6 +197,13 @@ export default function HarvestLoadsScreen() {
       !`${rec.Date_Received} ${rec.WO} ${rec.Block} ${rec.Vintrace_ST}`
         .toLowerCase()
         .includes(search.toLowerCase())
+    )
+      match = false;
+    if (vintageFilter && rec.Vintage !== vintageFilter) match = false;
+    if (
+      dateFilter &&
+      (!rec.Date_Received ||
+        rec.Date_Received.slice(0, 10) !== dateFilter)
     )
       match = false;
     return match;
@@ -209,7 +226,8 @@ export default function HarvestLoadsScreen() {
         addLabel="+ Add"
       />
       <div className="card harvestloads-card">
-        <div className="harvestloads-controls">
+        {/* Controls Row 1: Search and Crush Pad */}
+        <div className="harvestloads-controls" style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           <input
             className="harvestloads-search"
             placeholder="Search"
@@ -227,6 +245,38 @@ export default function HarvestLoadsScreen() {
               </option>
             ))}
           </select>
+        </div>
+        {/* Controls Row 2: Vintage and Date */}
+        <div className="harvestloads-controls">
+          <select
+            className="harvestloads-dropdown"
+            value={vintageFilter}
+            onChange={(e) => setVintageFilter(e.target.value)}
+          >
+            <option value="">All Vintages</option>
+            {vintageOptions.map((vin) => (
+              <option value={vin} key={vin}>
+                {vin}
+              </option>
+            ))}
+          </select>
+          <input
+            type="date"
+            className="harvestloads-date"
+            value={dateFilter}
+            onChange={(e) => setDateFilter(e.target.value)}
+          />
+          {(vintageFilter || dateFilter) && (
+            <button
+              className="harvestloads-clear-btn"
+              onClick={() => {
+                setVintageFilter("");
+                setDateFilter("");
+              }}
+            >
+              Clear Filters
+            </button>
+          )}
         </div>
         <div
           className="harvestloads-table-scroll"
