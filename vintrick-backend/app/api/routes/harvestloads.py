@@ -2,7 +2,7 @@
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
-from app.schemas import HarvestLoad
+from app.schemas import HarvestLoad, HarvestLoadCreate
 from app.crud import harvestload
 from app.api.deps import get_db
 
