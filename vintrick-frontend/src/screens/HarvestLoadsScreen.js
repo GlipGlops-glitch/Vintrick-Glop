@@ -1,10 +1,11 @@
 // src/screens/HarvestLoadsScreen.js
 import "./HarvestLoadsScreen.css";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import HeaderBar from "../components/HeaderBar";
 import AddEditHarvestLoadForm from "../components/AddEditHarvestLoadForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const CRUSH_PADS = [
   "All",
@@ -13,43 +14,53 @@ const CRUSH_PADS = [
   "Reserve Crush Pad",
 ];
 
-// make sure to put all the fields here!!!
-const fetchHarvestLoads = async (authFetch) => {
-  const response = await authFetch("/api/harvestloads/");
+// Fetches one page of harvest loads (paginated)
+const fetchHarvestLoadsPage = async (authFetch, skip, limit) => {
+  const response = await authFetch(`/api/harvestloads?skip=${skip}&limit=${limit}`);
   if (!response.ok) throw new Error("Failed to fetch harvest loads");
   const data = await response.json();
-  return data.map((item) => ({
-    id: item.uid || "",
-    uid: item.uid || "",
-    Date_Received: item.Date_Received || "",
-    WO: item.WO || "",
-    Block: item.Block || "",
-    Vintrace_ST: item.Vintrace_ST || "",
-    Tons: item.Tons || null,
-    Crush_Pad: item.Crush_Pad || "",
-    Press: item.Press || "",
-    Tank: item.Tank || "",
-    AgCode_ST: item.AgCode_ST || "",
-    Time_Received: item.Time_Received || "",
-    Wine_Type: item.Wine_Type || "",
-    Est_Tons_1: item.Est_Tons_1 || null,
-    Est_Tons_2: item.Est_Tons_2 || null,
-    Est_Tons_3: item.Est_Tons_3 || null,
-    Press_Pick_2: item.Press_Pick_2 || "",
-    Linked: item.Linked || "",
-    Status: item.Status || "",
-    last_modified: item.last_modified || "",
-    synced: item.synced || false,
-  }));
+  // Expecting {items: [...], total: N}
+  return {
+    items: (data.items || []).map((item) => ({
+      id: item.uid || "",
+      uid: item.uid || "",
+      Date_Received: item.Date_Received || "",
+      WO: item.WO || "",
+      Block: item.Block || "",
+      Vintrace_ST: item.Vintrace_ST || "",
+      Tons: item.Tons || null,
+      Crush_Pad: item.Crush_Pad || "",
+      Press: item.Press || "",
+      Tank: item.Tank || "",
+      AgCode_ST: item.AgCode_ST || "",
+      Time_Received: item.Time_Received || "",
+      Wine_Type: item.Wine_Type || "",
+      Est_Tons_1: item.Est_Tons_1 || null,
+      Est_Tons_2: item.Est_Tons_2 || null,
+      Est_Tons_3: item.Est_Tons_3 || null,
+      Press_Pick_2: item.Press_Pick_2 || "",
+      Linked: item.Linked || "",
+      Status: item.Status || "",
+      last_modified: item.last_modified || "",
+      synced: item.synced || false,
+    })),
+    total: typeof data.total === "number" ? data.total : (data.items?.length || 0),
+  };
 };
+
+const PAGE_SIZE = 50;
 
 export default function HarvestLoadsScreen() {
   const [data, setData] = useState([]);
+  const [skip, setSkip] = useState(0);
+  const [total, setTotal] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+
   const [search, setSearch] = useState("");
   const [crushPad, setCrushPad] = useState("All");
   const [sortCol, setSortCol] = useState("Date_Received");
   const [sortDesc, setSortDesc] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const [showForm, setShowForm] = useState(false);
@@ -59,13 +70,35 @@ export default function HarvestLoadsScreen() {
   const navigate = useNavigate();
   const { authFetch } = useAuth();
 
+  // Fetch first page on mount
   useEffect(() => {
     setLoading(true);
-    fetchHarvestLoads(authFetch)
-      .then(setData)
+    setError(null);
+    fetchHarvestLoadsPage(authFetch, 0, PAGE_SIZE)
+      .then(({ items, total }) => {
+        setData(items);
+        setSkip(items.length);
+        setTotal(total);
+        setHasMore(items.length < total);
+      })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, [authFetch]);
+
+  // Fetch next page for infinite scroll
+  const fetchMoreData = useCallback(() => {
+    if (loading || !hasMore) return;
+    setLoading(true);
+    fetchHarvestLoadsPage(authFetch, skip, PAGE_SIZE)
+      .then(({ items }) => {
+        setData((prev) => [...prev, ...items]);
+        setSkip((prev) => prev + items.length);
+        setHasMore(data.length + items.length < total);
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+    // eslint-disable-next-line
+  }, [authFetch, skip, data.length, total, loading, hasMore]);
 
   function handleAddNew() {
     setFormMode("add");
@@ -79,6 +112,7 @@ export default function HarvestLoadsScreen() {
     setShowForm(true);
   }
 
+  // Reload all pages after adding/editing
   async function handleFormSubmit(formValues) {
     setLoading(true);
     try {
@@ -106,7 +140,7 @@ export default function HarvestLoadsScreen() {
         last_modified: formValues.last_modified || "",
         synced: formValues.synced || false,
       };
-  
+
       if (formMode === "add") {
         res = await authFetch("/api/harvestloads/", {
           method: "POST",
@@ -116,31 +150,35 @@ export default function HarvestLoadsScreen() {
       } else {
         const uid = formValues.id || formValues.uid;
         if (!uid) throw new Error("Missing ID for edit operation");
-  
+
         res = await authFetch(`/api/harvestloads/${uid}`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
       }
-  
+
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Save failed");
       }
-  
+
       setShowForm(false);
       setError(null);
-      const updated = await fetchHarvestLoads(authFetch);
-      setData(updated);
+      // Reload page 1
+      const { items, total } = await fetchHarvestLoadsPage(authFetch, 0, PAGE_SIZE);
+      setData(items);
+      setSkip(items.length);
+      setTotal(total);
+      setHasMore(items.length < total);
     } catch (e) {
       setError(e.message);
     } finally {
       setLoading(false);
     }
   }
-  
 
+  // Filtering and sorting are applied client-side to loaded data
   const filtered = data.filter((rec) => {
     let match = true;
     if (crushPad !== "All" && rec.Crush_Pad !== crushPad) match = false;
@@ -190,54 +228,84 @@ export default function HarvestLoadsScreen() {
             ))}
           </select>
         </div>
-        <div className="harvestloads-table-scroll">
-          <table className="harvestloads-table">
-            <thead>
-              <tr>
-                {["Date_Received", "WO", "Block", "Vintrace_ST", "Tons"].map(
-                  (col) => (
-                    <th
-                      key={col}
-                      onClick={() => {
-                        setSortCol(col);
-                        setSortDesc((c) => (sortCol === col ? !c : false));
-                      }}
-                    >
-                      {col.replace("_", " ")} {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
-                    </th>
-                  )
-                )}
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {sorted.map((rec) => (
-                <tr key={rec.id}>
-                  <td>{rec.Date_Received}</td>
-                  <td>{rec.WO}</td>
-                  <td>{rec.Block}</td>
-                  <td>{rec.Vintrace_ST}</td>
-                  <td>{rec.Tons}</td>
-                  <td>
-                    <button
-                      className="nav-btn nav-btn-light"
-                      style={{ padding: "5px 14px", fontSize: 15 }}
-                      onClick={() => handleOpenEdit(rec)}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {sorted.length === 0 && (
+        <div
+          className="harvestloads-table-scroll"
+          id="harvestloads-scrollable"
+          style={{ maxHeight: 600, overflow: "auto" }}
+        >
+          <InfiniteScroll
+            dataLength={data.length}
+            next={fetchMoreData}
+            hasMore={hasMore}
+            loader={
+              loading && (
                 <tr>
                   <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
-                    No records found.
+                    Loading...
                   </td>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              )
+            }
+            scrollableTarget="harvestloads-scrollable"
+            endMessage={
+              !loading && (
+                <tr>
+                  <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
+                    All records loaded.
+                  </td>
+                </tr>
+              )
+            }
+            style={{ overflow: "visible" }}
+          >
+            <table className="harvestloads-table">
+              <thead>
+                <tr>
+                  {["Date_Received", "WO", "Block", "Vintrace_ST", "Tons"].map(
+                    (col) => (
+                      <th
+                        key={col}
+                        onClick={() => {
+                          setSortCol(col);
+                          setSortDesc((c) => (sortCol === col ? !c : false));
+                        }}
+                      >
+                        {col.replace("_", " ")} {sortCol === col ? (sortDesc ? "▼" : "▲") : ""}
+                      </th>
+                    )
+                  )}
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                {sorted.map((rec) => (
+                  <tr key={rec.id}>
+                    <td>{rec.Date_Received}</td>
+                    <td>{rec.WO}</td>
+                    <td>{rec.Block}</td>
+                    <td>{rec.Vintrace_ST}</td>
+                    <td>{rec.Tons}</td>
+                    <td>
+                      <button
+                        className="nav-btn nav-btn-light"
+                        style={{ padding: "5px 14px", fontSize: 15 }}
+                        onClick={() => handleOpenEdit(rec)}
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {sorted.length === 0 && (
+                  <tr>
+                    <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
+                      No records found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </InfiniteScroll>
         </div>
         {error && (
           <div style={{ color: "red", padding: 10, textAlign: "center" }}>
