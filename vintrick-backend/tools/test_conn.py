@@ -1,39 +1,39 @@
 import os
 import pyodbc
+from urllib.parse import urlparse, parse_qs, unquote
+
 from dotenv import load_dotenv
 
-# Load environment variables from .env
 load_dotenv()
 
-# Try to get the connection string from the environment variable
-conn_str = os.getenv("DB_CONN_STR")
+database_url = os.getenv("DATABASE_URL")
 
-if not conn_str:
-    # Fallback: try to build from DATABASE_URL if present (pyodbc format is different from SQLAlchemy!)
-    database_url = os.getenv("DATABASE_URL")
-    if database_url and database_url.startswith("mssql+pyodbc://"):
-        # Basic parse (NOTE: for simple cases only)
-        import re
-        match = re.match(
-            r"mssql\+pyodbc://(?P<user>.*?):(?P<pw>.*?)@(?P<server>.*?)/(?P<db>.*?)\?driver=(?P<driver>.+)",
-            database_url
-        )
-        if match:
-            d = match.groupdict()
-            conn_str = (
-                f"DRIVER={{{d['driver'].replace('+', ' ')}}};"
-                f"SERVER={d['server']};"
-                f"DATABASE={d['db']};"
-                f"UID={d['user']};"
-                f"PWD={d['pw']};"
-                "Encrypt=yes;"
-                "TrustServerCertificate=yes;"
-            )
+if database_url and database_url.startswith("mssql+pyodbc://"):
+    # Parse the URL
+    url = urlparse(database_url)
+    user = url.username
+    password = url.password
+    server = url.hostname
+    db = url.path.lstrip('/')
+    query = parse_qs(url.query)
+    driver = unquote(query.get('driver', ['ODBC Driver 18 for SQL Server'])[0])
+    encrypt = query.get('Encrypt', ['yes'])[0]
+    trust_cert = query.get('TrustServerCertificate', ['yes'])[0]
 
-if not conn_str:
-    raise RuntimeError(
-        "No connection string found! Please set DB_CONN_STR or DATABASE_URL in your .env file."
+    conn_str = (
+        f"DRIVER={{{driver}}};"
+        f"SERVER={server};"
+        f"DATABASE={db};"
+        f"UID={user};"
+        f"PWD={password};"
+        f"Encrypt={encrypt};"
+        f"TrustServerCertificate={trust_cert};"
     )
+else:
+    raise RuntimeError("No valid DATABASE_URL found!")
+
+print("Using ODBC connection string:")
+print(conn_str)
 
 try:
     conn = pyodbc.connect(conn_str)

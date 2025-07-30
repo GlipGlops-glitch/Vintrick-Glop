@@ -9,6 +9,7 @@ services:
       - .:/app
     env_file:
       - .env
+    # Removed DATABASE_URL from environment to use only .env for secrets
     depends_on:
       - mssql
 
