@@ -15,7 +15,7 @@ def create_harvestload(db: Session, harvestload: HarvestLoadCreate) -> HarvestLo
     db.refresh(db_obj)
     return db_obj
 
-def get_all_harvestloads(db: Session, skip: int = 0, limit: int = None) -> List[HarvestLoad]:
+def get_all_harvestloads(db: Session, skip: int = 0, limit: int = 1000) -> List[HarvestLoad]:
     query = db.query(HarvestLoad).order_by(HarvestLoad.Date_Received)
     if skip:
         query = query.offset(skip)
@@ -44,6 +44,4 @@ def delete_harvestload(db: Session, uid: str) -> bool:
         db.commit()
         return True
     return False
-
-    from datetime import datetime, timezone
 
