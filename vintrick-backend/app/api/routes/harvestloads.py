@@ -8,7 +8,7 @@ from app.api.deps import get_db
 
 router = APIRouter()
 
-@router.post("/harvestloads", response_model=HarvestLoad)
+@router.post("/harvestloads/", response_model=HarvestLoad)
 def create_harvestload(
     load: HarvestLoadCreate, db: Session = Depends(get_db)
 ):

@@ -12,7 +12,7 @@ RUN apt-get update \
         gcc \
         g++ \
         gpg \
-    # Add the Microsoft GPG key and use signed-by in the sources.list.d entry
+        netcat-openbsd \  # <-- Added for network troubleshooting (nc command)\
     && curl -sSL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > /usr/share/keyrings/microsoft-prod.gpg \
     && echo "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-prod.gpg] https://packages.microsoft.com/debian/12/prod bookworm main" > /etc/apt/sources.list.d/mssql-release.list \
     && apt-get update \
