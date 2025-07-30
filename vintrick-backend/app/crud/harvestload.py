@@ -13,7 +13,13 @@ def create_harvestload(db: Session, harvestload: HarvestLoadCreate) -> HarvestLo
     return db_obj
 
 def get_all_harvestloads(db: Session, skip: int = 0, limit: int = 100) -> List[HarvestLoad]:
-    return db.query(HarvestLoad).offset(skip).limit(limit).all()
+    return (
+        db.query(HarvestLoad)
+        .order_by(HarvestLoad.uid)  # <-- Add this line!
+        .offset(skip)
+        .limit(limit)
+        .all()
+    )
 
 def get_harvestload_by_uid(db: Session, uid: str) -> Optional[HarvestLoad]:
     return db.query(HarvestLoad).filter(HarvestLoad.uid == uid).first()
