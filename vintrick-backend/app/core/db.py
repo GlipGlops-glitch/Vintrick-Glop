@@ -1,12 +1,9 @@
-import os
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from dotenv import load_dotenv
+from app.core.config import settings
 
-load_dotenv()
-
-DATABASE_URL = "mssql+pyodbc://harvest_user:h@rvest_smwe123!@SMWECSMDEV10/Higgins_Sandbox?driver=ODBC+Driver+18+for+SQL+Server"
+DATABASE_URL = settings.DATABASE_URL
 
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

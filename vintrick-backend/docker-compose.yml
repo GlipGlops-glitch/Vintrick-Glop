@@ -9,8 +9,6 @@ services:
       - .:/app
     env_file:
       - .env
-    environment:
-      DATABASE_URL: "mssql+pyodbc://harvest_user:h@rvest_smwe123!@SMWECSMDEV10/Higgins_Sandbox?driver=ODBC+Driver+18+for+SQL+Server"
     depends_on:
       - mssql
 
