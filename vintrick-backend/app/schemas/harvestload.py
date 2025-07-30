@@ -23,8 +23,10 @@ class HarvestLoadBase(BaseModel):
     Linked: Optional[str] = None
     Crush_Pad: Optional[str] = None
     Status: Optional[str] = None
-    last_modified: Optional[datetime] = None
     synced: Optional[bool] = None
+    
+    # Removed since it will be auto
+    #last_modified: Optional[datetime] = None
 
 class HarvestLoadCreate(HarvestLoadBase):
     pass

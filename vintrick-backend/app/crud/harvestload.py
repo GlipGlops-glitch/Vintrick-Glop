@@ -4,9 +4,12 @@ from sqlalchemy.orm import Session
 from app.models.harvestload import HarvestLoad
 from app.schemas.harvestload import HarvestLoadCreate
 from typing import Optional, List
+from datetime import datetime, timezone
 
 def create_harvestload(db: Session, harvestload: HarvestLoadCreate) -> HarvestLoad:
-    db_obj = HarvestLoad(**harvestload.model_dump())
+    data = harvestload.model_dump()
+    data["last_modified"] = datetime.now(timezone.utc)
+    db_obj = HarvestLoad(**data)
     db.add(db_obj)
     db.commit()
     db.refresh(db_obj)
@@ -42,3 +45,6 @@ def delete_harvestload(db: Session, uid: str) -> bool:
         db.commit()
         return True
     return False
+
+    from datetime import datetime, timezone
+
