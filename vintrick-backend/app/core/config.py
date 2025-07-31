@@ -14,7 +14,6 @@ class Settings:
 
     @property
     def sqlalchemy_database_url(self) -> str:
-        # URL-encode the driver for SQLAlchemy/pyodbc URI
         from urllib.parse import quote_plus
         driver = quote_plus(self.DB_DRIVER)
         return (

@@ -54,12 +54,3 @@ def delete_harvestload(load_id: str, db: Session = Depends(get_db)):
 
 
 
-
-
-
-
-
-
-
-
-

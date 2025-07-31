@@ -36,6 +36,16 @@ Vintrick/
     ├── requirements.txt    # Python dependencies
     ├── .env.example        # Env variable template
     └── README.md           # (This file)
+
+
+
+
+
+
+
+
+
+
 ```
 
 ---
