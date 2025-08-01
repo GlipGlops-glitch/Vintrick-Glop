@@ -208,3 +208,28 @@ docker-compose up
 docker-compose down
 # Or remove orphans and volumes
 docker-compose down --remove-orphans -v
+
+# Git SETUP
+Configuring user information used across all local repositories
+git config --global user.name “[firstname lastname]”
+
+set a name that is identifiable for credit when review version history
+git config --global user.email “[valid-email]”
+
+set an email address that will be associated with each history marker
+git config --global color.ui auto
+
+set automatic command line coloring for Git for easy reviewing
+SETUP & INIT
+
+Configuring user information, initializing and cloning repositories
+git init
+
+initialize an existing directory as a Git repository
+git clone [url]
+
+retrieve an entire repository from a hosted location via URL
+
+git add .
+git commit -m "CH"
+git push origin main
