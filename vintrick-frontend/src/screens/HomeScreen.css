@@ -67,7 +67,7 @@
 
 .nav-btn.nav-btn-small {
   flex: 1 1 0;
-  min-width: 110px;
+  min-width: 125px;
   max-width: 140px;
   height: 48px;
   padding: 0 0.3em;
@@ -76,7 +76,7 @@
   border: none;
   border-radius: var(--btn-radius, 10px);
   font-family: inherit;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1.11rem;
   box-shadow: 0 1px 4px rgba(100, 100, 120, 0.07);
   cursor: pointer;
@@ -128,10 +128,10 @@
 
 @media (max-width: 600px) {
   .nav-btn.nav-btn-small {
-    min-width: 90px;
+    min-width: 70px;
     max-width: 120px;
     height: 40px;
-    font-size: 0.97rem;
+    font-size: 0.90rem;
   }
   .card-bottom-nav-grid {
     gap: 11px;

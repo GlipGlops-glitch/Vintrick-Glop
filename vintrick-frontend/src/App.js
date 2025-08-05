@@ -31,6 +31,11 @@ import { SettingsProvider } from "./context/SettingsContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./screens/HomeScreen.css";
 
+// Preload logo
+import vintrickLogo from "./assets/background.png";
+const preloadedLogo = new window.Image();
+preloadedLogo.src = vintrickLogo;
+
 // Shared button style for both buttons
 const btnStyle = {
   width: 150,
@@ -138,10 +143,10 @@ function AppRoutes() {
           }
         />
         <Route
-          path="/blends"
+          path="/"
           element={
             <ProtectedRoute>
-              <BlendsScreen />
+              <HomeScreen logoSrc={vintrickLogo} />
             </ProtectedRoute>
           }
         />

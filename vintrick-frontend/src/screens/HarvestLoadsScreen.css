@@ -6,77 +6,59 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 0 0 0;
+  padding: var(--spacing-xl) 0 0 0;
 }
 
 .harvestloads-card {
   width: 100%;
-  max-width: 900px;
+  max-width: var(--max-width-lg);
   margin: 0 auto 2.3rem auto;
   background: var(--card-bg);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
-  padding: 1.1rem 1rem;
+  padding: var(--spacing-md) var(--spacing-md);
   border: 1.5px solid rgba(255, 255, 255, 0.15);
   overflow-x: auto;
 }
 
 .harvestloads-controls {
   display: flex;
-  gap: 13px;
+  gap: var(--spacing-md);
   margin-bottom: 1.2rem;
   align-items: center;
 }
 
-.harvestloads-search {
-  flex: 1 1 0;
-  min-width: 130px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #dedcef;
+/* Inputs and Selects */
+.harvestloads-search,
+.harvestloads-dropdown,
+.harvestloads-date,
+.harvestloads-crushpad {
+  font-size: var(--font-size-base);
+  border-radius: var(--input-radius);
+  border: var(--input-border);
   padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.97);
-  font-family: inherit;
+  background: var(--input-bg);
+  font-family: var(--font-family-main);
 }
 
-.harvestloads-dropdown {
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #dedcef;
-  padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.97);
-  font-family: inherit;
-}
-
-.harvestloads-date {
-  padding: 8px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #dedcef;
-  padding: 7px 12px;
-  background: rgba(255, 255, 255, 0.97);
-  font-family: inherit;
+/* Special wider select for crush pad */
+.harvestloads-crushpad {
+  padding: 7px 14px;
 }
 
 .harvestloads-clear-btn {
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  background-color: var(--btn-light-bg);
+  border: var(--btn-border);
   border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 0.95rem;
+  color: var(--btn-light-color);
+  transition: background 0.16s, color 0.13s;
 }
 
 .harvestloads-clear-btn:hover {
   background-color: #e0e0e0;
-}
-
-.harvestloads-crushpad {
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1px solid #dedcef;
-  padding: 7px 14px;
-  background: rgba(255, 255, 255, 0.97);
-  font-family: inherit;
+  color: #222e49;
 }
 
 .harvestloads-table-scroll {
@@ -88,16 +70,16 @@
   border-collapse: separate;
   border-spacing: 0;
   background: transparent;
-  color: #37306b;
-  font-size: 1.01rem;
+  color: var(--table-row-color);
+  font-size: var(--font-size-table);
 }
 
 .harvestloads-table thead th {
   font-weight: 700;
-  background: transparent;
-  border-bottom: 2px solid #e5e1fa;
+  background: var(--table-header-bg);
+  border-bottom: 2px solid var(--border-color-dark);
   cursor: pointer;
-  color: #58528a;
+  color: var(--table-header-color);
   font-size: 1.06rem;
   user-select: none;
   padding: 11px 8px;
@@ -107,7 +89,7 @@
 }
 
 .harvestloads-table tbody tr:hover {
-  background: var(--glass-frost);
+  background: var(--table-row-hover-bg);
   transition: background 0.18s;
 }
 
@@ -115,23 +97,27 @@
 .harvestloads-table th {
   vertical-align: middle;
   padding: 8px 7px;
-  border-bottom: 1px solid #e3e1f2;
+  border-bottom: 1px solid var(--border-color-dark);
 }
 
+/* Responsive styles */
+
+
+
 @media (max-width: 900px) {
-  .harvestloads-card,
   .header-bar {
-    max-width: 99vw;
+    max-width: var(--max-width-md);
     padding-left: 0.6rem;
     padding-right: 0.6rem;
   }
 }
 
 @media (max-width: 600px) {
-  .harvestloads-card,
-  .header-bar {
-    padding: 0.5rem 0.2rem;
-    border-radius: 1.1rem;
+  .harvestloads-card {
+    padding: 1.1rem 0.7rem;
+    margin-top: 32px;
+    min-width: 0;
+    max-width: 98vw;
   }
   .harvestloads-root {
     padding-top: 15px;

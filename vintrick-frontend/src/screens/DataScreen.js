@@ -1,42 +1,21 @@
-import "./DataScreen.css";
+import "./HarvestLoadsScreen.css"; // Use shared theme/css
 import React, { useState } from "react";
-import HeaderBar from "../components/HeaderBar";
 import { useNavigate } from "react-router-dom";
+import HeaderBar from "../components/HeaderBar";
 import axios from "axios";
 
 const ALL_COLUMNS = [
-  "Task",
-  "Scheduled",
-  "Crush Pad",
-  "Time",
-  "Comment",
-  "Ranch",
-  "Block",
-  "Allocation",
-  "Tons",
-  "Brand",
-  "Ferm Site",
-  "Variety",
-  "Pick",
-  "Analysis",
-  "Date",
-  "Brix",
-  "pH",
-  "TA",
+  "Task", "Scheduled", "Crush Pad", "Time", "Comment", "Ranch", "Block", "Allocation", "Tons",
+  "Brand", "Ferm Site", "Variety", "Pick", "Analysis", "Date", "Brix", "pH", "TA",
 ];
 
 export default function DataScreen() {
   const [testMode, setTestMode] = useState(true);
-  const [preview, setPreview] = useState({
-    open: false,
-    title: "",
-    content: "",
-  });
+  const [preview, setPreview] = useState({ open: false, title: "", content: "" });
   const [fieldMappingOpen, setFieldMappingOpen] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
   const navigate = useNavigate();
 
-  // --- Button Handlers ---
   const handlePreviewBookings = () =>
     setPreview({
       open: true,
@@ -59,7 +38,6 @@ export default function DataScreen() {
     alert("View All Fruit Intake not implemented yet.");
   const handleFieldMapping = () => setFieldMappingOpen(true);
 
-  // --- SQL Upload Button Handler ---
   const handleSqlUpload = async () => {
     setUploadStatus("Uploading...");
     try {
@@ -75,64 +53,42 @@ export default function DataScreen() {
   };
 
   return (
-    <div className="datascreen-root">
-      <div className="card datascreen-card">
-        <HeaderBar
-          title="Data Import, Bookings, & Fruit Intake API"
-          onBack={() => navigate(-1)}
-        />
-        <div className="datascreen-btn-group">
-          <button
-            className="nav-btn datascreen-btn"
-            onClick={handlePreviewBookings}
-          >
+    <div className="harvestloads-root">
+      <HeaderBar
+        title="Data Import, Bookings, & Fruit Intake API"
+        onBack={() => navigate(-1)}
+      />
+      <div className="card harvestloads-card">
+        <div className="harvestloads-controls" style={{ flexWrap: "wrap" }}>
+          <button className="nav-btn nav-btn-light" onClick={handlePreviewBookings}>
             Preview Bookings Upload
           </button>
-          <button
-            className="nav-btn datascreen-btn nav-btn-blue"
-            onClick={handleImportBookings}
-          >
+          <button className="nav-btn nav-btn-blue" onClick={handleImportBookings}>
             Import/Post Bookings
           </button>
-          <button
-            className="nav-btn datascreen-btn"
-            onClick={handlePreviewFruit}
-          >
+          <button className="nav-btn nav-btn-light" onClick={handlePreviewFruit}>
             Preview Fruit Intake Upload
           </button>
-          <button
-            className="nav-btn datascreen-btn nav-btn-green"
-            onClick={handleImportFruit}
-          >
+          <button className="nav-btn nav-btn-green" onClick={handleImportFruit}>
             Import/Post Fruit Intake
           </button>
-          <button
-            className="nav-btn datascreen-btn"
-            onClick={handleViewAllBookings}
-          >
+          <button className="nav-btn nav-btn-light" onClick={handleViewAllBookings}>
             View All Bookings
           </button>
-          <button
-            className="nav-btn datascreen-btn"
-            onClick={handleViewAllFruit}
-          >
+          <button className="nav-btn nav-btn-light" onClick={handleViewAllFruit}>
             View All Fruit Intake
           </button>
-          <button
-            className="nav-btn datascreen-btn nav-btn-light"
-            onClick={handleFieldMapping}
-          >
+          <button className="nav-btn nav-btn-light" onClick={handleFieldMapping}>
             Field Mapping
           </button>
-          <button
-            className="nav-btn datascreen-btn nav-btn-orange"
-            onClick={handleSqlUpload}
-          >
+          <button className="nav-btn nav-btn-orange" onClick={handleSqlUpload}>
             SQL Server Upload
           </button>
         </div>
-        <div className="datascreen-testmode">
-          <label htmlFor="testModeToggle">Test</label>
+        <div className="harvestloads-controls" style={{ marginBottom: 0 }}>
+          <label htmlFor="testModeToggle" style={{ marginRight: 8 }}>
+            Test
+          </label>
           <input
             id="testModeToggle"
             type="checkbox"
@@ -141,7 +97,6 @@ export default function DataScreen() {
           />
         </div>
 
-        {/* SQL Upload Status */}
         {uploadStatus && (
           <div className="datascreen-status">{uploadStatus}</div>
         )}
@@ -165,7 +120,7 @@ export default function DataScreen() {
             <div>
               <p>This would show a field mapping UI.</p>
               <button
-                className="nav-btn"
+                className="nav-btn nav-btn-light"
                 onClick={() => setFieldMappingOpen(false)}
               >
                 Close
@@ -186,7 +141,7 @@ function Modal({ title, onClose, children }) {
         <h3>{title}</h3>
         <div>{children}</div>
         <button
-          className="nav-btn"
+          className="nav-btn nav-btn-light"
           style={{ marginTop: 16, float: "right" }}
           onClick={onClose}
         >

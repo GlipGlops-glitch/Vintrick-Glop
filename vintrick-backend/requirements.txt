@@ -7,3 +7,4 @@ dotenv
 pandas
 pyodbc
 requests
+office365-rest-python-client

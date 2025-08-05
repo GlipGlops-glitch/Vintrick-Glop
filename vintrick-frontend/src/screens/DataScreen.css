@@ -1,9 +1,0 @@
-/* DataScreen.css */
-
-@import "../styles/theme.css";
-
-.datascreen-container {
-  padding: 32px;
-  background: #f9fafd;
-  min-height: 100vh;
-}

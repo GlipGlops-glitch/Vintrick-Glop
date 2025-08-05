@@ -1,7 +1,6 @@
-// File: src/HomeScreen.js
-
 import "./HomeScreen.css";
 import React from "react";
+
 import { useNavigate } from "react-router-dom";
 import {
   GiGrapes,
@@ -10,7 +9,6 @@ import {
   GiArchiveRegister,
   GiDatabase,
 } from "react-icons/gi";
-import vintrickLogo from "../assets/background.png"; // Import your logo
 
 // Button grid config with icons
 const navButtons = [
@@ -21,7 +19,7 @@ const navButtons = [
   { label: "Data", route: "/data", icon: <GiDatabase /> },
 ];
 
-export default function HomeScreen() {
+export default function HomeScreen({ logoSrc }) {
   const navigate = useNavigate();
 
   return (
@@ -30,7 +28,7 @@ export default function HomeScreen() {
         <div className="glass-card card-logo-bg">
           <img
             className="card-bg-logo-original"
-            src={vintrickLogo}
+            src={logoSrc}
             alt="Vintrick Logo"
             draggable={false}
           />

@@ -1,9 +1,8 @@
-// BlendsScreen.js
-
-import "./BlendsScreen.css";
+import "./HarvestLoadsScreen.css"; // <-- Use the same CSS!
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext"; // Import useAuth
+import HeaderBar from "../components/HeaderBar";
+import { useAuth } from "../context/AuthContext";
 
 export default function BlendsScreen() {
   const [blends, setBlends] = useState([]);
@@ -12,7 +11,7 @@ export default function BlendsScreen() {
   const [sortDir, setSortDir] = useState("asc");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const { authFetch } = useAuth(); // Get authFetch
+  const { authFetch } = useAuth();
 
   useEffect(() => {
     setLoading(true);
@@ -25,7 +24,8 @@ export default function BlendsScreen() {
       .catch(() => setLoading(false));
   }, [authFetch]);
 
-  const filtered = blends
+  const safeBlends = Array.isArray(blends) ? blends : [];
+  const filtered = safeBlends
     .filter((b) => {
       const t = `${b.name} ${b.bulk} ${b.fg} ${b.date_created}`.toLowerCase();
       return t.includes(search.toLowerCase());
@@ -58,37 +58,28 @@ export default function BlendsScreen() {
     navigate("/blends/new");
   }
 
-  function handleBack() {
-    navigate("/");
-  }
-
   return (
-    <div className="blendsscreen-root">
-      <div className="header-bar">
-        <button className="header-back-btn" onClick={handleBack}>
-          ← Back
-        </button>
-        <h2 className="header-title">Blends</h2>
-        <button className="nav-btn" onClick={handleAdd}>
-          + Add Blend
-        </button>
-      </div>
-
-      <div className="card blends-card">
-        <div className="blendsscreen-searchbar">
+    <div className="harvestloads-root">
+      <HeaderBar
+        title="Blends"
+        onBack={() => navigate(-1)}
+        onAdd={handleAdd}
+        addLabel="+ Add Blend"
+      />
+      <div className="card harvestloads-card">
+        <div className="harvestloads-controls" style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
           <input
-            className="blendsscreen-search"
+            className="harvestloads-search"
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="nav-btn" onClick={() => setSearch("")}>
+          <button className="nav-btn nav-btn-light" onClick={() => setSearch("")}>
             Clear
           </button>
         </div>
-
-        <div className="blends-table-scroll">
-          <table className="blendsscreen-table">
+        <div className="harvestloads-table-scroll">
+          <table className="harvestloads-table">
             <thead>
               <tr>
                 <th onClick={() => handleSort("name")}>
