@@ -1,4 +1,5 @@
 # vintrick-backend/app/main.py
+
 import logging
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
@@ -7,6 +8,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware  #  Import CORS middleware
 
 from app.api.routes import harvestloads  #  Import your routes
+from app.api.routes import shipments      #  <-- Add this import for shipments
 
 app = FastAPI(debug=True)
 
@@ -19,8 +21,9 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-#  Register the router
+#  Register the routers
 app.include_router(harvestloads.router, prefix="/api", tags=["harvestloads"])
+app.include_router(shipments.router, prefix="/api", tags=["shipments"])  # <-- Register shipments router
 
 #  Exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)

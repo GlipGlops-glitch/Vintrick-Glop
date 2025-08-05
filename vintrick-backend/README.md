@@ -233,3 +233,6 @@ retrieve an entire repository from a hosted location via URL
 git add .
 git commit -m "CH"
 git push origin main
+
+docker-compose build --no-cache
+docker-compose up

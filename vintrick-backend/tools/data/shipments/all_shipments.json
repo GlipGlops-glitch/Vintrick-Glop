@@ -1,0 +1,910 @@
+{
+  "totalResults": 2662,
+  "offset": 0,
+  "limit": 10,
+  "first": "/smwe/api/v7/operation/shipments?limit=10&offset=0",
+  "previous": null,
+  "next": "/smwe/api/v7/operation/shipments?limit=10&offset=10",
+  "last": "/smwe/api/v7/operation/shipments?limit=10&offset=2660",
+  "results": [
+    {
+      "id": 904,
+      "workOrderNumber": "CK15",
+      "jobNumber": "5",
+      "shipmentNumber": "CK1",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 558,
+          "name": "JDE Bulk Dispatch",
+          "extId": null
+        }
+      },
+      "occurredTime": 1681112700000,
+      "modifiedTime": 1682409355000,
+      "wineDetails": [
+        {
+          "vessel": "VSSP5",
+          "batch": "SSABDK220000",
+          "wineBatch": {
+            "id": 5,
+            "name": "SSABDK220000",
+            "description": "SAUVIGNON BLANC 2022",
+            "vintage": "2022",
+            "designatedRegion": {
+              "id": 42,
+              "name": "Oak Knoll",
+              "code": "OK"
+            },
+            "designatedVariety": {
+              "id": 80,
+              "name": "Sauvignon Blanc",
+              "code": "SAB"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 20,
+            "name": "CCK Chemical Storage"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 469.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": "74443",
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": true
+    },
+    {
+      "id": 918,
+      "workOrderNumber": "CK15",
+      "jobNumber": "6",
+      "shipmentNumber": "CK2",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 558,
+          "name": "JDE Bulk Dispatch",
+          "extId": null
+        }
+      },
+      "occurredTime": 1682341200000,
+      "modifiedTime": 1682341258000,
+      "wineDetails": [
+        {
+          "vessel": "VSD5",
+          "batch": "SSABDK21SMLG",
+          "wineBatch": {
+            "id": 2,
+            "name": "SSABDK21SMLG",
+            "description": "SAUVIGNON BLANC 2021",
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": 37,
+              "name": "Napa County",
+              "code": "NC"
+            },
+            "designatedVariety": {
+              "id": 80,
+              "name": "Sauvignon Blanc",
+              "code": "SAB"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 15,
+            "name": "CCK Cellar A"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 53.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": "74451",
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 919,
+      "workOrderNumber": "CK15",
+      "jobNumber": "7",
+      "shipmentNumber": "CK3",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 558,
+          "name": "JDE Bulk Dispatch",
+          "extId": null
+        }
+      },
+      "occurredTime": 1682341260000,
+      "modifiedTime": 1682341311000,
+      "wineDetails": [
+        {
+          "vessel": "VSSP6",
+          "batch": "SCASNP22ROSE",
+          "wineBatch": {
+            "id": 474,
+            "name": "SCASNP22ROSE",
+            "description": "CABERNET SAUVIGNON 2022",
+            "vintage": "2022",
+            "designatedRegion": {
+              "id": 60,
+              "name": "Stags Leap Dst",
+              "code": "SD"
+            },
+            "designatedVariety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "code": "CAS"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 20,
+            "name": "CCK Chemical Storage"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 106.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": "74447",
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 920,
+      "workOrderNumber": "CK15",
+      "jobNumber": "9",
+      "shipmentNumber": "CK4",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 558,
+          "name": "JDE Bulk Dispatch",
+          "extId": null
+        }
+      },
+      "occurredTime": 1682341320000,
+      "modifiedTime": 1682341359000,
+      "wineDetails": [
+        {
+          "vessel": "VF33",
+          "batch": "SCASAV21BLND",
+          "wineBatch": {
+            "id": 193,
+            "name": "SCASAV21BLND",
+            "description": "CABERNET SAUVIGNON 2021",
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": 2,
+              "name": "Alexander Valley",
+              "code": "AL"
+            },
+            "designatedVariety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "code": "CAS"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 14,
+            "name": "CCK Main Cellar"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 1648.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": "76277",
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 931,
+      "workOrderNumber": "CK23",
+      "jobNumber": "2",
+      "shipmentNumber": "CK5",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 559,
+          "name": "Del Dotto Vineyards",
+          "extId": null
+        }
+      },
+      "occurredTime": 1681369200000,
+      "modifiedTime": 1682349507000,
+      "wineDetails": [
+        {
+          "vessel": "VF05",
+          "batch": "SCASSL21BULK",
+          "wineBatch": {
+            "id": 583,
+            "name": "SCASSL21BULK",
+            "description": "CABERNET SAUVIGNON SLWC",
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": 62,
+              "name": "St. Helena",
+              "code": "SH"
+            },
+            "designatedVariety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "code": "CAS"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 14,
+            "name": "CCK Main Cellar"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 3000.0
+          },
+          "loss": {
+            "volume": {
+              "unit": "gal",
+              "value": 12.0
+            },
+            "reason": {
+              "id": 3,
+              "name": "Operation Loss"
+            }
+          },
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": null,
+      "dispatchType": {
+        "id": 7,
+        "name": "Bulk sale"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 932,
+      "workOrderNumber": "CK24",
+      "jobNumber": "1",
+      "shipmentNumber": "CK6",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 560,
+          "name": "Shafer Vineyards",
+          "extId": null
+        }
+      },
+      "occurredTime": 1681974000000,
+      "modifiedTime": 1682349938000,
+      "wineDetails": [
+        {
+          "vessel": "VF40",
+          "batch": "SCASSL22BLK2",
+          "wineBatch": {
+            "id": 638,
+            "name": "SCASSL22BLK2",
+            "description": "CABERNET SAUVIGNON SLWC",
+            "vintage": "2022",
+            "designatedRegion": {
+              "id": 6,
+              "name": "Atlas Peak",
+              "code": "AT"
+            },
+            "designatedVariety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "code": "CAS"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 18,
+            "name": "CCK Crush Pad"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 4000.0
+          },
+          "loss": {
+            "volume": {
+              "unit": "gal",
+              "value": 43.0
+            },
+            "reason": {
+              "id": 3,
+              "name": "Operation Loss"
+            }
+          },
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": null,
+      "dispatchType": {
+        "id": 7,
+        "name": "Bulk sale"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 948,
+      "workOrderNumber": "CK27",
+      "jobNumber": "4",
+      "shipmentNumber": "CK8",
+      "type": "BULK",
+      "source": {
+        "id": 11,
+        "name": "Conn Creek Winery",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": null,
+        "party": {
+          "id": 558,
+          "name": "JDE Bulk Dispatch",
+          "extId": null
+        }
+      },
+      "occurredTime": 1681112700000,
+      "modifiedTime": 1682409534000,
+      "wineDetails": [
+        {
+          "vessel": "VSSP5",
+          "batch": "SSABDK220000",
+          "wineBatch": {
+            "id": 5,
+            "name": "SSABDK220000",
+            "description": "SAUVIGNON BLANC 2022",
+            "vintage": "2022",
+            "designatedRegion": {
+              "id": 42,
+              "name": "Oak Knoll",
+              "code": "OK"
+            },
+            "designatedVariety": {
+              "id": 80,
+              "name": "Sauvignon Blanc",
+              "code": "SAB"
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 20,
+            "name": "CCK Chemical Storage"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 469.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": "74443",
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 1171,
+      "workOrderNumber": null,
+      "jobNumber": null,
+      "shipmentNumber": "AN1",
+      "type": "INTER_WINERY",
+      "source": {
+        "id": 40,
+        "name": "Antica Offsite",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": {
+          "id": 1,
+          "name": "Stag's Leap Wine Cellars",
+          "businessUnit": null
+        },
+        "party": null
+      },
+      "occurredTime": 1681828260000,
+      "modifiedTime": 1683038189000,
+      "wineDetails": [
+        {
+          "vessel": "A8011",
+          "batch": "S21CSN00ARTM",
+          "wineBatch": {
+            "id": 6916,
+            "name": "S21CSN00ARTM",
+            "description": null,
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedVariety": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 31,
+            "name": "Antica"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 8100.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        },
+        {
+          "vessel": "A8010",
+          "batch": "S21CSN00ARTM",
+          "wineBatch": {
+            "id": 6916,
+            "name": "S21CSN00ARTM",
+            "description": null,
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedVariety": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 31,
+            "name": "Antica"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 4681.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": null,
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 1176,
+      "workOrderNumber": null,
+      "jobNumber": null,
+      "shipmentNumber": "AN2",
+      "type": "INTER_WINERY",
+      "source": {
+        "id": 40,
+        "name": "Antica Offsite",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": {
+          "id": 1,
+          "name": "Stag's Leap Wine Cellars",
+          "businessUnit": null
+        },
+        "party": null
+      },
+      "occurredTime": 1681916940000,
+      "modifiedTime": 1683040200000,
+      "wineDetails": [
+        {
+          "vessel": "ADY02",
+          "batch": "S21CSN00ARTM",
+          "wineBatch": {
+            "id": 6916,
+            "name": "S21CSN00ARTM",
+            "description": null,
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedVariety": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 31,
+            "name": "Antica"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 12926.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": null,
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    },
+    {
+      "id": 1183,
+      "workOrderNumber": null,
+      "jobNumber": null,
+      "shipmentNumber": "AN3",
+      "type": "INTER_WINERY",
+      "source": {
+        "id": 40,
+        "name": "Antica Offsite",
+        "businessUnit": null
+      },
+      "destination": {
+        "winery": {
+          "id": 1,
+          "name": "Stag's Leap Wine Cellars",
+          "businessUnit": null
+        },
+        "party": null
+      },
+      "occurredTime": 1682007480000,
+      "modifiedTime": 1683044434000,
+      "wineDetails": [
+        {
+          "vessel": "A2011",
+          "batch": "S21CSN00ARTM",
+          "wineBatch": {
+            "id": 6916,
+            "name": "S21CSN00ARTM",
+            "description": null,
+            "vintage": "2021",
+            "designatedRegion": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedVariety": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "designatedProduct": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "productCategory": {
+              "id": null,
+              "name": null,
+              "code": null
+            },
+            "program": null,
+            "grading": {
+              "scaleId": null,
+              "scaleName": null,
+              "valueId": null,
+              "valueName": null
+            }
+          },
+          "wineryBuilding": {
+            "id": 31,
+            "name": "Antica"
+          },
+          "volume": {
+            "unit": "gal",
+            "value": 60.0
+          },
+          "loss": null,
+          "bottlingDetails": null,
+          "cost": null,
+          "allocations": [],
+          "metrics": [],
+          "weight": null
+        }
+      ],
+      "carrier": null,
+      "reference": null,
+      "dispatchType": {
+        "id": 13,
+        "name": "Transferred in bond"
+      },
+      "freightCode": null,
+      "reversed": false
+    }
+  ]
+}

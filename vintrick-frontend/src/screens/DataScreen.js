@@ -2,6 +2,7 @@ import "./DataScreen.css";
 import React, { useState } from "react";
 import HeaderBar from "../components/HeaderBar";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const ALL_COLUMNS = [
   "Task",
@@ -32,6 +33,7 @@ export default function DataScreen() {
     content: "",
   });
   const [fieldMappingOpen, setFieldMappingOpen] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState("");
   const navigate = useNavigate();
 
   // --- Button Handlers ---
@@ -56,6 +58,21 @@ export default function DataScreen() {
   const handleViewAllFruit = () =>
     alert("View All Fruit Intake not implemented yet.");
   const handleFieldMapping = () => setFieldMappingOpen(true);
+
+  // --- SQL Upload Button Handler ---
+  const handleSqlUpload = async () => {
+    setUploadStatus("Uploading...");
+    try {
+      const res = await axios.post("/api/data/sql-upload");
+      if (res.data && res.data.success) {
+        setUploadStatus("✅ SQL upload complete!");
+      } else {
+        setUploadStatus("❌ SQL upload failed.");
+      }
+    } catch (err) {
+      setUploadStatus("❌ Error during SQL upload.");
+    }
+  };
 
   return (
     <div className="datascreen-root">
@@ -107,6 +124,12 @@ export default function DataScreen() {
           >
             Field Mapping
           </button>
+          <button
+            className="nav-btn datascreen-btn nav-btn-orange"
+            onClick={handleSqlUpload}
+          >
+            SQL Server Upload
+          </button>
         </div>
         <div className="datascreen-testmode">
           <label htmlFor="testModeToggle">Test</label>
@@ -117,6 +140,11 @@ export default function DataScreen() {
             onChange={() => setTestMode(!testMode)}
           />
         </div>
+
+        {/* SQL Upload Status */}
+        {uploadStatus && (
+          <div className="datascreen-status">{uploadStatus}</div>
+        )}
 
         {/* Preview Modal */}
         {preview.open && (
