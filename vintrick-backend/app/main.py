@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import harvestloads    # Import harvestloads routes
 from app.api.routes import shipments       # Import shipments routes
-# from app.api.routes import sharepoint      # Import sharepoint routes
+from app.api.routes import blends          # Import blends routes
 
 app = FastAPI(debug=True)
 
@@ -25,7 +25,7 @@ app.add_middleware(
 # Register the routers
 app.include_router(harvestloads.router, prefix="/api", tags=["harvestloads"])
 app.include_router(shipments.router,   prefix="/api", tags=["shipments"])
-# app.include_router(sharepoint.router,  prefix="/api", tags=["sharepoint"])
+app.include_router(blends.router,      prefix="/api", tags=["blends"])
 
 # Exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)
@@ -43,4 +43,5 @@ async def validation_exception_handler(request: Request, exc):
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc):
     logging.error(f"Unhandled error: {exc}", exc_info=True)
+    # For debugging, you can optionally add: str(exc)
     return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})

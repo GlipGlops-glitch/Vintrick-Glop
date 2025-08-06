@@ -1,13 +1,11 @@
 // src/screens/SettingsScreen.js
-
+import "./HarvestLoadsScreen.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "../components/HeaderBar";
 import { useSettings } from "../context/SettingsContext";
 import { Modal } from "react-bootstrap";
-import HarvestLoadFormBody, {
-  ALL_FIELDS,
-} from "../components/HarvestLoadFormBody";
+import HarvestLoadFormBody, { ALL_FIELDS } from "../components/HarvestLoadFormBody";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 
 // Helper for DnD reorder
@@ -36,8 +34,7 @@ export default function SettingsScreen() {
   }
 
   // Order/toggle state
-  const fieldOrder =
-    settings.harvestLoadForm.order || ALL_FIELDS.map((f) => f.key);
+  const fieldOrder = settings.harvestLoadForm.order || ALL_FIELDS.map((f) => f.key);
   function setFieldOrder(newOrder) {
     setSettings((prev) => ({
       ...prev,
@@ -65,7 +62,7 @@ export default function SettingsScreen() {
 
   // Only visible fields participate in drag/reorder preview grid
   const visibleFields = orderedFields.filter(
-    (f) => settings.harvestLoadForm.fields[f.key],
+    (f) => settings.harvestLoadForm.fields[f.key]
   );
 
   function onDragEnd(result) {
@@ -75,7 +72,7 @@ export default function SettingsScreen() {
     const reordered = reorder(
       visibleKeys,
       result.source.index,
-      result.destination.index,
+      result.destination.index
     );
     // Merge this into the full master order:
     const newOrder = [];
@@ -94,22 +91,17 @@ export default function SettingsScreen() {
   // For live preview demo values
   const previewForm = {};
   ALL_FIELDS.forEach((f) => {
-    if (f.key === "Tons" || f.key.startsWith("Est_Tons"))
-      previewForm[f.key] = 0;
+    if (f.key === "Tons" || f.key.startsWith("Est_Tons")) previewForm[f.key] = 0;
     else if (f.key === "synced") previewForm[f.key] = false;
     else if (f.key === "Crush_Pad") previewForm[f.key] = "White Crush Pad";
-    else if (f.key === "last_modified")
-      previewForm[f.key] = new Date().toISOString();
+    else if (f.key === "last_modified") previewForm[f.key] = new Date().toISOString();
     else previewForm[f.key] = "";
   });
 
   return (
-    <div className="settings-root">
+    <div className="harvestloads-root">
       <HeaderBar title="Settings" onBack={() => navigate(-1)} />
-      <div
-        className="card settings-card"
-        style={{ maxWidth: 480, margin: "40px auto", padding: 28 }}
-      >
+      <div className="card harvestloads-card" style={{ maxWidth: 480, margin: "40px auto" }}>
         <h3 style={{ marginBottom: 28, fontWeight: 700, fontSize: 22 }}>
           Developer/Feature Settings
         </h3>
@@ -120,7 +112,7 @@ export default function SettingsScreen() {
             margin: "12px 0",
             fontWeight: 700,
             fontSize: 16,
-            borderRadius: 14,
+            borderRadius: "var(--card-radius)",
             padding: "14px 0",
             border: "none",
             background: "var(--primary-bg, #f6f5fa)",
@@ -133,12 +125,7 @@ export default function SettingsScreen() {
           Harvest Loads Form Settings
         </button>
       </div>
-      <Modal
-        show={showHLModal}
-        onHide={() => setShowHLModal(false)}
-        size="lg"
-        centered
-      >
+      <Modal show={showHLModal} onHide={() => setShowHLModal(false)} size="lg" centered>
         <Modal.Header closeButton>
           <Modal.Title>Harvest Loads Form Settings</Modal.Title>
         </Modal.Header>
@@ -148,14 +135,9 @@ export default function SettingsScreen() {
               Preview Columns:
             </label>
             <select
+              className="harvestloads-dropdown"
               value={previewColumns}
               onChange={(e) => setPreviewColumns(Number(e.target.value))}
-              style={{
-                padding: "5px 10px",
-                borderRadius: 8,
-                border: "1px solid #bbb",
-                fontSize: 15,
-              }}
             >
               {[1, 2, 3].map((c) => (
                 <option key={c} value={c}>
@@ -175,18 +157,11 @@ export default function SettingsScreen() {
               }}
             >
               {/* Visible Fields Controls - NOT draggable */}
-              <div
-                style={{
-                  minWidth: 230,
-                  maxWidth: 270,
-                }}
-              >
+              <div style={{ minWidth: 230, maxWidth: 270 }}>
                 <h5 style={{ marginBottom: 2, fontWeight: 700 }}>
                   Visible Fields
                 </h5>
-                <div
-                  style={{ fontWeight: 400, fontSize: 14, marginBottom: 16 }}
-                >
+                <div style={{ fontWeight: 400, fontSize: 14, marginBottom: 16 }}>
                   Toggle visibility
                 </div>
                 <ul
@@ -317,7 +292,7 @@ export default function SettingsScreen() {
         </Modal.Body>
         <Modal.Footer>
           <button
-            className="btn btn-secondary"
+            className="nav-btn nav-btn-light"
             onClick={() => setShowHLModal(false)}
           >
             Done

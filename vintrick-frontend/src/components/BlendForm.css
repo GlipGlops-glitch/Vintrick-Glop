@@ -1,0 +1,40 @@
+.blend-form-modal {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .blend-form {
+    background: #fff;
+    border-radius: 8px;
+    padding: 32px 24px 24px 24px;
+    min-width: 340px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  
+  .blend-form h2 {
+    margin-bottom: 16px;
+    font-size: 1.3em;
+  }
+  
+  .blend-form label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  
+  .blend-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .blend-form button {
+    margin-right: 10px;
+  }

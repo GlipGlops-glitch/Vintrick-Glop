@@ -1,5 +1,3 @@
-// src/App.js
-
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -31,10 +29,8 @@ import { SettingsProvider } from "./context/SettingsContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./screens/HomeScreen.css";
 
-// Preload logo
+// Import logo directly for correct path resolution
 import vintrickLogo from "./assets/background.png";
-const preloadedLogo = new window.Image();
-preloadedLogo.src = vintrickLogo;
 
 // Shared button style for both buttons
 const btnStyle = {
@@ -138,15 +134,15 @@ function AppRoutes() {
           path="/"
           element={
             <ProtectedRoute>
-              <HomeScreen />
+              <HomeScreen logoSrc={vintrickLogo} />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/"
+          path="/blends"
           element={
             <ProtectedRoute>
-              <HomeScreen logoSrc={vintrickLogo} />
+              <BlendsScreen />
             </ProtectedRoute>
           }
         />
@@ -238,7 +234,7 @@ function AppRoutes() {
           path="*"
           element={
             <ProtectedRoute>
-              <HomeScreen />
+              <HomeScreen logoSrc={vintrickLogo} />
             </ProtectedRoute>
           }
         />
