@@ -1,4 +1,6 @@
-import "./HarvestLoadsScreen.css";
+// src/screens/HarvestLoadsScreen.js
+
+import "../styles/AppShared.css";
 import React, { useState, useEffect, useCallback } from "react";
 import HeaderBar from "../components/HeaderBar";
 import AddEditHarvestLoadForm from "../components/AddEditHarvestLoadForm";
@@ -42,7 +44,7 @@ const fetchHarvestLoadsPage = async (authFetch, skip, limit) => {
       Status: item.Status || "",
       last_modified: item.last_modified || "",
       synced: item.synced || false,
-      Vintage: item.Vintage || "", // Add this line if your API returns a Vintage/year
+      Vintage: item.Vintage || "",
     })),
     total: typeof data.total === "number" ? data.total : (data.items?.length || 0),
   };
@@ -143,7 +145,7 @@ export default function HarvestLoadsScreen() {
         Status: formValues.Status || "",
         last_modified: formValues.last_modified || "",
         synced: formValues.synced || false,
-        Vintage: formValues.Vintage || "", // If using Vintage in your forms too
+        Vintage: formValues.Vintage || "",
       };
 
       if (formMode === "add") {
@@ -218,7 +220,7 @@ export default function HarvestLoadsScreen() {
   });
 
   return (
-    <div className="harvestloads-root">
+    <div className="app-root">
       <HeaderBar
         title="Harvest Loads"
         onBack={() => navigate(-1)}
@@ -227,7 +229,7 @@ export default function HarvestLoadsScreen() {
       />
       <div className="card harvestloads-card">
         {/* Controls Row 1: Search and Crush Pad */}
-        <div className="harvestloads-controls" style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
+        <div className="controls">
           <input
             className="harvestloads-search"
             placeholder="Search"
@@ -247,7 +249,7 @@ export default function HarvestLoadsScreen() {
           </select>
         </div>
         {/* Controls Row 2: Vintage and Date */}
-        <div className="harvestloads-controls">
+        <div className="controls">
           <select
             className="harvestloads-dropdown"
             value={vintageFilter}

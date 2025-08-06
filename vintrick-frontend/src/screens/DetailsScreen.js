@@ -1,6 +1,6 @@
-// DetailsScreen.js
+// src/screens/DetailsScreen.js
 
-import "./DetailsScreen.css";
+import "../styles/AppShared.css";
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext"; // Import useAuth
@@ -30,7 +30,7 @@ const CRUSH_OPTIONS = ["White Crush Pad", "Red Crush Pad", "Reserve Crush Pad"];
 export default function DetailsScreen() {
   const navigate = useNavigate();
   const { id } = useParams();
-  const { authFetch } = useAuth(); // Get authFetch
+  const { authFetch } = useAuth();
   const [record, setRecord] = useState({});
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -80,20 +80,23 @@ export default function DetailsScreen() {
 
   const handleCancel = () => navigate("/harvest-loads");
 
+  // Use only shared/global class names for layout and form/card
   return (
-    <div className="details-root">
-      <div className="card details-card">
-        <h2 className="details-title">Load Details</h2>
+    <div className="app-root">
+      <div className="card">
+        <h2 style={{ marginBottom: 24, fontWeight: 700 }}>Load Details</h2>
         {loading ? (
-          <div className="details-loading">Loading...</div>
+          <div style={{ padding: 20, fontSize: 18 }}>Loading...</div>
         ) : (
-          <form className="details-form" onSubmit={(e) => e.preventDefault()}>
+          <form style={{ width: "100%" }} onSubmit={(e) => e.preventDefault()}>
             {FIELDS_TO_SHOW.map((field) => (
-              <div className="details-field-row" key={field}>
-                <label className="details-label">{field}</label>
+              <div key={field} style={{ marginBottom: 18, display: "flex", flexDirection: "column", alignItems: "stretch" }}>
+                <label style={{ fontWeight: 500, marginBottom: 6 }}>
+                  {field}
+                </label>
                 {field === "Press" ? (
                   <select
-                    className="details-input"
+                    className="harvestloads-dropdown"
                     value={record.Press || ""}
                     onChange={(e) => handleChange(field, e.target.value)}
                   >
@@ -106,7 +109,7 @@ export default function DetailsScreen() {
                   </select>
                 ) : field === "Crush_Pad" ? (
                   <select
-                    className="details-input"
+                    className="harvestloads-dropdown"
                     value={record.Crush_Pad || ""}
                     onChange={(e) => handleChange(field, e.target.value)}
                   >
@@ -119,7 +122,7 @@ export default function DetailsScreen() {
                   </select>
                 ) : (
                   <input
-                    className="details-input"
+                    className="harvestloads-search"
                     value={record[field] || ""}
                     onChange={(e) => handleChange(field, e.target.value)}
                     type={field === "Tons" ? "number" : "text"}
@@ -127,7 +130,7 @@ export default function DetailsScreen() {
                 )}
               </div>
             ))}
-            <div className="button-bar-bg details-action-bar">
+            <div style={{ display: "flex", gap: 12, marginTop: 22 }}>
               <button
                 type="button"
                 className="nav-btn"

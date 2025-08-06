@@ -1,183 +1,168 @@
 // src/screens/BlendsScreen.js
 
-import styles from "./BlendsScreen.module.css";
+import "../styles/AppShared.css";
 import React, { useState, useEffect } from "react";
 import HeaderBar from "../components/HeaderBar";
 import AddEditBlendForm from "../components/AddEditBlendForm";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+
+// The backend returns a flat array: [ {...}, {...}, ... ]
+const fetchBlends = async (authFetch) => {
+  const response = await authFetch(`/api/blends`);
+  if (!response.ok) throw new Error("Failed to fetch blends");
+  const data = await response.json();
+  return (data || []).map((item) => ({
+    ID: item.ID || "",
+    Title: item.Title || "",
+    Brand: item.Brand || "",
+    Varietal: item.Varietal || "",
+    Vintage: item.Vintage || "",
+    WineType: item.WineType || "",
+  }));
+};
 
 export default function BlendsScreen() {
-  const [blends, setBlends] = useState([]);
-  const [search, setSearch] = useState("");
-  const [sortCol, setSortCol] = useState("Title");
-  const [sortDir, setSortDir] = useState("asc");
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
   const [showForm, setShowForm] = useState(false);
   const [formMode, setFormMode] = useState("add");
   const [selectedBlend, setSelectedBlend] = useState(null);
 
-  const { authFetch } = useAuth();
   const navigate = useNavigate();
+  const { authFetch } = useAuth();
 
+  // Fetch blends on mount
   useEffect(() => {
     setLoading(true);
-    authFetch("/api/blends/")
-      .then((res) => res.json())
-      .then((data) => {
-        setBlends(data);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
+    setError(null);
+    fetchBlends(authFetch)
+      .then(setData)
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, [authFetch]);
 
-  function handleSort(col) {
-    if (sortCol === col) setSortDir(sortDir === "asc" ? "desc" : "asc");
-    else {
-      setSortCol(col);
-      setSortDir("asc");
-    }
-  }
-
-  function handleEdit(blend) {
-    setFormMode("edit");
-    setSelectedBlend(blend);
-    setShowForm(true);
-  }
-
-  function handleFormSubmit(formValues) {
-    setLoading(true);
-    let method = formMode === "edit" ? "PATCH" : "POST";
-    // Always use ID for PATCH!
-    let url = formMode === "edit"
-      ? `/api/blends/${formValues.ID}`
-      : "/api/blends/";
-    authFetch(url, {
-      method,
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formValues),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to save blend");
-        return res.json();
-      })
-      .then(() => {
-        setShowForm(false);
-        setSelectedBlend(null);
-        return authFetch("/api/blends/").then((res) => res.json());
-      })
-      .then((data) => setBlends(data))
-      .finally(() => setLoading(false));
-  }
-
-  function handleAdd() {
+  function handleAddNew() {
     setFormMode("add");
     setSelectedBlend(null);
     setShowForm(true);
   }
 
-  const safeBlends = Array.isArray(blends) ? blends : [];
-  const filtered = safeBlends
-    .filter((b) => {
-      const t = `${b.Title} ${b.Brand} ${b.Varietal} ${b.Vintage} ${b.WineType}`.toLowerCase();
-      return t.includes(search.toLowerCase());
-    })
-    .sort((a, b) => {
-      let v1 = a[sortCol] || "";
-      let v2 = b[sortCol] || "";
-      if (v1 < v2) return sortDir === "asc" ? -1 : 1;
-      if (v1 > v2) return sortDir === "asc" ? 1 : -1;
-      return 0;
-    });
+  function handleOpenEdit(record) {
+    setFormMode("edit");
+    setSelectedBlend(record);
+    setShowForm(true);
+  }
+
+  async function handleFormSubmit(formValues) {
+    setLoading(true);
+    try {
+      let res;
+      // Build payload
+      const payload = {
+        // ID is only included for edit
+        Title: formValues.Title || "",
+        Brand: formValues.Brand || "",
+        Varietal: formValues.Varietal || "",
+        Vintage: formValues.Vintage || "",
+        WineType: formValues.WineType || "",
+      };
+
+      if (formMode === "add") {
+        res = await authFetch("/api/blends/", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } else {
+        const id = formValues.ID;
+        if (!id) throw new Error("Missing ID for edit operation");
+        res = await authFetch(`/api/blends/${id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      }
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Save failed");
+      }
+
+      setShowForm(false);
+      setError(null);
+      // Reload blends after add/edit
+      const items = await fetchBlends(authFetch);
+      setData(items);
+    } catch (e) {
+      setError(e.message);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
-    <div className={styles["datascreen-root"]}>
+    <div className="app-root">
       <HeaderBar
         title="Blends"
         onBack={() => navigate(-1)}
-        onAdd={handleAdd}
-        addLabel="+ Add Blend"
+        onAdd={handleAddNew}
+        addLabel="+ Add"
       />
-      <div className={`card ${styles["datascreen-card"]}`}>
-        <div className={styles["datascreen-btn-group"]}>
-          <input
-            className={styles["datascreen-search"]}
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="nav-btn nav-btn-light" onClick={() => setSearch("")}>
-            Clear
-          </button>
-        </div>
-        <div className={styles["datascreen-table-scroll"]}>
-          <table className="harvestloads-table">
+      <div className="card blends-card">
+        <div className="blends-table-scroll" style={{ maxHeight: 600, overflow: "auto" }}>
+          <table className="blends-table">
             <thead>
               <tr>
-                <th onClick={() => handleSort("Title")}>
-                  Name {sortCol === "Title" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("Brand")}>
-                  Brand {sortCol === "Brand" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("Varietal")}>
-                  Varietal {sortCol === "Varietal" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("Vintage")}>
-                  Vintage {sortCol === "Vintage" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("WineType")}>
-                  Wine Type {sortCol === "WineType" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                {/* <th onClick={() => handleSort("Alc")}>
-                  Alc {sortCol === "Alc" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("Active")}>
-                  Active {sortCol === "Active" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("ExpectedBottleDate")}>
-                  Expected Bottle Date {sortCol === "ExpectedBottleDate" && (sortDir === "asc" ? "▲" : "▼")}
-                </th>
-                <th onClick={() => handleSort("SpecSheet")}>
-                  Spec Sheet {sortCol === "SpecSheet" && (sortDir === "asc" ? "▲" : "▼")}
-                </th> */}
+                {["Title", "Brand", "Varietal", "Vintage", "WineType"].map((col) => (
+                  <th key={col}>{col}</th>
+                ))}
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              {filtered.map((blend) => (
-                <tr key={blend.ID}>
-                  <td>{blend.Title}</td>
-                  <td>{blend.Brand}</td>
-                  <td>{blend.Varietal}</td>
-                  <td>{blend.Vintage}</td>
-                  <td>{blend.WineType}</td>
-                  <td>{blend.Alc}</td>
-                  <td>{blend.Active ? "Yes" : "No"}</td>
-                  <td>{blend.ExpectedBottleDate}</td>
-                  <td>{blend.SpecSheet}</td>
-                  <td>
-                    <button
-                      className="nav-btn nav-btn-light"
-                      onClick={() => handleEdit(blend)}
-                      style={{ padding: "5px 14px", fontSize: 15 }}
-                    >
-                      Edit
-                    </button>
-                  </td>
-                </tr>
-              ))}
-              {filtered.length === 0 && (
+              {loading ? (
                 <tr>
-                  <td colSpan={10} style={{ textAlign: "center" }}>
-                    No blends found.
+                  <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
+                    Loading...
                   </td>
                 </tr>
+              ) : data.length === 0 ? (
+                <tr>
+                  <td colSpan={6} style={{ textAlign: "center", padding: 24 }}>
+                    No records found.
+                  </td>
+                </tr>
+              ) : (
+                data.map((rec) => (
+                  <tr key={rec.ID || rec.Title}>
+                    <td>{rec.Title}</td>
+                    <td>{rec.Brand}</td>
+                    <td>{rec.Varietal}</td>
+                    <td>{rec.Vintage}</td>
+                    <td>{rec.WineType}</td>
+                    <td>
+                      <button
+                        className="nav-btn nav-btn-light"
+                        style={{ padding: "5px 14px", fontSize: 15 }}
+                        onClick={() => handleOpenEdit(rec)}
+                      >
+                        Edit
+                      </button>
+                    </td>
+                  </tr>
+                ))
               )}
             </tbody>
           </table>
         </div>
-        {loading && <div className="blendsscreen-loading">Loading...</div>}
+        {error && (
+          <div style={{ color: "red", padding: 10, textAlign: "center" }}>
+            {error}
+          </div>
+        )}
       </div>
       <AddEditBlendForm
         show={showForm}

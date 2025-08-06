@@ -8,3 +8,5 @@ pandas
 pyodbc
 requests
 office365-rest-python-client
+ldap3
+python-jose

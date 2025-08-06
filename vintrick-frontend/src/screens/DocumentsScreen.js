@@ -1,6 +1,6 @@
 // DocumentsScreen.js
 
-import "./DocumentsScreen.css";
+import "../styles/AppShared.css";
 import React from "react";
 import HeaderBar from "../components/HeaderBar";
 import { useNavigate } from "react-router-dom";

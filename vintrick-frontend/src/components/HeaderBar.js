@@ -1,4 +1,4 @@
-// src/components/HeaderBar.js
+// File path: vintrick-frontend/src/components/HeaderBar.js
 
 import React from "react";
 import { Button } from "react-bootstrap";
@@ -35,13 +35,11 @@ export default function HeaderBar({
           justifyContent: "flex-end",
         }}
       >
+        {/* Removed Dev User/localhost display */}
         {user && (
-          <>
-            <span style={{ marginRight: 8 }}>{user.name || user.email}</span>
-            <Button variant="outline-danger" size="sm" onClick={logout}>
-              Logout
-            </Button>
-          </>
+          <Button variant="outline-danger" size="sm" onClick={logout}>
+            Logout
+          </Button>
         )}
         {!user && <div style={{ width: 94 }} />}
         {onAdd && (

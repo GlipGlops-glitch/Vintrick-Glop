@@ -1,12 +1,23 @@
 // src/components/AddEditBlendForm.js
 
 import React, { useState, useEffect } from "react";
-import styles from "../screens/BlendsScreen.module.css";
+import { Modal, Button, Form } from "react-bootstrap";
+import BlendFormBody from "./BlendFormBody";
 
 const FIELDS = [
-  "Title", "Brand", "Varietal", "Vintage", "WineType", "Alc", "Active",
-  "ExpectedBottleDate", "SpecSheet"
+  "Title", "Brand", "Varietal", "Vintage", "WineType"
 ];
+
+function getInitFormData(data = {}) {
+  // Always return strings for all fields
+  return FIELDS.reduce(
+    (acc, field) => ({
+      ...acc,
+      [field]: typeof data[field] === "string" ? data[field] : (data[field] != null ? String(data[field]) : "")
+    }),
+    { ID: data.ID || undefined }
+  );
+}
 
 export default function AddEditBlendForm({
   show,
@@ -15,28 +26,23 @@ export default function AddEditBlendForm({
   initialData = {},
   mode = "add"
 }) {
-  // FIX: always handle initialData as possibly null/undefined
-  const [formData, setFormData] = useState(() => {
-    const safeInit = initialData || {};
-    return FIELDS.reduce(
-      (acc, field) => ({ ...acc, [field]: safeInit[field] || "" }),
-      { ID: safeInit.ID || undefined }
-    );
-  });
+  const [formData, setFormData] = useState(getInitFormData(initialData));
 
+  // Only reset when opening the modal
   useEffect(() => {
-    const safeInit = initialData || {};
-    setFormData(
-      FIELDS.reduce(
-        (acc, field) => ({ ...acc, [field]: safeInit[field] || "" }),
-        { ID: safeInit.ID || undefined }
-      )
-    );
-  }, [initialData, show]);
+    if (show) {
+      setFormData(getInitFormData(initialData));
+    }
+    // Do NOT include initialData in dependencies to prevent reset on every change
+    // eslint-disable-next-line
+  }, [show]);
 
   function handleChange(e) {
-    const { name, value, type, checked } = e.target;
-    setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
+    const { name, value } = e.target;
+    setFormData(data => ({
+      ...data,
+      [name]: value
+    }));
   }
 
   function handleSubmit(e) {
@@ -44,39 +50,26 @@ export default function AddEditBlendForm({
     onSubmit(formData);
   }
 
-  if (!show) return null;
-
   return (
-    <div className={styles["datascreen-modal-backdrop"]}>
-      <form className={styles["datascreen-modal-card"]} onSubmit={handleSubmit}>
-        <h2>{mode === "edit" ? "Edit Blend" : "Add Blend"}</h2>
-        {FIELDS.map((field) =>
-          field === "Active" ? (
-            <div key={field} style={{ marginBottom: 14 }}>
-              <label>{field}:</label>
-              <input
-                type="checkbox"
-                name={field}
-                checked={!!formData[field]}
-                onChange={handleChange}
-              />
-            </div>
-          ) : (
-            <div key={field} style={{ marginBottom: 14 }}>
-              <label>{field}:</label>
-              <input
-                name={field}
-                value={formData[field]}
-                onChange={handleChange}
-              />
-            </div>
-          )
-        )}
-        <div style={{ marginTop: 12 }}>
-          <button type="submit" className="nav-btn nav-btn-light">Save</button>
-          <button type="button" className="nav-btn nav-btn-light" onClick={onClose}>Cancel</button>
-        </div>
-      </form>
-    </div>
+    <Modal show={show} onHide={onClose} backdrop="static" centered>
+      <Form onSubmit={handleSubmit}>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            {mode === "edit" ? "Edit Blend" : "Add Blend"}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <BlendFormBody formData={formData} handleChange={handleChange} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={onClose}>
+            Cancel
+          </Button>
+          <Button type="submit" variant="primary">
+            Save
+          </Button>
+        </Modal.Footer>
+      </Form>
+    </Modal>
   );
 }

@@ -1,4 +1,7 @@
-import "./HarvestLoadsScreen.css"; // Use shared theme/css
+// vintrick-frontend/src/screens/DataScreen.js
+
+
+import "../styles/AppShared.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderBar from "../components/HeaderBar";
@@ -53,7 +56,7 @@ export default function DataScreen() {
   };
 
   return (
-    <div className="harvestloads-root">
+    <div className="app-root">
       <HeaderBar
         title="Data Import, Bookings, & Fruit Intake API"
         onBack={() => navigate(-1)}

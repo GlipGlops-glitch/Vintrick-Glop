@@ -1,3 +1,5 @@
+/* File path: vintrick-frontend/src/components/HeaderBar.css */
+
 .header-bar {
   width: 100%;
   max-width: 900px;
@@ -5,7 +7,8 @@
   background: var(--card-bg);
   border-radius: var(--card-radius);
   box-shadow: var(--card-shadow);
-  padding: 1.2rem 1.2rem 1.1rem 1.2rem;
+  /* Reduced top/bottom padding for a slimmer bar */
+  padding: 0.6rem 1.1rem 0.6rem 1.1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,11 +17,12 @@
 
 .header-title {
   flex: 1;
-  margin: 0 1.2rem;
-  font-size: 1.4rem;
+  margin: 0 1.1rem;
+  font-size: 1.15rem;      /* Slightly smaller font for slimness */
   font-weight: 700;
   color: #413963;
   text-align: center;
+  line-height: 1.1;        /* Tighter line height */
 }
 
 .header-back-btn {
@@ -26,13 +30,11 @@
   border-radius: var(--btn-radius);
   background: var(--btn-gradient);
   color: #fff;
-  text-align: left;
   border: none;
-  padding: 7px 15px;
-  font-size: 1rem;
+  padding: 5px 13px;        /* Reduced padding */
+  font-size: 0.97rem;
   cursor: pointer;
   text-align: center;
-
   transition: background 0.14s;
 }
 
@@ -43,22 +45,12 @@
 .header-add-btn {
   font-weight: 600;
   border-radius: var(--btn-radius);
-  height: 2.2rem;
+  height: 2rem;             /* Slightly less tall */
   display: flex;
   align-items: center;
-  border-radius: var(--btn-radius);
   background: var(--btn-gradient);
   color: #fff;
-  text-align: left;
   border: none;
-  padding: 7px 15px;
-  font-size: 1rem;
+  padding: 5px 13px;        /* Reduced padding */
+  font-size: 0.97rem;
 }
-
-/* .header-add-btn {
-  font-weight: 600;
-  border-radius: var(--btn-radius);
-  height: 2.2rem;
-  display: flex;
-  align-items: center;
-  Remove position: absolute, right, top, transform, z-index */

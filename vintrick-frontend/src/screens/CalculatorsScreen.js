@@ -1,4 +1,4 @@
-import "./CalculatorsScreen.css";
+import "../styles/AppShared.css";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 

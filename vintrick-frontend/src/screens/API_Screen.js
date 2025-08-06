@@ -1,6 +1,6 @@
 // API_Screen.js
 
-import "./API_Screen.css";
+import "../styles/AppShared.css";
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../context/AuthContext"; // <-- import AuthContext
 
