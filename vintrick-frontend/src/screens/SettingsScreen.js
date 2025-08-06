@@ -1,18 +1,9 @@
-// src/screens/SettingsScreen.js
-
 // File path: src/screens/SettingsScreen.js
-
-// The header bar alignment issue is likely because your container div uses
-// className="harvestloads-root" instead of the app-wide className="app-root".
-// In your other screens (like BlendsScreen), the header bar is centered
-// because it is wrapped in <div className="app-root">, which is styled in AppShared.css
-// to center its contents. In SettingsScreen, you're using harvestloads-root,
-// which may have different styling and could be the cause of the misalignment.
 
 import "../styles/AppShared.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderBar from "../components/HeaderBar";
+import ModernHeaderBar from "../components/ModernHeaderBar";
 import { useSettings } from "../context/SettingsContext";
 import { Modal } from "react-bootstrap";
 import HarvestLoadFormBody, { ALL_FIELDS } from "../components/HarvestLoadFormBody";
@@ -108,10 +99,10 @@ export default function SettingsScreen() {
     else previewForm[f.key] = "";
   });
 
-  // ---- CHANGE IS HERE: Use app-root for consistent header centering ----
+  // ---- CHANGE IS HERE: Use ModernHeaderBar for consistent header centering ----
   return (
     <div className="app-root">
-      <HeaderBar title="Settings" onBack={() => navigate(-1)} />
+      <ModernHeaderBar />
       <div className="card harvestloads-card" style={{ maxWidth: 480, margin: "40px auto" }}>
         <h3 style={{ marginBottom: 28, fontWeight: 700, fontSize: 22 }}>
           Developer/Feature Settings

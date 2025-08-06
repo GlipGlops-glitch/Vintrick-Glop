@@ -1,45 +1,55 @@
 /* File path: vintrick-frontend/src/components/ModernHeaderBar.css */
 
-.modern-header-bar {
+:root {
+    --matte-bg: #ffffff;
+    --matte-bg-dark: #44484a;
+    --matte-fg: #222;
+    --matte-fg-dark: #eee;
+    --matte-border: #f1f1f1;
+    --matte-border-dark: #66696b;
+    --matte-btn-bg: #ffffff;
+    --matte-btn-bg-dark: #55585a;
+    --matte-btn-active: #b0b0b0;
+    --matte-btn-active-dark: #63676a;
+    --glass-frost: rgba(255, 255, 255, 0.84);;
+  }
+  
+  /* Matte, minimal, unified style */
+  .modern-header-bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 1.2rem 3.2rem;
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
-    width: 96vw; /* slightly less than 100vw for floating look */
+    width: 96vw;
     min-height: 84px;
     box-sizing: border-box;
     font-size: 1.28rem;
-  
-    /* Floating glassy effect */
-    background: rgba(255, 255, 255, 0.72);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 2px 8px rgba(40, 40, 80, 0.07);
+    background: var(--matte-bg);
+    box-shadow: 0 8px 40px rgba(70, 90, 120, 0.18);
     border-radius: 1.4rem;
-    backdrop-filter: blur(13px) saturate(1.2);
-    border: 1.5px solid rgba(255,255,255,0.30);
-  
-    /* Centered floating at the top */
+    border: 1.5px solid var(--matte-border);
     position: fixed;
     top: 26px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 1003;
-    transition: background 0.25s, box-shadow 0.25s;
+    color: var(--matte-fg);
+    transition: background 0.25s, box-shadow 0.25s, color 0.25s, border-color 0.25s;
+    
   }
   
   .modern-header-bar.light {
-    background: rgba(255, 255, 255, 0.72);
-    color: #222;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 2px 8px rgba(40, 40, 80, 0.07);
-    border: 1.5px solid rgba(255,255,255,0.30);
+    background: var(--matte-bg);
+    color: var(--matte-fg);
+    border: 1.5px solid var(--matte-border);
   }
   
   .modern-header-bar.dark {
-    background: rgba(34, 34, 34, 0.85);
-    color: #fff;
-    box-shadow: 0 8px 32px 0 rgba(20, 22, 35, 0.19), 0 2px 8px rgba(30, 30, 50, 0.12);
-    border: 1.5px solid rgba(60,60,70,0.28);
+    background: var(--matte-bg-dark);
+    color: var(--matte-fg-dark);
+    border: 1.5px solid var(--matte-border-dark);
   }
   
   .mhb-left {
@@ -76,22 +86,32 @@
     font-size: 1.21rem;
     font-weight: 600;
     cursor: pointer;
-    transition: color 0.13s, background 0.13s;
     padding: 0.75rem 1.7rem;
     border-radius: 2.5rem;
+    transition: color 0.13s, background 0.13s;
   }
   
+  /* Remove oval highlight on hover/focus */
   .mhb-nav-btn:hover,
   .mhb-nav-btn:focus {
-    background: #f0eefc;
-    color: #8d41e9;
+    background: none;
+    color: inherit;
   }
   
-  .modern-header-bar.dark .mhb-nav-btn:hover,
-  .modern-header-bar.dark .mhb-nav-btn:focus {
-    background: #232323;
-    color: #ffc04d;
+  /* Only show oval on active (click) */
+  .mhb-nav-btn:active {
+    background: var(--matte-btn-active);
+    color: #333;
   }
+  
+  .modern-header-bar.dark .mhb-nav-btn:active {
+    background: var(--matte-btn-active-dark);
+    color: #fff;
+  }
+  
+  /* Remove black background for active nav/selected nav in dark mode --
+     If you want an "active" state to highlight the route, 
+     you could add a class for the selected route and use a lighter matte color! */
   
   .mhb-nav-icon {
     font-size: 1.85rem;
@@ -112,15 +132,15 @@
   .mhb-search-bar {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: var(--matte-btn-bg);
     border-radius: 2.7rem;
     padding: 0.25rem 1.2rem 0.25rem 2.2rem;
-    box-shadow: 0 3px 12px rgba(60,60,60,0.08);
+    box-shadow: none;
     transition: background .18s;
   }
   
   .modern-header-bar.dark .mhb-search-bar {
-    background: #232323;
+    background: var(--matte-btn-bg-dark);
   }
   
   .mhb-search-bar input {
@@ -152,21 +172,27 @@
     margin-left: 0.6rem;
     display: flex;
     align-items: center;
-    transition: color 0.13s, background 0.13s;
     border-radius: 50%;
     padding: 0.25em;
+    transition: color 0.13s, background 0.13s;
   }
   
+  /* Remove highlight on hover, only show on active */
   .mhb-theme-btn:hover,
   .mhb-settings-btn:hover {
-    color: #8d41e9;
-    background: #f0eefc;
+    color: inherit;
+    background: none;
   }
   
-  .modern-header-bar.dark .mhb-theme-btn:hover,
-  .modern-header-bar.dark .mhb-settings-btn:hover {
-    color: #ffc04d;
-    background: #232323;
+  .mhb-theme-btn:active,
+  .mhb-settings-btn:active {
+    background: var(--matte-btn-active);
+    color: #333;
+  }
+  .modern-header-bar.dark .mhb-theme-btn:active,
+  .modern-header-bar.dark .mhb-settings-btn:active {
+    background: var(--matte-btn-active-dark);
+    color: #fff;
   }
   
   @media (max-width: 700px) {

@@ -1,14 +1,23 @@
 // vintrick-frontend/src/screens/DataScreen.js
 
+// File path: vintrick-frontend/src/screens/DataScreen.js
+
 import "../styles/AppShared.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ModernHeaderBar from "../components/ModernHeaderBar"; // Use the new header bar
+import ModernHeaderBar from "../components/ModernHeaderBar";
 import axios from "axios";
 
+// Column definitions (used for mapping and table headers)
 const ALL_COLUMNS = [
   "Task", "Scheduled", "Crush Pad", "Time", "Comment", "Ranch", "Block", "Allocation", "Tons",
   "Brand", "Ferm Site", "Variety", "Pick", "Analysis", "Date", "Brix", "pH", "TA",
+];
+
+const BOOKINGS_COLUMNS = ["bookingNumber", "block", "dateOccurred", "Status"];
+const FRUIT_COLUMNS = [
+  "externalWeighTag", "bookingNumber", "block", "gross_value",
+  "tare_value", "net_value", "dateOccurred"
 ];
 
 export default function DataScreen() {
@@ -16,7 +25,29 @@ export default function DataScreen() {
   const [preview, setPreview] = useState({ open: false, title: "", content: "" });
   const [fieldMappingOpen, setFieldMappingOpen] = useState(false);
   const [uploadStatus, setUploadStatus] = useState("");
+  const [vintraceSyncOpen, setVintraceSyncOpen] = useState(false);
+  const [vintraceSyncStatus, setVintraceSyncStatus] = useState("");
+  const [vintraceSyncLoading, setVintraceSyncLoading] = useState(false);
+  const [vintraceSyncResult, setVintraceSyncResult] = useState(null);
+  const [vintraceSyncError, setVintraceSyncError] = useState(null);
+
+  const [vintraceStartDate, setVintraceStartDate] = useState("");
+  const [vintraceEndDate, setVintraceEndDate] = useState("");
+
+  const [bookings, setBookings] = useState([]);
+  const [fruitIntake, setFruitIntake] = useState([]);
+  const [tableModal, setTableModal] = useState({ open: false, title: "", records: [], columns: [], editType: "" });
+
   const navigate = useNavigate();
+
+  // Simulate DB (use backend API in real code)
+  const loadBookings = () => setBookings([
+    { bookingNumber: "25001-01", block: "A1", dateOccurred: "2025-08-01", Status: "imported" },
+    { bookingNumber: "25001-02", block: "B2", dateOccurred: "2025-08-02", Status: "imported" }
+  ]);
+  const loadFruitIntake = () => setFruitIntake([
+    { externalWeighTag: "FT-001", bookingNumber: "25001-01", block: "A1", gross_value: 1000, tare_value: 200, net_value: 800, dateOccurred: "2025-08-01" }
+  ]);
 
   const handlePreviewBookings = () =>
     setPreview({
@@ -34,10 +65,14 @@ export default function DataScreen() {
     });
   const handleImportFruit = () =>
     alert("Import/Post Fruit Intake not implemented yet.");
-  const handleViewAllBookings = () =>
-    alert("View All Bookings not implemented yet.");
-  const handleViewAllFruit = () =>
-    alert("View All Fruit Intake not implemented yet.");
+  const handleViewAllBookings = () => {
+    loadBookings();
+    setTableModal({ open: true, title: "All Bookings", records: bookings, columns: BOOKINGS_COLUMNS, editType: "booking" });
+  };
+  const handleViewAllFruit = () => {
+    loadFruitIntake();
+    setTableModal({ open: true, title: "All Fruit Intake", records: fruitIntake, columns: FRUIT_COLUMNS, editType: "fruit" });
+  };
   const handleFieldMapping = () => setFieldMappingOpen(true);
 
   const handleSqlUpload = async () => {
@@ -51,6 +86,39 @@ export default function DataScreen() {
       }
     } catch (err) {
       setUploadStatus("❌ Error during SQL upload.");
+    }
+  };
+
+  // ---- Vintrace Sync Controls ----
+  const openVintraceSyncModal = () => {
+    setVintraceSyncOpen(true);
+    setVintraceSyncStatus("");
+    setVintraceSyncResult(null);
+    setVintraceSyncError(null);
+    setVintraceStartDate("");
+    setVintraceEndDate("");
+  };
+
+  const handleVintraceSync = async (e) => {
+    e.preventDefault();
+    setVintraceSyncLoading(true);
+    setVintraceSyncStatus("Starting sync...");
+    setVintraceSyncResult(null);
+    setVintraceSyncError(null);
+
+    try {
+      const res = await axios.post(
+        `/api/vintrace_api/fetch_and_update?start_date=${encodeURIComponent(vintraceStartDate)}&end_date=${encodeURIComponent(vintraceEndDate)}`
+      );
+      setVintraceSyncStatus("");
+      setVintraceSyncResult(res.data);
+    } catch (err) {
+      setVintraceSyncStatus("");
+      setVintraceSyncError(
+        err.response?.data?.detail || err.message || "Unknown error"
+      );
+    } finally {
+      setVintraceSyncLoading(false);
     }
   };
 
@@ -82,6 +150,10 @@ export default function DataScreen() {
           </button>
           <button className="nav-btn nav-btn-orange" onClick={handleSqlUpload}>
             SQL Server Upload
+          </button>
+          {/* Vintrace Sync Button */}
+          <button className="nav-btn nav-btn-purple" onClick={openVintraceSyncModal}>
+            Vintrace Sync
           </button>
         </div>
         <div className="harvestloads-controls" style={{ marginBottom: 0 }}>
@@ -127,7 +199,127 @@ export default function DataScreen() {
             </div>
           </Modal>
         )}
+
+        {/* Table Modal for Bookings and Fruit Intake */}
+        {tableModal.open && (
+          <Modal
+            title={tableModal.title}
+            onClose={() => setTableModal({ ...tableModal, open: false })}
+          >
+            <TableView
+              records={tableModal.records}
+              columns={tableModal.columns}
+              editType={tableModal.editType}
+              onClose={() => setTableModal({ ...tableModal, open: false })}
+            />
+          </Modal>
+        )}
+
+        {/* Vintrace Sync Modal */}
+        {vintraceSyncOpen && (
+          <Modal
+            title="Sync Vintrace Harvest Loads"
+            onClose={() => setVintraceSyncOpen(false)}
+          >
+            <form
+              style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 12 }}
+              onSubmit={handleVintraceSync}
+            >
+              <label>
+                Start Date:{" "}
+                <input
+                  type="date"
+                  value={vintraceStartDate}
+                  onChange={e => setVintraceStartDate(e.target.value)}
+                  required
+                  className="input"
+                  style={{ minWidth: 140 }}
+                />
+              </label>
+              <label>
+                End Date:{" "}
+                <input
+                  type="date"
+                  value={vintraceEndDate}
+                  onChange={e => setVintraceEndDate(e.target.value)}
+                  required
+                  className="input"
+                  style={{ minWidth: 140 }}
+                />
+              </label>
+              <button
+                className="nav-btn nav-btn-purple"
+                type="submit"
+                style={{ marginTop: 12, fontSize: 16 }}
+                disabled={vintraceSyncLoading || !vintraceStartDate || !vintraceEndDate}
+              >
+                {vintraceSyncLoading ? "Syncing..." : "Start Sync"}
+              </button>
+            </form>
+            {vintraceSyncStatus && (
+              <div style={{ textAlign: "center", color: "#8d41e9", margin: 6 }}>
+                {vintraceSyncStatus}
+              </div>
+            )}
+            {vintraceSyncResult && (
+              <div style={{ textAlign: "center", color: "green", margin: 6 }}>
+                <b>Sync started:</b>
+                <pre
+                  style={{
+                    background: "#f7f6fa",
+                    padding: "10px",
+                    borderRadius: "6px",
+                    marginTop: 8,
+                    fontSize: 15,
+                    color: "#222"
+                  }}
+                >
+                  {JSON.stringify(vintraceSyncResult, null, 2)}
+                </pre>
+              </div>
+            )}
+            {vintraceSyncError && (
+              <div style={{ color: "red", textAlign: "center", margin: 6 }}>
+                {vintraceSyncError}
+              </div>
+            )}
+          </Modal>
+        )}
       </div>
+    </div>
+  );
+}
+
+// --- Table View Modal for "View All ..." ---
+function TableView({ records, columns, editType }) {
+  return (
+    <div style={{ maxHeight: 400, overflow: "auto" }}>
+      <table className="datascreen-table">
+        <thead>
+          <tr>
+            {columns.map((col) => (
+              <th key={col}>{col}</th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {records.length === 0 ? (
+            <tr>
+              <td colSpan={columns.length} style={{ textAlign: "center" }}>
+                No records found.
+              </td>
+            </tr>
+          ) : (
+            records.map((rec, idx) => (
+              <tr key={idx}>
+                {columns.map((col) => (
+                  <td key={col}>{rec[col]}</td>
+                ))}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
     </div>
   );
 }

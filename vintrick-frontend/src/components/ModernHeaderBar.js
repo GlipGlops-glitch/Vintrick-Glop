@@ -1,8 +1,6 @@
-// vintrick-frontend/src/components/ModernHeaderBar.js
-
 // File path: vintrick-frontend/src/components/ModernHeaderBar.js
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./ModernHeaderBar.css";
 import {
@@ -23,8 +21,24 @@ const navButtons = [
 ];
 
 export default function ModernHeaderBar() {
-  const [dark, setDark] = useState(false);
+  // Read initial theme from body for SSR/refresh support
+  const [dark, setDark] = useState(() => {
+    if (typeof window !== "undefined") {
+      return document.body.getAttribute("data-theme") === "dark";
+    }
+    return false;
+  });
+
   const navigate = useNavigate();
+
+  // Side effect: update the global theme on body
+  useEffect(() => {
+    if (dark) {
+      document.body.setAttribute("data-theme", "dark");
+    } else {
+      document.body.removeAttribute("data-theme");
+    }
+  }, [dark]);
 
   return (
     <nav className={`modern-header-bar ${dark ? "dark" : "light"}`}>
@@ -41,6 +55,7 @@ export default function ModernHeaderBar() {
               className="mhb-nav-btn"
               onClick={() => navigate(btn.route)}
               title={btn.label}
+              tabIndex={0}
             >
               <span className="mhb-nav-icon">{btn.icon}</span>
               <span className="mhb-nav-label">{btn.label}</span>
