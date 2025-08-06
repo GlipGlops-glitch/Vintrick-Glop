@@ -1,6 +1,10 @@
+// vintrick-frontend/src/screens/HomeScreen.js
+
+// --- add import and usage of ModernHeaderBar at the top of the home screen ---
+
 import "./HomeScreen.css";
 import React from "react";
-
+import ModernHeaderBar from "../components/ModernHeaderBar";
 import { useNavigate } from "react-router-dom";
 import {
   GiGrapes,
@@ -24,6 +28,7 @@ export default function HomeScreen({ logoSrc }) {
 
   return (
     <div className="home-root">
+      <ModernHeaderBar />
       <div className="center-content">
         <div className="glass-card card-logo-bg">
           <img

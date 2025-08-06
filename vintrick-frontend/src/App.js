@@ -1,9 +1,12 @@
+// vintrick-frontend/src/App.js
+
+// File path: vintrick-frontend/src/App.js
+
 import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  useNavigate,
 } from "react-router-dom";
 
 // Import screens
@@ -32,102 +35,10 @@ import "./screens/HomeScreen.css";
 // Import logo directly for correct path resolution
 import vintrickLogo from "./assets/background.png";
 
-// Shared button style for both buttons
-const btnStyle = {
-  width: 150,
-  height: 48,
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  borderRadius: 16,
-  border: 0,
-  fontWeight: 700,
-  fontFamily: "inherit",
-  fontSize: "1.08rem",
-  boxShadow: "0 2px 14px rgba(80,70,140,0.14)",
-  cursor: "pointer",
-  position: "fixed",
-  right: 24,
-  zIndex: 999,
-  transition: "background 0.2s, color 0.2s",
-};
-
-function ThemeToggle() {
-  const [isDark, setIsDark] = React.useState(
-    () => document.body.getAttribute("data-theme") === "dark",
-  );
-
-  React.useEffect(() => {
-    const saved = localStorage.getItem("theme");
-    if (saved) {
-      document.body.setAttribute("data-theme", saved);
-      setIsDark(saved === "dark");
-    } else {
-      const prefersDark =
-        window.matchMedia &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches;
-      if (prefersDark) {
-        document.body.setAttribute("data-theme", "dark");
-        setIsDark(true);
-      }
-    }
-  }, []);
-
-  function toggleTheme() {
-    const isCurrentlyDark = document.body.getAttribute("data-theme") === "dark";
-    if (isCurrentlyDark) {
-      document.body.removeAttribute("data-theme");
-      localStorage.setItem("theme", "light");
-      setIsDark(false);
-    } else {
-      document.body.setAttribute("data-theme", "dark");
-      localStorage.setItem("theme", "dark");
-      setIsDark(true);
-    }
-  }
-  return (
-    <button
-      aria-label="Toggle dark mode"
-      onClick={toggleTheme}
-      style={{
-        ...btnStyle,
-        top: 24,
-        background: "linear-gradient(90deg, #8e9eab 0%, #636fa4 100%)",
-        color: "#fff",
-        gap: 8,
-      }}
-    >
-      <span style={{ fontSize: 22 }}>{isDark ? "☀️" : "🌙"}</span>
-      <span style={{ fontWeight: 700 }}>{isDark ? "Light" : "Dark"}</span>
-    </button>
-  );
-}
-
-function SettingsButton() {
-  const navigate = useNavigate();
-  return (
-    <button
-      aria-label="Go to settings"
-      onClick={() => navigate("/settings")}
-      style={{
-        ...btnStyle,
-        top: 84,
-        background: "linear-gradient(90deg, #54577a 0%, #363a54 100%)",
-        color: "#fff",
-        gap: 8,
-      }}
-    >
-      <span style={{ fontSize: 22 }}>⚙️</span>
-      <span style={{ fontWeight: 700 }}>Settings</span>
-    </button>
-  );
-}
-
 function AppRoutes() {
   return (
     <>
-      <ThemeToggle />
-      <SettingsButton />
+      {/* Removed ThemeToggle and SettingsButton floating buttons */}
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
         <Route

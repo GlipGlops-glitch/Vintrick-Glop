@@ -1,0 +1,152 @@
+/* File path: vintrick-frontend/src/components/ModernHeaderBar.css */
+
+.modern-header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 3.2rem;            /* Increased padding for height/width */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;                  /* Slightly bolder weight */
+    width: 100%;
+    min-height: 84px;                  /* Increased minimum height */
+    box-sizing: border-box;
+    transition: background 0.25s;
+    font-size: 1.28rem;                /* Larger base font size */
+  }
+  
+  .modern-header-bar.light {
+    background: #fff;
+    color: #222;
+  }
+  
+  .modern-header-bar.dark {
+    background: #111;
+    color: #fff;
+  }
+  
+  .mhb-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;                       /* Larger gap */
+  }
+  
+  .mhb-logo-icon {
+    font-size: 2.7rem;                 /* Larger icon */
+  }
+  
+  .mhb-logo-text {
+    font-size: 2rem;                   /* Larger logo text */
+    font-weight: 800;
+    letter-spacing: 2px;
+  }
+  
+  .mhb-nav {
+    display: flex;
+    list-style: none;
+    gap: 2.2rem;                       /* Larger gap between nav buttons */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mhb-nav-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;                       /* Larger gap between icon and label */
+    font-size: 1.21rem;                /* Larger nav button text */
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.13s, background 0.13s;
+    padding: 0.75rem 1.7rem;           /* Larger padding */
+    border-radius: 2.5rem;
+  }
+  
+  .mhb-nav-btn:hover,
+  .mhb-nav-btn:focus {
+    background: #f0eefc;
+    color: #8d41e9;
+  }
+  
+  .modern-header-bar.dark .mhb-nav-btn:hover,
+  .modern-header-bar.dark .mhb-nav-btn:focus {
+    background: #232323;
+    color: #ffc04d;
+  }
+  
+  .mhb-nav-icon {
+    font-size: 1.85rem;                /* Larger nav icons */
+    display: inline-flex;
+  }
+  
+  .mhb-nav-label {
+    display: inline-block;
+    font-size: 1.18rem;                /* Slightly larger label */
+  }
+  
+  .mhb-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;                         /* Larger gap */
+  }
+  
+  .mhb-search-bar {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border-radius: 2.7rem;
+    padding: 0.25rem 1.2rem 0.25rem 2.2rem; /* Larger padding */
+    box-shadow: 0 3px 12px rgba(60,60,60,0.08);
+    transition: background .18s;
+  }
+  
+  .modern-header-bar.dark .mhb-search-bar {
+    background: #232323;
+  }
+  
+  .mhb-search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: inherit;
+    font-size: 1.17rem;                /* Larger search input */
+    width: 178px;                      /* Wider search bar */
+    padding: 0.45rem 0;
+  }
+  
+  .mhb-search-bar button {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.65rem;                /* Larger search icon */
+    cursor: pointer;
+    padding: 0 0.6rem;
+  }
+  
+  .mhb-theme-btn,
+  .mhb-settings-btn {
+    background: none;
+    border: none;
+    font-size: 2.1rem;                 /* Larger icons */
+    color: inherit;
+    cursor: pointer;
+    margin-left: 0.6rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.13s, background 0.13s;
+    border-radius: 50%;
+    padding: 0.25em;
+  }
+  
+  .mhb-theme-btn:hover,
+  .mhb-settings-btn:hover {
+    color: #8d41e9;
+    background: #f0eefc;
+  }
+  
+  .modern-header-bar.dark .mhb-theme-btn:hover,
+  .modern-header-bar.dark .mhb-settings-btn:hover {
+    color: #ffc04d;
+    background: #232323;
+  }
