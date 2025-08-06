@@ -1,10 +1,9 @@
 // vintrick-frontend/src/screens/DataScreen.js
 
-
 import "../styles/AppShared.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HeaderBar from "../components/HeaderBar";
+import ModernHeaderBar from "../components/ModernHeaderBar"; // Use the new header bar
 import axios from "axios";
 
 const ALL_COLUMNS = [
@@ -57,10 +56,7 @@ export default function DataScreen() {
 
   return (
     <div className="app-root">
-      <HeaderBar
-        title="Data Import, Bookings, & Fruit Intake API"
-        onBack={() => navigate(-1)}
-      />
+      <ModernHeaderBar />
       <div className="card harvestloads-card">
         <div className="harvestloads-controls" style={{ flexWrap: "wrap" }}>
           <button className="nav-btn nav-btn-light" onClick={handlePreviewBookings}>

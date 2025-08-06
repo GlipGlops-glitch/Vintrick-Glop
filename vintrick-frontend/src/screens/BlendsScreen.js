@@ -2,7 +2,7 @@
 
 import "../styles/AppShared.css";
 import React, { useState, useEffect } from "react";
-import HeaderBar from "../components/HeaderBar";
+import ModernHeaderBar from "../components/ModernHeaderBar"; // <-- Use ModernHeaderBar instead of HeaderBar
 import AddEditBlendForm from "../components/AddEditBlendForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -105,12 +105,7 @@ export default function BlendsScreen() {
 
   return (
     <div className="app-root">
-      <HeaderBar
-        title="Blends"
-        onBack={() => navigate(-1)}
-        onAdd={handleAddNew}
-        addLabel="+ Add"
-      />
+      <ModernHeaderBar /> {/* Use ModernHeaderBar at the top */}
       <div className="card blends-card">
         <div className="blends-table-scroll" style={{ maxHeight: 600, overflow: "auto" }}>
           <table className="blends-table">

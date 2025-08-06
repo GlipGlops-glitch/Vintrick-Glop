@@ -2,7 +2,7 @@
 
 import "../styles/AppShared.css";
 import React, { useState, useEffect, useCallback } from "react";
-import HeaderBar from "../components/HeaderBar";
+import ModernHeaderBar from "../components/ModernHeaderBar"; // <-- Use the modern header
 import AddEditHarvestLoadForm from "../components/AddEditHarvestLoadForm";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -221,12 +221,7 @@ export default function HarvestLoadsScreen() {
 
   return (
     <div className="app-root">
-      <HeaderBar
-        title="Harvest Loads"
-        onBack={() => navigate(-1)}
-        onAdd={handleAddNew}
-        addLabel="+ Add"
-      />
+      <ModernHeaderBar /> {/* Floating modern header bar */}
       <div className="card harvestloads-card">
         {/* Controls Row 1: Search and Crush Pad */}
         <div className="controls">

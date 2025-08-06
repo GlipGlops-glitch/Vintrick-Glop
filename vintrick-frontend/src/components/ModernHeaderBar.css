@@ -4,38 +4,56 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.2rem 3.2rem;            /* Increased padding for height/width */
+    padding: 1.2rem 3.2rem;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;                  /* Slightly bolder weight */
-    width: 100%;
-    min-height: 84px;                  /* Increased minimum height */
+    font-weight: 600;
+    width: 96vw; /* slightly less than 100vw for floating look */
+    min-height: 84px;
     box-sizing: border-box;
-    transition: background 0.25s;
-    font-size: 1.28rem;                /* Larger base font size */
+    font-size: 1.28rem;
+  
+    /* Floating glassy effect */
+    background: rgba(255, 255, 255, 0.72);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 2px 8px rgba(40, 40, 80, 0.07);
+    border-radius: 1.4rem;
+    backdrop-filter: blur(13px) saturate(1.2);
+    border: 1.5px solid rgba(255,255,255,0.30);
+  
+    /* Centered floating at the top */
+    position: fixed;
+    top: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1003;
+    transition: background 0.25s, box-shadow 0.25s;
   }
   
   .modern-header-bar.light {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.72);
     color: #222;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18), 0 2px 8px rgba(40, 40, 80, 0.07);
+    border: 1.5px solid rgba(255,255,255,0.30);
   }
   
   .modern-header-bar.dark {
-    background: #111;
+    background: rgba(34, 34, 34, 0.85);
     color: #fff;
+    box-shadow: 0 8px 32px 0 rgba(20, 22, 35, 0.19), 0 2px 8px rgba(30, 30, 50, 0.12);
+    border: 1.5px solid rgba(60,60,70,0.28);
   }
   
   .mhb-left {
     display: flex;
     align-items: center;
-    gap: 1.2rem;                       /* Larger gap */
+    gap: 1.2rem;
   }
   
   .mhb-logo-icon {
-    font-size: 2.7rem;                 /* Larger icon */
+    font-size: 2.7rem;
   }
   
   .mhb-logo-text {
-    font-size: 2rem;                   /* Larger logo text */
+    font-size: 2rem;
     font-weight: 800;
     letter-spacing: 2px;
   }
@@ -43,7 +61,7 @@
   .mhb-nav {
     display: flex;
     list-style: none;
-    gap: 2.2rem;                       /* Larger gap between nav buttons */
+    gap: 2.2rem;
     margin: 0;
     padding: 0;
   }
@@ -54,12 +72,12 @@
     color: inherit;
     display: flex;
     align-items: center;
-    gap: 0.9rem;                       /* Larger gap between icon and label */
-    font-size: 1.21rem;                /* Larger nav button text */
+    gap: 0.9rem;
+    font-size: 1.21rem;
     font-weight: 600;
     cursor: pointer;
     transition: color 0.13s, background 0.13s;
-    padding: 0.75rem 1.7rem;           /* Larger padding */
+    padding: 0.75rem 1.7rem;
     border-radius: 2.5rem;
   }
   
@@ -76,19 +94,19 @@
   }
   
   .mhb-nav-icon {
-    font-size: 1.85rem;                /* Larger nav icons */
+    font-size: 1.85rem;
     display: inline-flex;
   }
   
   .mhb-nav-label {
     display: inline-block;
-    font-size: 1.18rem;                /* Slightly larger label */
+    font-size: 1.18rem;
   }
   
   .mhb-right {
     display: flex;
     align-items: center;
-    gap: 2rem;                         /* Larger gap */
+    gap: 2rem;
   }
   
   .mhb-search-bar {
@@ -96,7 +114,7 @@
     align-items: center;
     background: #fff;
     border-radius: 2.7rem;
-    padding: 0.25rem 1.2rem 0.25rem 2.2rem; /* Larger padding */
+    padding: 0.25rem 1.2rem 0.25rem 2.2rem;
     box-shadow: 0 3px 12px rgba(60,60,60,0.08);
     transition: background .18s;
   }
@@ -110,8 +128,8 @@
     border: none;
     outline: none;
     color: inherit;
-    font-size: 1.17rem;                /* Larger search input */
-    width: 178px;                      /* Wider search bar */
+    font-size: 1.17rem;
+    width: 178px;
     padding: 0.45rem 0;
   }
   
@@ -119,7 +137,7 @@
     background: none;
     border: none;
     color: inherit;
-    font-size: 1.65rem;                /* Larger search icon */
+    font-size: 1.65rem;
     cursor: pointer;
     padding: 0 0.6rem;
   }
@@ -128,7 +146,7 @@
   .mhb-settings-btn {
     background: none;
     border: none;
-    font-size: 2.1rem;                 /* Larger icons */
+    font-size: 2.1rem;
     color: inherit;
     cursor: pointer;
     margin-left: 0.6rem;
@@ -149,4 +167,14 @@
   .modern-header-bar.dark .mhb-settings-btn:hover {
     color: #ffc04d;
     background: #232323;
+  }
+  
+  @media (max-width: 700px) {
+    .modern-header-bar {
+      padding: 0.8rem 0.8rem;
+      width: 99vw;
+      min-height: 62px;
+      border-radius: 0.8rem;
+      top: 7px;
+    }
   }

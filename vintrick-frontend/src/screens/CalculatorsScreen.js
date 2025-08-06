@@ -1,5 +1,8 @@
+// src/screens/CalculatorsScreen.js
+
 import "../styles/AppShared.css";
 import React from "react";
+import ModernHeaderBar from "../components/ModernHeaderBar"; // Import the new header bar
 import { useNavigate } from "react-router-dom";
 
 export default function CalculatorsScreen() {
@@ -7,12 +10,7 @@ export default function CalculatorsScreen() {
 
   return (
     <div className="calculators-root">
-      <div className="header-bar">
-        <button className="header-back-btn" onClick={() => navigate("/")}>
-          ← Back
-        </button>
-        <h2 className="header-title">Calculators</h2>
-      </div>
+      <ModernHeaderBar />
       <div className="card calculators-card">
         <span className="calculators-coming">Calculators coming soon...</span>
       </div>

@@ -1,15 +1,15 @@
-// DocumentsScreen.js
+// src/screens/DocumentsScreen.js
 
 import "../styles/AppShared.css";
 import React from "react";
-import HeaderBar from "../components/HeaderBar";
+import ModernHeaderBar from "../components/ModernHeaderBar"; // Use the new header bar
 import { useNavigate } from "react-router-dom";
 
 export default function DocumentsScreen() {
   const navigate = useNavigate();
   return (
     <div className="documents-root">
-      <HeaderBar title="Documents" onBack={() => navigate(-1)} />
+      <ModernHeaderBar />
       <div className="card documents-card">
         <span className="documents-coming">Documents coming soon...</span>
       </div>

@@ -97,9 +97,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* --- ModernHeaderBar spacing integration --- */
+    margin-top: 130px;
     padding: var(--spacing-xl) 0 0 0;
     width: 100vw;
     box-sizing: border-box;
+  }
+
+  /* Add margin for API and Harvest screens that use different roots */
+  .harvestloads-root,
+  .api_screen-container {
+    margin-top: 130px;
   }
   
   /* --- Card (central container) --- */
@@ -273,6 +281,11 @@
     .calculators-root,
     .home-root {
       padding-top: 15px;
+      margin-top: 100px; /* Reduce for mobile header bar height */
+    }
+    .harvestloads-root,
+    .api_screen-container {
+      margin-top: 100px;
     }
     table,
     .harvestloads-table,
