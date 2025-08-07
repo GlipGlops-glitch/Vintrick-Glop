@@ -3,7 +3,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlalchemy.orm import Session
 from app.api.deps import get_db
-from app.utils.Vintrace_Client import VintraceSmartClient  # You'll add this file!
+from app.utils.vintrace_client import VintraceSmartClient  # You'll add this file!
 from app.crud import trans_sum  # You'll add this file!
 from app.schemas.trans_sum import TransSumCreate, TransSumOut
 from typing import List

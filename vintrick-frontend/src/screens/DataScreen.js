@@ -96,7 +96,28 @@ export default function DataScreen() {
     setVintraceStartDate("");
     setVintraceEndDate("");
   };
-
+  const handleVintraceSync = async (e) => {
+    e.preventDefault();
+    setVintraceSyncLoading(true);
+    setVintraceSyncStatus("Starting sync...");
+    setVintraceSyncResult(null);
+    setVintraceSyncError(null);
+  
+    try {
+      const res = await axios.post(
+        `/api/vintrace_api/fetch_and_update?start_date=${encodeURIComponent(vintraceStartDate)}&end_date=${encodeURIComponent(vintraceEndDate)}`
+      );
+      setVintraceSyncStatus("");
+      setVintraceSyncResult(res.data);
+    } catch (err) {
+      setVintraceSyncStatus("");
+      setVintraceSyncError(
+        err.response?.data?.detail || err.message || "Unknown error"
+      );
+    } finally {
+      setVintraceSyncLoading(false);
+    }
+  };
   // New: Open the sync modal for TransSum
   const [transSumSyncOpen, setTransSumSyncOpen] = useState(false);
   const [transSumSyncStatus, setTransSumSyncStatus] = useState("");
