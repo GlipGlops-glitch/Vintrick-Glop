@@ -1,7 +1,5 @@
 // vintrick-frontend/src/screens/DataScreen.js
 
-// File path: vintrick-frontend/src/screens/DataScreen.js
-
 import "../styles/AppShared.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -99,26 +97,49 @@ export default function DataScreen() {
     setVintraceEndDate("");
   };
 
-  const handleVintraceSync = async (e) => {
+  // New: Open the sync modal for TransSum
+  const [transSumSyncOpen, setTransSumSyncOpen] = useState(false);
+  const [transSumSyncStatus, setTransSumSyncStatus] = useState("");
+  const [transSumSyncLoading, setTransSumSyncLoading] = useState(false);
+  const [transSumSyncResult, setTransSumSyncResult] = useState(null);
+  const [transSumSyncError, setTransSumSyncError] = useState(null);
+  const [transSumStartDate, setTransSumStartDate] = useState("");
+  const [transSumEndDate, setTransSumEndDate] = useState("");
+
+  const openTransSumSyncModal = () => {
+    setTransSumSyncOpen(true);
+    setTransSumSyncStatus("");
+    setTransSumSyncResult(null);
+    setTransSumSyncError(null);
+    setTransSumStartDate("");
+    setTransSumEndDate("");
+  };
+
+  const handleTransSumSync = async (e) => {
     e.preventDefault();
-    setVintraceSyncLoading(true);
-    setVintraceSyncStatus("Starting sync...");
-    setVintraceSyncResult(null);
-    setVintraceSyncError(null);
+    setTransSumSyncLoading(true);
+    setTransSumSyncStatus("Starting trans_sum sync...");
+    setTransSumSyncResult(null);
+    setTransSumSyncError(null);
 
     try {
+      // Call the backend endpoint for trans_sum sync
       const res = await axios.post(
-        `/api/vintrace_api/fetch_and_update?start_date=${encodeURIComponent(vintraceStartDate)}&end_date=${encodeURIComponent(vintraceEndDate)}`
+        `/api/vintrace/pull-transactions/`,
+        {
+          start_date: transSumStartDate,
+          end_date: transSumEndDate,
+        }
       );
-      setVintraceSyncStatus("");
-      setVintraceSyncResult(res.data);
+      setTransSumSyncStatus("");
+      setTransSumSyncResult(res.data);
     } catch (err) {
-      setVintraceSyncStatus("");
-      setVintraceSyncError(
+      setTransSumSyncStatus("");
+      setTransSumSyncError(
         err.response?.data?.detail || err.message || "Unknown error"
       );
     } finally {
-      setVintraceSyncLoading(false);
+      setTransSumSyncLoading(false);
     }
   };
 
@@ -154,6 +175,10 @@ export default function DataScreen() {
           {/* Vintrace Sync Button */}
           <button className="nav-btn nav-btn-purple" onClick={openVintraceSyncModal}>
             Vintrace Sync
+          </button>
+          {/* New button for trans_sum sync */}
+          <button className="nav-btn nav-btn-pink" onClick={openTransSumSyncModal}>
+            Sync TransSum from Vintrace
           </button>
         </div>
         <div className="harvestloads-controls" style={{ marginBottom: 0 }}>
@@ -281,6 +306,77 @@ export default function DataScreen() {
             {vintraceSyncError && (
               <div style={{ color: "red", textAlign: "center", margin: 6 }}>
                 {vintraceSyncError}
+              </div>
+            )}
+          </Modal>
+        )}
+
+        {/* TransSum Sync Modal */}
+        {transSumSyncOpen && (
+          <Modal
+            title="Sync TransSum from Vintrace"
+            onClose={() => setTransSumSyncOpen(false)}
+          >
+            <form
+              style={{ display: "flex", flexDirection: "column", gap: 12, marginBottom: 12 }}
+              onSubmit={handleTransSumSync}
+            >
+              <label>
+                Start Date:{" "}
+                <input
+                  type="date"
+                  value={transSumStartDate}
+                  onChange={e => setTransSumStartDate(e.target.value)}
+                  required
+                  className="input"
+                  style={{ minWidth: 140 }}
+                />
+              </label>
+              <label>
+                End Date:{" "}
+                <input
+                  type="date"
+                  value={transSumEndDate}
+                  onChange={e => setTransSumEndDate(e.target.value)}
+                  required
+                  className="input"
+                  style={{ minWidth: 140 }}
+                />
+              </label>
+              <button
+                className="nav-btn nav-btn-pink"
+                type="submit"
+                style={{ marginTop: 12, fontSize: 16 }}
+                disabled={transSumSyncLoading || !transSumStartDate || !transSumEndDate}
+              >
+                {transSumSyncLoading ? "Syncing..." : "Start Sync"}
+              </button>
+            </form>
+            {transSumSyncStatus && (
+              <div style={{ textAlign: "center", color: "#d41e8d", margin: 6 }}>
+                {transSumSyncStatus}
+              </div>
+            )}
+            {transSumSyncResult && (
+              <div style={{ textAlign: "center", color: "green", margin: 6 }}>
+                <b>Sync started:</b>
+                <pre
+                  style={{
+                    background: "#f7f6fa",
+                    padding: "10px",
+                    borderRadius: "6px",
+                    marginTop: 8,
+                    fontSize: 15,
+                    color: "#222"
+                  }}
+                >
+                  {JSON.stringify(transSumSyncResult, null, 2)}
+                </pre>
+              </div>
+            )}
+            {transSumSyncError && (
+              <div style={{ color: "red", textAlign: "center", margin: 6 }}>
+                {transSumSyncError}
               </div>
             )}
           </Modal>

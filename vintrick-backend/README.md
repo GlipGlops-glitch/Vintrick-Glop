@@ -236,3 +236,9 @@ git push origin main
 
 docker-compose build --no-cache
 docker-compose up
+
+
+docker-compose exec api bash
+
+printenv | grep DB_
+odbcinst -q -d

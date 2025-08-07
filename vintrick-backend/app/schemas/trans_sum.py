@@ -3,7 +3,9 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
+# VesselDetails
 class VesselDetails(BaseModel):
+    id: Optional[int]
     contentsId: Optional[int]
     batch: Optional[str]
     batchId: Optional[int]
@@ -17,8 +19,9 @@ class VesselDetails(BaseModel):
     program: Optional[str]
 
 class Vessel(BaseModel):
-    name: Optional[str]
     id: Optional[int]
+    name: Optional[str]
+    vessel_id: Optional[int]
     beforeDetails: Optional[VesselDetails]
     afterDetails: Optional[VesselDetails]
     volOut: Optional[int]
@@ -27,6 +30,7 @@ class Vessel(BaseModel):
     volInUnit: Optional[str]
 
 class LossDetails(BaseModel):
+    id: Optional[int]
     volume: Optional[int]
     volumeUnit: Optional[str]
     reason: Optional[str]
@@ -38,6 +42,7 @@ class Additives(BaseModel):
     description: Optional[str]
 
 class AdditionOps(BaseModel):
+    id: Optional[int]
     vesselId: Optional[int]
     vesselName: Optional[str]
     batchId: Optional[int]
@@ -48,7 +53,7 @@ class AdditionOps(BaseModel):
     volume: Optional[str]
     amount: Optional[float]
     unit: Optional[str]
-    lotNumbers: Optional[List[str]]
+    lotNumbers: Optional[str]  # Store as comma-separated string for DB, or use List[str] for API
     additive: Optional[Additives]
 
 class MetricAnalysis(BaseModel):
@@ -59,6 +64,7 @@ class MetricAnalysis(BaseModel):
     unit: Optional[str]
 
 class AnalysisOps(BaseModel):
+    id: Optional[int]
     vesselId: Optional[int]
     vesselName: Optional[str]
     batchId: Optional[int]
@@ -93,7 +99,7 @@ class TransSumCreate(TransSumBase):
 
 class TransSumOut(TransSumBase):
     id: int
-
+    # Add Config for ORM mode
     class Config:
         from_attributes = True
 
