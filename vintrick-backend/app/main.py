@@ -12,6 +12,10 @@ from app.api.routes import shipments       # Import shipments routes
 from app.api.routes import blends          # Import blends routes
 from app.api.routes import trans_sum
 from app.api.routes import vintrace_pull
+from app.api.routes import meta
+
+
+
 app = FastAPI(debug=True)
 
 # Add CORS middleware
@@ -24,6 +28,8 @@ app.add_middleware(
 )
 
 
+# vintrick-backend/app/main.py
+
 
 
 
@@ -34,6 +40,7 @@ app.include_router(blends.router,      prefix="/api", tags=["blends"])
 app.include_router(trans_sum.router, prefix="/api", tags=["trans_sum"])
 app.include_router(vintrace_pull.router, prefix="/api", tags=["vintrace"])
 app.include_router(trans_sum_sync.router, prefix="/api", tags=["trans_sum"])
+app.include_router(meta.router, prefix="/api/meta", tags=["meta"])
 
 # Exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)

@@ -1,7 +1,7 @@
 // vintrick-frontend/src/screens/DataScreen.js
 
 import "../styles/AppShared.css";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import ModernHeaderBar from "../components/ModernHeaderBar";
 import axios from "axios";
@@ -17,6 +17,63 @@ const FRUIT_COLUMNS = [
   "externalWeighTag", "bookingNumber", "block", "gross_value",
   "tare_value", "net_value", "dateOccurred"
 ];
+
+// --- Dynamic Param Form for Vintrace Transaction Search ---
+function VintraceTransactionSearchForm({ onSearch }) {
+  const [params, setParams] = useState([]);
+  const [form, setForm] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    async function fetchParams() {
+      try {
+        const res = await axios.get("/api/meta/transaction-search-params");
+        setParams(res.data.params || []);
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to load param metadata");
+        setLoading(false);
+      }
+    }
+    fetchParams();
+  }, []);
+
+  const handleChange = (name, value) => {
+    setForm(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    onSearch(form); // Pass form state up
+  };
+
+  if (loading) return <div>Loading search parameters...</div>;
+  if (error) return <div style={{ color: "red" }}>{error}</div>;
+
+  return (
+    <form style={{ display: "flex", flexDirection: "column", gap: 12 }} onSubmit={handleSubmit}>
+      {params.map((param) => (
+        <label key={param.name}>
+          {param.name}
+          <input
+            type={param.type === "string" ? "text" : param.type}
+            name={param.name}
+            value={form[param.name] || ""}
+            placeholder={param.example}
+            onChange={e => handleChange(param.name, e.target.value)}
+            className="input"
+            style={{ minWidth: 140 }}
+          />
+          <small style={{ display: "block", color: "#555" }}>{param.description}</small>
+        </label>
+      ))}
+      <button className="nav-btn nav-btn-purple" type="submit" style={{ marginTop: 12 }}>
+        Search Transactions
+      </button>
+    </form>
+  );
+}
 
 export default function DataScreen() {
   const [testMode, setTestMode] = useState(true);
@@ -118,6 +175,7 @@ export default function DataScreen() {
       setVintraceSyncLoading(false);
     }
   };
+
   // New: Open the sync modal for TransSum
   const [transSumSyncOpen, setTransSumSyncOpen] = useState(false);
   const [transSumSyncStatus, setTransSumSyncStatus] = useState("");
@@ -164,6 +222,40 @@ export default function DataScreen() {
     }
   };
 
+  // --- NEW: Modal for Transaction Search ---
+  const [vintraceSearchOpen, setVintraceSearchOpen] = useState(false);
+  const [vintraceSearchResult, setVintraceSearchResult] = useState(null);
+  const [vintraceSearchLoading, setVintraceSearchLoading] = useState(false);
+  const [vintraceSearchError, setVintraceSearchError] = useState("");
+
+  const openVintraceSearchModal = () => {
+    setVintraceSearchOpen(true);
+    setVintraceSearchResult(null);
+    setVintraceSearchError("");
+  };
+
+  const handleTransactionSearch = async (searchParams) => {
+    setVintraceSearchLoading(true);
+    setVintraceSearchResult(null);
+    setVintraceSearchError("");
+    try {
+      // Build query string from params
+      const query = Object.entries(searchParams)
+        .filter(([_, v]) => v !== "")
+        .map(([k, v]) => `${encodeURIComponent(k)}=${encodeURIComponent(v)}`)
+        .join("&");
+      // Adjust endpoint to match your backend!
+      const res = await axios.get(`/api/vintrace/transaction/search/?${query}`);
+      setVintraceSearchResult(res.data);
+    } catch (err) {
+      setVintraceSearchError(
+        err.response?.data?.detail || err.message || "Unknown error"
+      );
+    } finally {
+      setVintraceSearchLoading(false);
+    }
+  };
+
   return (
     <div className="app-root">
       <ModernHeaderBar />
@@ -193,11 +285,13 @@ export default function DataScreen() {
           <button className="nav-btn nav-btn-orange" onClick={handleSqlUpload}>
             SQL Server Upload
           </button>
-          {/* Vintrace Sync Button */}
           <button className="nav-btn nav-btn-purple" onClick={openVintraceSyncModal}>
             Vintrace Sync
           </button>
-          {/* New button for trans_sum sync */}
+          {/* New button for Transaction Search */}
+          <button className="nav-btn nav-btn-teal" onClick={openVintraceSearchModal}>
+            Search Vintrace Transactions
+          </button>
           <button className="nav-btn nav-btn-pink" onClick={openTransSumSyncModal}>
             Sync TransSum from Vintrace
           </button>
@@ -398,6 +492,43 @@ export default function DataScreen() {
             {transSumSyncError && (
               <div style={{ color: "red", textAlign: "center", margin: 6 }}>
                 {transSumSyncError}
+              </div>
+            )}
+          </Modal>
+        )}
+
+        {/* --- Vintrace Transaction Search Modal --- */}
+        {vintraceSearchOpen && (
+          <Modal
+            title="Search Vintrace Transactions"
+            onClose={() => setVintraceSearchOpen(false)}
+          >
+            <VintraceTransactionSearchForm onSearch={handleTransactionSearch} />
+            {vintraceSearchLoading && (
+              <div style={{ textAlign: "center", color: "#2cb0a0", margin: 6 }}>
+                Searching...
+              </div>
+            )}
+            {vintraceSearchResult && (
+              <div style={{ textAlign: "center", color: "green", margin: 6 }}>
+                <b>Results:</b>
+                <pre
+                  style={{
+                    background: "#f7f6fa",
+                    padding: "10px",
+                    borderRadius: "6px",
+                    marginTop: 8,
+                    fontSize: 15,
+                    color: "#222"
+                  }}
+                >
+                  {JSON.stringify(vintraceSearchResult, null, 2)}
+                </pre>
+              </div>
+            )}
+            {vintraceSearchError && (
+              <div style={{ color: "red", textAlign: "center", margin: 6 }}>
+                {vintraceSearchError}
               </div>
             )}
           </Modal>

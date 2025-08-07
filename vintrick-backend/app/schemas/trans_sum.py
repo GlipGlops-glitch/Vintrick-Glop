@@ -3,107 +3,111 @@
 from pydantic import BaseModel
 from typing import Optional, List
 
-# VesselDetails
-class VesselDetails(BaseModel):
-    id: Optional[int]
-    contentsId: Optional[int]
+class VesselDetailsOut(BaseModel):
+    contents_id: Optional[int]
     batch: Optional[str]
-    batchId: Optional[int]
-    volume: Optional[int]
-    volumeUnit: Optional[str]
+    batch_id: Optional[int]
+    volume: Optional[float]
+    volume_unit: Optional[str]
     dip: Optional[str]
     state: Optional[str]
-    rawTaxClass: Optional[str]
-    federalTaxClass: Optional[str]
-    stateTaxClass: Optional[str]
+    raw_tax_class: Optional[str]
+    federal_tax_class: Optional[str]
+    state_tax_class: Optional[str]
     program: Optional[str]
 
-class Vessel(BaseModel):
-    id: Optional[int]
+class FromVesselOut(BaseModel):
     name: Optional[str]
-    vessel_id: Optional[int]
-    beforeDetails: Optional[VesselDetails]
-    afterDetails: Optional[VesselDetails]
-    volOut: Optional[int]
-    volOutUnit: Optional[str]
-    volIn: Optional[int]
-    volInUnit: Optional[str]
+    before_details: Optional[VesselDetailsOut]
+    after_details: Optional[VesselDetailsOut]
+    vol_out: Optional[float]
+    vol_out_unit: Optional[str]
 
-class LossDetails(BaseModel):
-    id: Optional[int]
-    volume: Optional[int]
-    volumeUnit: Optional[str]
+class ToVesselOut(BaseModel):
+    name: Optional[str]
+    before_details: Optional[VesselDetailsOut]
+    after_details: Optional[VesselDetailsOut]
+    vol_in: Optional[float]
+    vol_in_unit: Optional[str]
+
+class LossDetailsOut(BaseModel):
+    volume: Optional[float]
+    volume_unit: Optional[str]
     reason: Optional[str]
 
-class Additives(BaseModel):
-    id: Optional[int]
-    additive_id: Optional[int]
+class AdditivesOut(BaseModel):
     name: Optional[str]
     description: Optional[str]
 
-class AdditionOps(BaseModel):
-    id: Optional[int]
-    vesselId: Optional[int]
-    vesselName: Optional[str]
-    batchId: Optional[int]
-    batchName: Optional[str]
-    templateId: Optional[int]
-    templateName: Optional[str]
-    changeToState: Optional[str]
+class AdditionOpsOut(BaseModel):
+    vessel_id: Optional[int]
+    vessel_name: Optional[str]
+    batch_id: Optional[int]
+    batch_name: Optional[str]
+    template_id: Optional[int]
+    template_name: Optional[str]
+    change_to_state: Optional[str]
     volume: Optional[str]
     amount: Optional[float]
     unit: Optional[str]
-    lotNumbers: Optional[str]  # Store as comma-separated string for DB, or use List[str] for API
-    additive: Optional[Additives]
+    additive: Optional[AdditivesOut]
 
-class MetricAnalysis(BaseModel):
-    id: Optional[int]
+class MetricAnalysisOut(BaseModel):
     name: Optional[str]
     value: Optional[float]
-    txtValue: Optional[str]
+    txt_value: Optional[str]
     unit: Optional[str]
 
-class AnalysisOps(BaseModel):
-    id: Optional[int]
-    vesselId: Optional[int]
-    vesselName: Optional[str]
-    batchId: Optional[int]
-    batchName: Optional[str]
-    templateId: Optional[int]
-    templateName: Optional[str]
-    metrics: Optional[List[MetricAnalysis]]
+class AnalysisOpsOut(BaseModel):
+    vessel_id: Optional[int]
+    vessel_name: Optional[str]
+    batch_id: Optional[int]
+    batch_name: Optional[str]
+    template_id: Optional[int]
+    template_name: Optional[str]
+    metrics: Optional[List[MetricAnalysisOut]] = []
 
-class TransSumBase(BaseModel):
-    formattedDate: Optional[str]
+class TransSumOut(BaseModel):
+    formatted_date: Optional[str]
     date: Optional[int]
-    operationId: Optional[int]
-    operationTypeId: Optional[int]
-    operationTypeName: Optional[str]
-    subOperationTypeId: Optional[int]
-    subOperationTypeName: Optional[str]
+    operation_id: int
+    operation_type_id: Optional[int]
+    operation_type_name: Optional[str]
+    sub_operation_type_id: Optional[int]
+    sub_operation_type_name: Optional[str]
     workorder: Optional[str]
-    jobNumber: Optional[str]
+    job_number: Optional[str]
     treatment: Optional[str]
-    assignedBy: Optional[str]
-    completedBy: Optional[str]
+    assigned_by: Optional[str]
+    completed_by: Optional[str]
     winery: Optional[str]
-    fromVessel: Optional[Vessel]
-    toVessel: Optional[Vessel]
-    lossDetails: Optional[LossDetails]
-    additionOps: Optional[AdditionOps]
-    analysisOps: Optional[AnalysisOps]
-    additionalDetails: Optional[str]
+    from_vessel: Optional[FromVesselOut]
+    to_vessel: Optional[ToVesselOut]
+    loss_details: Optional[LossDetailsOut]
+    addition_ops: Optional[AdditionOpsOut]
+    analysis_ops: Optional[AnalysisOpsOut]
+    additional_details: Optional[str]
 
-class TransSumCreate(TransSumBase):
-    pass
-
-class TransSumOut(TransSumBase):
-    id: int
-    # Add Config for ORM mode
     class Config:
         from_attributes = True
 
-class TransSumResponse(BaseModel):
-    status: str
-    message: Optional[str]
-    transactionSummaries: List[TransSumOut]
+# For creation, you can reuse the Out schemas (except for operation_id, which could be optional)
+class TransSumCreate(BaseModel):
+    formatted_date: Optional[str]
+    date: Optional[int]
+    operation_type_id: Optional[int]
+    operation_type_name: Optional[str]
+    sub_operation_type_id: Optional[int]
+    sub_operation_type_name: Optional[str]
+    workorder: Optional[str]
+    job_number: Optional[str]
+    treatment: Optional[str]
+    assigned_by: Optional[str]
+    completed_by: Optional[str]
+    winery: Optional[str]
+    from_vessel: Optional[FromVesselOut]
+    to_vessel: Optional[ToVesselOut]
+    loss_details: Optional[LossDetailsOut]
+    addition_ops: Optional[AdditionOpsOut]
+    analysis_ops: Optional[AnalysisOpsOut]
+    additional_details: Optional[str]
