@@ -13,7 +13,7 @@ from app.api.routes import trans_sum
 from app.api.routes import vintrace_pull
 from app.api.routes import meta
 
-# Import the Vintrace API helper
+# FIXED Import for the Vintrace API helper
 from app.vintrace_api import get_vintrace_api
 
 app = FastAPI(debug=True)
