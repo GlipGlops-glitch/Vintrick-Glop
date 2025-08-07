@@ -1,4 +1,4 @@
-// File path: vintrick-frontend/src/components/ModernHeaderBar.js
+// vintrick-frontend/src/components/ModernHeaderBar.js
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ import {
   GiArchiveRegister,
   GiDatabase,
 } from "react-icons/gi";
-import { FaRegSun, FaRegMoon, FaSearch, FaCog } from "react-icons/fa";
+import { FaRegSun, FaRegMoon, FaSearch, FaCog, FaBug } from "react-icons/fa"; // Added FaBug for API Explorer
 
 const navButtons = [
   { label: "Harvest", route: "/harvest-loads", icon: <GiGrapes /> },
@@ -18,6 +18,8 @@ const navButtons = [
   { label: "Calculators", route: "/calculators", icon: <GiCalculator /> },
   { label: "Documents", route: "/documents", icon: <GiArchiveRegister /> },
   { label: "Data", route: "/data", icon: <GiDatabase /> },
+  // Add the API Explorer screen to the header bar
+  { label: "API Explorer", route: "/api-explorer", icon: <FaBug /> },
 ];
 
 export default function ModernHeaderBar() {

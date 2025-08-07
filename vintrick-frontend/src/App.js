@@ -1,7 +1,5 @@
 // vintrick-frontend/src/App.js
 
-// File path: vintrick-frontend/src/App.js
-
 import React from "react";
 import {
   BrowserRouter as Router,
@@ -21,6 +19,7 @@ import HarvestLoadsScreen from "./screens/HarvestLoadsScreen";
 import API_Screen from "./screens/API_Screen";
 import SettingsScreen from "./screens/SettingsScreen";
 import HarvestLoadFormSettings from "./screens/HarvestLoadFormSettings";
+import ApiExplorerScreen from "./screens/ApiExplorerScreen"; // <-- Added Swagger UI screen
 
 // Auth
 import LoginScreen from "./screens/LoginScreen";
@@ -38,7 +37,6 @@ import vintrickLogo from "./assets/background.png";
 function AppRoutes() {
   return (
     <>
-      {/* Removed ThemeToggle and SettingsButton floating buttons */}
       <Routes>
         <Route path="/login" element={<LoginScreen />} />
         <Route
@@ -118,6 +116,16 @@ function AppRoutes() {
           element={
             <ProtectedRoute>
               <HarvestLoadsScreen />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Swagger UI Explorer Route */}
+        <Route
+          path="/api-explorer"
+          element={
+            <ProtectedRoute>
+              <ApiExplorerScreen />
             </ProtectedRoute>
           }
         />

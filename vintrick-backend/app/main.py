@@ -1,20 +1,20 @@
-# vintrick-backend/app/main.py
-
 import logging
-from fastapi import FastAPI, Request
+import os
+from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import trans_sum_sync
-from app.api.routes import harvestloads    # Import harvestloads routes
-from app.api.routes import shipments       # Import shipments routes
-from app.api.routes import blends          # Import blends routes
+from app.api.routes import harvestloads
+from app.api.routes import shipments
+from app.api.routes import blends
 from app.api.routes import trans_sum
 from app.api.routes import vintrace_pull
 from app.api.routes import meta
 
-
+# Import the Vintrace API helper
+from app.vintrace_api import get_vintrace_api
 
 app = FastAPI(debug=True)
 
@@ -27,12 +27,6 @@ app.add_middleware(
     allow_headers=["*"],      # Allow all headers
 )
 
-
-# vintrick-backend/app/main.py
-
-
-
-
 # Register the routers
 app.include_router(harvestloads.router, prefix="/api", tags=["harvestloads"])
 app.include_router(shipments.router,   prefix="/api", tags=["shipments"])
@@ -41,6 +35,18 @@ app.include_router(trans_sum.router, prefix="/api", tags=["trans_sum"])
 app.include_router(vintrace_pull.router, prefix="/api", tags=["vintrace"])
 app.include_router(trans_sum_sync.router, prefix="/api", tags=["trans_sum"])
 app.include_router(meta.router, prefix="/api/meta", tags=["meta"])
+
+# Example Vintrace endpoint (can move to vintrace_pull.router for better organization)
+@app.get("/api/vintrace/wine/{wine_id}", tags=["vintrace"])
+async def get_wine_from_vintrace(wine_id: str):
+    vintrace_api = get_vintrace_api()
+    try:
+        # Replace 'get_wine_details' with the correct generated client method
+        wine = vintrace_api.get_wine_details(wine_id=wine_id)
+        return wine
+    except Exception as e:
+        logging.error(f"Vintrace API error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
 
 # Exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)
@@ -58,5 +64,4 @@ async def validation_exception_handler(request: Request, exc):
 @app.exception_handler(Exception)
 async def generic_exception_handler(request: Request, exc):
     logging.error(f"Unhandled error: {exc}", exc_info=True)
-    # For debugging, you can optionally add: str(exc)
     return JSONResponse(status_code=500, content={"detail": "Internal Server Error"})

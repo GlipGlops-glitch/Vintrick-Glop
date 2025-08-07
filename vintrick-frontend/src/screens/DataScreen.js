@@ -18,12 +18,15 @@ const FRUIT_COLUMNS = [
   "tare_value", "net_value", "dateOccurred"
 ];
 
-// --- Dynamic Param Form for Vintrace Transaction Search ---
-function VintraceTransactionSearchForm({ onSearch }) {
+// --- Improved VintraceTransactionSearchForm ---
+// Now directly triggers the legacy fetcher endpoint, shows stdout/stderr
+function VintraceTransactionSearchForm() {
   const [params, setParams] = useState([]);
   const [form, setForm] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [result, setResult] = useState(null);
+  const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     async function fetchParams() {
@@ -39,13 +42,47 @@ function VintraceTransactionSearchForm({ onSearch }) {
     fetchParams();
   }, []);
 
+  function isDateParam(param) {
+    return (
+      param.type === "string" &&
+      param.description &&
+      param.description.toLowerCase().includes("yyyy-mm-dd")
+    );
+  }
+
   const handleChange = (name, value) => {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    onSearch(form); // Pass form state up
+    setFetching(true);
+    setResult(null);
+    setError("");
+    // Format all date param fields to YYYY-MM-DD
+    const formattedForm = { ...form };
+    params.forEach(param => {
+      if (isDateParam(param) && form[param.name]) {
+        formattedForm[param.name] = form[param.name].slice(0, 10);
+      }
+    });
+
+    try {
+      // POST to the legacy fetcher endpoint
+      const res = await axios.post("/api/vintrace/run-trans-fetch/", null, {
+        params: formattedForm
+      });
+      setResult(res.data); // { status, stdout, stderr }
+    } catch (err) {
+      setError(
+        err.response?.data?.detail ||
+        err.response?.data?.error ||
+        err.message ||
+        "Unknown error"
+      );
+    } finally {
+      setFetching(false);
+    }
   };
 
   if (loading) return <div>Loading search parameters...</div>;
@@ -56,21 +93,54 @@ function VintraceTransactionSearchForm({ onSearch }) {
       {params.map((param) => (
         <label key={param.name}>
           {param.name}
-          <input
-            type={param.type === "string" ? "text" : param.type}
-            name={param.name}
-            value={form[param.name] || ""}
-            placeholder={param.example}
-            onChange={e => handleChange(param.name, e.target.value)}
-            className="input"
-            style={{ minWidth: 140 }}
-          />
+          {isDateParam(param) ? (
+            <input
+              type="date"
+              name={param.name}
+              value={form[param.name] || ""}
+              onChange={e => handleChange(param.name, e.target.value)}
+              className="input"
+              style={{ minWidth: 140 }}
+            />
+          ) : (
+            <input
+              type={param.type === "string" ? "text" : param.type}
+              name={param.name}
+              value={form[param.name] || ""}
+              placeholder={param.example}
+              onChange={e => handleChange(param.name, e.target.value)}
+              className="input"
+              style={{ minWidth: 140 }}
+            />
+          )}
           <small style={{ display: "block", color: "#555" }}>{param.description}</small>
         </label>
       ))}
-      <button className="nav-btn nav-btn-purple" type="submit" style={{ marginTop: 12 }}>
-        Search Transactions
+      <button
+        className="nav-btn nav-btn-purple"
+        type="submit"
+        style={{ marginTop: 12 }}
+        disabled={fetching}
+      >
+        {fetching ? "Running Fetch..." : "Run Legacy Vintrace Fetch"}
       </button>
+      {/* Show result or error */}
+      {result && (
+        <div style={{ marginTop: 16 }}>
+          <b>Status:</b> {result.status}<br />
+          <b>Stdout:</b>
+          <pre style={{ background: "#f7f6fa", padding: 10, borderRadius: 6 }}>{result.stdout}</pre>
+          {result.stderr && (
+            <>
+              <b>Stderr:</b>
+              <pre style={{ background: "#fbeaea", padding: 10, borderRadius: 6 }}>{result.stderr}</pre>
+            </>
+          )}
+        </div>
+      )}
+      {error && (
+        <div style={{ marginTop: 16, color: "red" }}>{error}</div>
+      )}
     </form>
   );
 }
@@ -159,7 +229,7 @@ export default function DataScreen() {
     setVintraceSyncStatus("Starting sync...");
     setVintraceSyncResult(null);
     setVintraceSyncError(null);
-  
+
     try {
       const res = await axios.post(
         `/api/vintrace_api/fetch_and_update?start_date=${encodeURIComponent(vintraceStartDate)}&end_date=${encodeURIComponent(vintraceEndDate)}`
@@ -176,7 +246,7 @@ export default function DataScreen() {
     }
   };
 
-  // New: Open the sync modal for TransSum
+  // ---- TransSum Sync Controls ----
   const [transSumSyncOpen, setTransSumSyncOpen] = useState(false);
   const [transSumSyncStatus, setTransSumSyncStatus] = useState("");
   const [transSumSyncLoading, setTransSumSyncLoading] = useState(false);
@@ -222,22 +292,29 @@ export default function DataScreen() {
     }
   };
 
-  // --- NEW: Modal for Transaction Search ---
+  // --- Vintrace Transaction Search Modal (Legacy Fetch) ---
   const [vintraceSearchOpen, setVintraceSearchOpen] = useState(false);
-  const [vintraceSearchResult, setVintraceSearchResult] = useState(null);
-  const [vintraceSearchLoading, setVintraceSearchLoading] = useState(false);
-  const [vintraceSearchError, setVintraceSearchError] = useState("");
 
   const openVintraceSearchModal = () => {
     setVintraceSearchOpen(true);
-    setVintraceSearchResult(null);
-    setVintraceSearchError("");
+  };
+
+  // --- Transaction Search Modal (API, not legacy fetch) ---
+  const [apiSearchOpen, setApiSearchOpen] = useState(false);
+  const [apiSearchResult, setApiSearchResult] = useState(null);
+  const [apiSearchLoading, setApiSearchLoading] = useState(false);
+  const [apiSearchError, setApiSearchError] = useState("");
+
+  const openApiSearchModal = () => {
+    setApiSearchOpen(true);
+    setApiSearchResult(null);
+    setApiSearchError("");
   };
 
   const handleTransactionSearch = async (searchParams) => {
-    setVintraceSearchLoading(true);
-    setVintraceSearchResult(null);
-    setVintraceSearchError("");
+    setApiSearchLoading(true);
+    setApiSearchResult(null);
+    setApiSearchError("");
     try {
       // Build query string from params
       const query = Object.entries(searchParams)
@@ -246,13 +323,13 @@ export default function DataScreen() {
         .join("&");
       // Adjust endpoint to match your backend!
       const res = await axios.get(`/api/vintrace/transaction/search/?${query}`);
-      setVintraceSearchResult(res.data);
+      setApiSearchResult(res.data);
     } catch (err) {
-      setVintraceSearchError(
+      setApiSearchError(
         err.response?.data?.detail || err.message || "Unknown error"
       );
     } finally {
-      setVintraceSearchLoading(false);
+      setApiSearchLoading(false);
     }
   };
 
@@ -288,9 +365,13 @@ export default function DataScreen() {
           <button className="nav-btn nav-btn-purple" onClick={openVintraceSyncModal}>
             Vintrace Sync
           </button>
-          {/* New button for Transaction Search */}
-          <button className="nav-btn nav-btn-teal" onClick={openVintraceSearchModal}>
-            Search Vintrace Transactions
+          {/* API Transaction Search */}
+          <button className="nav-btn nav-btn-teal" onClick={openApiSearchModal}>
+            Search Vintrace Transactions (API)
+          </button>
+          {/* Legacy Fetcher Button */}
+          <button className="nav-btn nav-btn-pink" onClick={openVintraceSearchModal}>
+            Run Legacy Vintrace Fetch
           </button>
           <button className="nav-btn nav-btn-pink" onClick={openTransSumSyncModal}>
             Sync TransSum from Vintrace
@@ -497,19 +578,20 @@ export default function DataScreen() {
           </Modal>
         )}
 
-        {/* --- Vintrace Transaction Search Modal --- */}
-        {vintraceSearchOpen && (
+        {/* --- API Transaction Search Modal --- */}
+        {apiSearchOpen && (
           <Modal
-            title="Search Vintrace Transactions"
-            onClose={() => setVintraceSearchOpen(false)}
+            title="Search Vintrace Transactions (API)"
+            onClose={() => setApiSearchOpen(false)}
           >
+            {/* Reuse the original form, pass onSearch as prop */}
             <VintraceTransactionSearchForm onSearch={handleTransactionSearch} />
-            {vintraceSearchLoading && (
+            {apiSearchLoading && (
               <div style={{ textAlign: "center", color: "#2cb0a0", margin: 6 }}>
                 Searching...
               </div>
             )}
-            {vintraceSearchResult && (
+            {apiSearchResult && (
               <div style={{ textAlign: "center", color: "green", margin: 6 }}>
                 <b>Results:</b>
                 <pre
@@ -522,15 +604,26 @@ export default function DataScreen() {
                     color: "#222"
                   }}
                 >
-                  {JSON.stringify(vintraceSearchResult, null, 2)}
+                  {JSON.stringify(apiSearchResult, null, 2)}
                 </pre>
               </div>
             )}
-            {vintraceSearchError && (
+            {apiSearchError && (
               <div style={{ color: "red", textAlign: "center", margin: 6 }}>
-                {vintraceSearchError}
+                {apiSearchError}
               </div>
             )}
+          </Modal>
+        )}
+
+        {/* --- Legacy Fetcher Transaction Search Modal --- */}
+        {vintraceSearchOpen && (
+          <Modal
+            title="Run Legacy Vintrace Transaction Fetch"
+            onClose={() => setVintraceSearchOpen(false)}
+          >
+            {/* Improved form, triggers legacy fetcher */}
+            <VintraceTransactionSearchForm />
           </Modal>
         )}
       </div>

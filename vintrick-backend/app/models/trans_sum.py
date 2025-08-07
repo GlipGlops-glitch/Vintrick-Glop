@@ -74,10 +74,12 @@ class AdditionOps(Base):
 class MetricAnalysis(Base):
     __tablename__ = "metric_analysis"
     id = Column(Integer, primary_key=True, autoincrement=True)
+    analysis_ops_id = Column(Integer, ForeignKey("analysis_ops.id"))  # <-- Added FK!
     name = Column(String, nullable=True)
     value = Column(Float, nullable=True)
     txt_value = Column(String, nullable=True)
     unit = Column(String, nullable=True)
+    analysis_ops = relationship("AnalysisOps", back_populates="metrics")
 
 class AnalysisOps(Base):
     __tablename__ = "analysis_ops"
@@ -89,7 +91,7 @@ class AnalysisOps(Base):
     template_id = Column(Integer, nullable=True)
     template_name = Column(String, nullable=True)
     # One-to-many relationship: metrics
-    metrics = relationship("MetricAnalysis")
+    metrics = relationship("MetricAnalysis", back_populates="analysis_ops", cascade="all, delete-orphan")
 
 class TransSum(Base):
     __tablename__ = "trans_sum"

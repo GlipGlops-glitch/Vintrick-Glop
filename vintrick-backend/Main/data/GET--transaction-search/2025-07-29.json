@@ -1,0 +1,2254 @@
+{
+  "status": "Success",
+  "message": null,
+  "transactionSummaries": [
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754554599000,
+      "operationId": 217089,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567943,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560814000,
+      "reversed": false,
+      "workorder": "CC18135",
+      "jobNumber": 4,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PY48",
+        "id": 160284,
+        "beforeDetails": {
+          "contentsId": 213187,
+          "batch": "PCASIT22BBL1",
+          "batchId": 162932,
+          "volume": 30457.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Topped Q4",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "ITS",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PCASIT22BBL1.061",
+          "batchDetails": {
+            "id": 162932,
+            "name": "PCASIT22BBL1",
+            "description": "2022 Intrinsic Cab Sauv",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 213187,
+          "batch": "PCASIT22BBL1",
+          "batchId": 162932,
+          "volume": 30457.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Topped Q4",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "ITS",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PCASIT22BBL1.061",
+          "batchDetails": {
+            "id": 162932,
+            "name": "PCASIT22BBL1",
+            "description": "2022 Intrinsic Cab Sauv",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160284,
+        "vesselName": "PY48",
+        "batchId": 162932,
+        "batchName": "PCASIT22BBL1",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.62,
+            "txtValue": "0.62",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 40.0,
+            "txtValue": "40",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 110.0,
+            "txtValue": "110",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567943
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754554607000,
+      "operationId": 217088,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567942,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560813000,
+      "reversed": false,
+      "workorder": "CC18135",
+      "jobNumber": 7,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PY48",
+        "id": 160284,
+        "beforeDetails": {
+          "contentsId": 213187,
+          "batch": "PCASIT22BBL1",
+          "batchId": 162932,
+          "volume": 30457.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Topped Q4",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "ITS",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PCASIT22BBL1.061",
+          "batchDetails": {
+            "id": 162932,
+            "name": "PCASIT22BBL1",
+            "description": "2022 Intrinsic Cab Sauv",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 213187,
+          "batch": "PCASIT22BBL1",
+          "batchId": 162932,
+          "volume": 30457.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Topped Q4",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "ITS",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PCASIT22BBL1.061",
+          "batchDetails": {
+            "id": 162932,
+            "name": "PCASIT22BBL1",
+            "description": "2022 Intrinsic Cab Sauv",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160284,
+        "vesselName": "PY48",
+        "batchId": 162932,
+        "batchName": "PCASIT22BBL1",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.62,
+            "txtValue": "0.62",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 39.0,
+            "txtValue": "39",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 110.0,
+            "txtValue": "110",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567942
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557682000,
+      "operationId": 217083,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567937,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560807000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 7,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL09",
+        "id": 160057,
+        "beforeDetails": {
+          "contentsId": 200319,
+          "batch": "CMERCV22BB02",
+          "batchId": 166027,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CMERCV22BB02.042",
+          "batchDetails": {
+            "id": 166027,
+            "name": "CMERCV22BB02",
+            "description": "2022 CSM MERLOT CV",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 49,
+              "name": "Merlot",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 200319,
+          "batch": "CMERCV22BB02",
+          "batchId": 166027,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CMERCV22BB02.042",
+          "batchDetails": {
+            "id": 166027,
+            "name": "CMERCV22BB02",
+            "description": "2022 CSM MERLOT CV",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 49,
+              "name": "Merlot",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160057,
+        "vesselName": "PRL09",
+        "batchId": 166027,
+        "batchName": "CMERCV22BB02",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.64,
+            "txtValue": "0.64",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 35.0,
+            "txtValue": "35",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 92.0,
+            "txtValue": "92",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567937
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557692000,
+      "operationId": 217086,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567940,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560811000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 8,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL13",
+        "id": 160061,
+        "beforeDetails": {
+          "contentsId": 212943,
+          "batch": "QREDHTNVCAN5",
+          "batchId": 201992,
+          "volume": 14735.0,
+          "volumeUnit": "gal",
+          "dip": "208",
+          "state": "Unassigned",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "FTH",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "QREDHTNVCAN5.022",
+          "batchDetails": {
+            "id": 201992,
+            "name": "QREDHTNVCAN5",
+            "description": "2025 FTH HTT CANNING",
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 76,
+              "name": "Red Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 212943,
+          "batch": "QREDHTNVCAN5",
+          "batchId": 201992,
+          "volume": 14735.0,
+          "volumeUnit": "gal",
+          "dip": "208",
+          "state": "Unassigned",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "FTH",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "QREDHTNVCAN5.022",
+          "batchDetails": {
+            "id": 201992,
+            "name": "QREDHTNVCAN5",
+            "description": "2025 FTH HTT CANNING",
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 76,
+              "name": "Red Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160061,
+        "vesselName": "PRL13",
+        "batchId": 201992,
+        "batchName": "QREDHTNVCAN5",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.67,
+            "txtValue": "0.67",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 27.0,
+            "txtValue": "27",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 109.0,
+            "txtValue": "109",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567940
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557704000,
+      "operationId": 217084,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567938,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560809000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 9,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL15",
+        "id": 160063,
+        "beforeDetails": {
+          "contentsId": 197569,
+          "batch": "PMALPY240151",
+          "batchId": 184129,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "GRE",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PMALPY240151.013",
+          "batchDetails": {
+            "id": 184129,
+            "name": "PMALPY240151",
+            "description": "Phinny Hill Malbec",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 43,
+              "name": "Malbec",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 197569,
+          "batch": "PMALPY240151",
+          "batchId": 184129,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "GRE",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PMALPY240151.013",
+          "batchDetails": {
+            "id": 184129,
+            "name": "PMALPY240151",
+            "description": "Phinny Hill Malbec",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 43,
+              "name": "Malbec",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160063,
+        "vesselName": "PRL15",
+        "batchId": 184129,
+        "batchName": "PMALPY240151",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.38,
+            "txtValue": "0.38",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 38.0,
+            "txtValue": "38",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 60.0,
+            "txtValue": "60",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567938
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557761000,
+      "operationId": 217085,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567939,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560810000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 15,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL09",
+        "id": 160057,
+        "beforeDetails": {
+          "contentsId": 200319,
+          "batch": "CMERCV22BB02",
+          "batchId": 166027,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CMERCV22BB02.042",
+          "batchDetails": {
+            "id": 166027,
+            "name": "CMERCV22BB02",
+            "description": "2022 CSM MERLOT CV",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 49,
+              "name": "Merlot",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 200319,
+          "batch": "CMERCV22BB02",
+          "batchId": 166027,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CMERCV22BB02.042",
+          "batchDetails": {
+            "id": 166027,
+            "name": "CMERCV22BB02",
+            "description": "2022 CSM MERLOT CV",
+            "vintage": {
+              "id": 4,
+              "name": "2022",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 49,
+              "name": "Merlot",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160057,
+        "vesselName": "PRL09",
+        "batchId": 166027,
+        "batchName": "CMERCV22BB02",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.65,
+            "txtValue": "0.65",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 36.0,
+            "txtValue": "36",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 91.0,
+            "txtValue": "91",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567939
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557769000,
+      "operationId": 217082,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567936,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560806000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 16,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL13",
+        "id": 160061,
+        "beforeDetails": {
+          "contentsId": 212943,
+          "batch": "QREDHTNVCAN5",
+          "batchId": 201992,
+          "volume": 14735.0,
+          "volumeUnit": "gal",
+          "dip": "208",
+          "state": "Unassigned",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "FTH",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "QREDHTNVCAN5.022",
+          "batchDetails": {
+            "id": 201992,
+            "name": "QREDHTNVCAN5",
+            "description": "2025 FTH HTT CANNING",
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 76,
+              "name": "Red Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 212943,
+          "batch": "QREDHTNVCAN5",
+          "batchId": 201992,
+          "volume": 14735.0,
+          "volumeUnit": "gal",
+          "dip": "208",
+          "state": "Unassigned",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "FTH",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "QREDHTNVCAN5.022",
+          "batchDetails": {
+            "id": 201992,
+            "name": "QREDHTNVCAN5",
+            "description": "2025 FTH HTT CANNING",
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 76,
+              "name": "Red Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160061,
+        "vesselName": "PRL13",
+        "batchId": 201992,
+        "batchName": "QREDHTNVCAN5",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.66,
+            "txtValue": "0.66",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 29.0,
+            "txtValue": "29",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 113.0,
+            "txtValue": "113",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567936
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754557778000,
+      "operationId": 217087,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 567941,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754560812000,
+      "reversed": false,
+      "workorder": "CC18132",
+      "jobNumber": 17,
+      "treatment": null,
+      "assignedBy": "BELL-RITALA, Avoree",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PRL15",
+        "id": 160063,
+        "beforeDetails": {
+          "contentsId": 197569,
+          "batch": "PMALPY240151",
+          "batchId": 184129,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "GRE",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PMALPY240151.013",
+          "batchDetails": {
+            "id": 184129,
+            "name": "PMALPY240151",
+            "description": "Phinny Hill Malbec",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 43,
+              "name": "Malbec",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 197569,
+          "batch": "PMALPY240151",
+          "batchId": 184129,
+          "volume": 15086.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "GRE",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "PMALPY240151.013",
+          "batchDetails": {
+            "id": 184129,
+            "name": "PMALPY240151",
+            "description": "Phinny Hill Malbec",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 43,
+              "name": "Malbec",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 20,
+              "name": "Columbia Valley",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160063,
+        "vesselName": "PRL15",
+        "batchId": 184129,
+        "batchName": "PMALPY240151",
+        "templateId": 182,
+        "templateName": "CCM.SO2 CHECK",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.37,
+            "txtValue": "0.37",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 39.0,
+            "txtValue": "39",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 60.0,
+            "txtValue": "60",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 567941
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754573945000,
+      "operationId": 217206,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 568122,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754584208000,
+      "reversed": false,
+      "workorder": "CC18216",
+      "jobNumber": 1,
+      "treatment": null,
+      "assignedBy": "GUIZAR REAL, Francia",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PF10",
+        "id": 159624,
+        "beforeDetails": {
+          "contentsId": 214412,
+          "batch": "CWHWBYNVCN24",
+          "batchId": 213315,
+          "volume": 6035.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Racked + SO2",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CWHWBYNVCN24.030",
+          "batchDetails": {
+            "id": 213315,
+            "name": "CWHWBYNVCN24",
+            "description": null,
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 107,
+              "name": "White Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "afterDetails": {
+          "contentsId": 214412,
+          "batch": "CWHWBYNVCN24",
+          "batchId": 213315,
+          "volume": 6035.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Racked + SO2",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CWHWBYNVCN24.030",
+          "batchDetails": {
+            "id": 213315,
+            "name": "CWHWBYNVCN24",
+            "description": null,
+            "vintage": {
+              "id": 2,
+              "name": "NV",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 107,
+              "name": "White Wine",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 159624,
+        "vesselName": "PF10",
+        "batchId": 213315,
+        "batchName": "CWHWBYNVCN24",
+        "templateId": 139,
+        "templateName": "CCM. SO2+AA+Glu/Fru",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.13,
+            "txtValue": "0.13",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 31.0,
+            "txtValue": "31",
+            "unit": "mg/L"
+          },
+          {
+            "id": 13,
+            "name": "Glucose & Fructose",
+            "value": 4.0,
+            "txtValue": "4",
+            "unit": "g/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 115.0,
+            "txtValue": "115",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 568122
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574000000,
+      "operationId": 217202,
+      "operationTypeId": 46,
+      "operationTypeName": "Multi transfer (many-to-one)",
+      "subOperationId": 568112,
+      "subOperationTypeName": "Transfer",
+      "lastModified": 1754579395000,
+      "reversed": false,
+      "workorder": "CR16732",
+      "jobNumber": 1,
+      "treatment": "CR 1st Qtr Fill",
+      "assignedBy": "GROCE, Matthew",
+      "completedBy": "TIENGTHAM, Pornchot",
+      "winery": "Canoe Ridge Winery",
+      "fromVessel": {
+        "name": "ZL02",
+        "id": 160487,
+        "beforeDetails": {
+          "contentsId": 212688,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 7354.0,
+          "volumeUnit": "gal",
+          "dip": "152",
+          "state": "CR 1ST SO2",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.014",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": null,
+          "batch": null,
+          "batchId": null,
+          "volume": 0.0,
+          "volumeUnit": "gal",
+          "dip": "EMPTY",
+          "state": null,
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": null,
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": null,
+          "serviceOrder": null,
+          "alcoholicFermentState": null,
+          "malolacticFermentState": null,
+          "revisionName": null,
+          "batchDetails": null,
+          "physicalStateText": null
+        },
+        "volOut": 7354.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": {
+        "name": "CCAS0024IWOKBG)",
+        "id": 180828,
+        "beforeDetails": {
+          "contentsId": 214657,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 20594.62,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR ML+",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.013",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 214657,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 27838.5,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR ML+",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.013",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volIn": 7243.88,
+        "volInUnit": "gal"
+      },
+      "lossDetails": {
+        "volume": 110.12,
+        "volumeUnit": "gal",
+        "reason": "Fill Barrels - Reds"
+      },
+      "additionOps": null,
+      "analysisOps": null,
+      "additionalDetails": null,
+      "subOperationTypeId": 568112
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574000000,
+      "operationId": 217202,
+      "operationTypeId": 46,
+      "operationTypeName": "Multi transfer (many-to-one)",
+      "subOperationId": 568113,
+      "subOperationTypeName": "Transfer",
+      "lastModified": 1754579395000,
+      "reversed": false,
+      "workorder": "CR16732",
+      "jobNumber": 1,
+      "treatment": "CR 1st Qtr Fill",
+      "assignedBy": "GROCE, Matthew",
+      "completedBy": "TIENGTHAM, Pornchot",
+      "winery": "Canoe Ridge Winery",
+      "fromVessel": {
+        "name": "ZL03",
+        "id": 160488,
+        "beforeDetails": {
+          "contentsId": 214568,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 7805.0,
+          "volumeUnit": "gal",
+          "dip": "162",
+          "state": "CR 1ST SO2",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.012",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": null,
+          "batch": null,
+          "batchId": null,
+          "volume": 0.0,
+          "volumeUnit": "gal",
+          "dip": "EMPTY",
+          "state": null,
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": null,
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": null,
+          "serviceOrder": null,
+          "alcoholicFermentState": null,
+          "malolacticFermentState": null,
+          "revisionName": null,
+          "batchDetails": null,
+          "physicalStateText": null
+        },
+        "volOut": 7805.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": {
+        "name": "CCAS0024IWOKBG)",
+        "id": 180828,
+        "beforeDetails": {
+          "contentsId": 214149,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 12906.5,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR ML+",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STARTED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.010",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 214149,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 20594.62,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR ML+",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.010",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volIn": 7688.12,
+        "volInUnit": "gal"
+      },
+      "lossDetails": {
+        "volume": 116.88,
+        "volumeUnit": "gal",
+        "reason": "Fill Barrels - Reds"
+      },
+      "additionOps": null,
+      "analysisOps": null,
+      "additionalDetails": null,
+      "subOperationTypeId": 568113
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574065000,
+      "operationId": 217203,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 568119,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754579539000,
+      "reversed": false,
+      "workorder": "CR16732",
+      "jobNumber": 2,
+      "treatment": null,
+      "assignedBy": "GROCE, Matthew",
+      "completedBy": "TIENGTHAM, Pornchot",
+      "winery": "Canoe Ridge Winery",
+      "fromVessel": {
+        "name": "CCAS0024IWOKBG)",
+        "id": 180828,
+        "beforeDetails": {
+          "contentsId": 214656,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 27838.5,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR 1ST SO2",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.015",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "afterDetails": {
+          "contentsId": 214656,
+          "batch": "CCAS0024IWOK",
+          "batchId": 189314,
+          "volume": 27838.5,
+          "volumeUnit": "gal",
+          "dip": null,
+          "state": "CR 1ST SO2",
+          "rawTaxClass": "14 to 16%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "14 to 21%",
+          "program": "CR IWCS",
+          "grading": {
+            "id": 13,
+            "value": "3",
+            "scaleName": "CSM Ranks",
+            "scaleId": 3
+          },
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCAS0024IWOK.015",
+          "batchDetails": {
+            "id": 189314,
+            "name": "CCAS0024IWOK",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 16,
+              "name": "Cabernet Sauvignon",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": {
+              "id": 26,
+              "name": "Horse Heaven Hills",
+              "summary": null,
+              "type": "Region"
+            }
+          },
+          "physicalStateText": "Wine (red)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 180828,
+        "vesselName": "CCAS0024IWOKBG)",
+        "batchId": 189314,
+        "batchName": "CCAS0024IWOK",
+        "templateId": null,
+        "templateName": null,
+        "metrics": [
+          {
+            "id": 143,
+            "name": "CR Topped",
+            "value": 2.0,
+            "txtValue": "2",
+            "unit": "units"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 568119
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574125000,
+      "operationId": 217208,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 568124,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754584210000,
+      "reversed": false,
+      "workorder": "CC18217",
+      "jobNumber": 2,
+      "treatment": null,
+      "assignedBy": "GUIZAR REAL, Francia",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PL10",
+        "id": 159772,
+        "beforeDetails": {
+          "contentsId": 214064,
+          "batch": "CCHALT240002",
+          "batchId": 213313,
+          "volume": 26461.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCHALT240002.010",
+          "batchDetails": {
+            "id": 213313,
+            "name": "CCHALT240002",
+            "description": "2024 CSM CHA Light",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 18,
+              "name": "Chardonnay",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "afterDetails": {
+          "contentsId": 214064,
+          "batch": "CCHALT240002",
+          "batchId": 213313,
+          "volume": 26461.0,
+          "volumeUnit": "gal",
+          "dip": "FULL",
+          "state": "Final Blend",
+          "rawTaxClass": "Not over 14%",
+          "federalTaxClass": "Not over 16%",
+          "stateTaxClass": "Not over 14%",
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "STOPPED",
+          "malolacticFermentState": null,
+          "revisionName": "CCHALT240002.010",
+          "batchDetails": {
+            "id": 213313,
+            "name": "CCHALT240002",
+            "description": "2024 CSM CHA Light",
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 18,
+              "name": "Chardonnay",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 159772,
+        "vesselName": "PL10",
+        "batchId": 213313,
+        "batchName": "CCHALT240002",
+        "templateId": 128,
+        "templateName": "CCM. SO2+AA",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.22,
+            "txtValue": "0.22",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 36.0,
+            "txtValue": "36",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 105.0,
+            "txtValue": "105",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 568124
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574125000,
+      "operationId": 217209,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 568125,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754584211000,
+      "reversed": false,
+      "workorder": "CC18217",
+      "jobNumber": 3,
+      "treatment": null,
+      "assignedBy": "GUIZAR REAL, Francia",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "PPORT38",
+        "id": 171126,
+        "beforeDetails": {
+          "contentsId": 208165,
+          "batch": "CVIOCD24OKTP",
+          "batchId": 207951,
+          "volume": 50.0,
+          "volumeUnit": "gal",
+          "dip": "",
+          "state": "Racked + SO2",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "UNFERMENTED",
+          "malolacticFermentState": null,
+          "revisionName": "CVIOCD24OKTP.001",
+          "batchDetails": {
+            "id": 207951,
+            "name": "CVIOCD24OKTP",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 102,
+              "name": "Viognier",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "afterDetails": {
+          "contentsId": 208165,
+          "batch": "CVIOCD24OKTP",
+          "batchId": 207951,
+          "volume": 50.0,
+          "volumeUnit": "gal",
+          "dip": "",
+          "state": "Racked + SO2",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "UNFERMENTED",
+          "malolacticFermentState": null,
+          "revisionName": "CVIOCD24OKTP.001",
+          "batchDetails": {
+            "id": 207951,
+            "name": "CVIOCD24OKTP",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 102,
+              "name": "Viognier",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 171126,
+        "vesselName": "PPORT38",
+        "batchId": 207951,
+        "batchName": "CVIOCD24OKTP",
+        "templateId": 128,
+        "templateName": "CCM. SO2+AA",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.13,
+            "txtValue": "0.13",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 39.0,
+            "txtValue": "39",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 119.0,
+            "txtValue": "119",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 568125
+    },
+    {
+      "formattedDate": "08/07/2025",
+      "date": 1754574125000,
+      "operationId": 217207,
+      "operationTypeId": 10,
+      "operationTypeName": "Analysis",
+      "subOperationId": 568123,
+      "subOperationTypeName": "Analysis",
+      "lastModified": 1754584209000,
+      "reversed": false,
+      "workorder": "CC18217",
+      "jobNumber": 5,
+      "treatment": null,
+      "assignedBy": "GUIZAR REAL, Francia",
+      "completedBy": "DRAKE, Jonathan",
+      "winery": "Columbia Crest",
+      "fromVessel": {
+        "name": "QPTB05",
+        "id": 160813,
+        "beforeDetails": {
+          "contentsId": 194286,
+          "batch": "CWHREG240W3B",
+          "batchId": 191076,
+          "volume": 521.0,
+          "volumeUnit": "gal",
+          "dip": "62",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "UNFERMENTED",
+          "malolacticFermentState": null,
+          "revisionName": "CWHREG240W3B.002",
+          "batchDetails": {
+            "id": 191076,
+            "name": "CWHREG240W3B",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 106,
+              "name": "White Riesling",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "afterDetails": {
+          "contentsId": 194286,
+          "batch": "CWHREG240W3B",
+          "batchId": 191076,
+          "volume": 521.0,
+          "volumeUnit": "gal",
+          "dip": "62",
+          "state": "SO2+",
+          "rawTaxClass": null,
+          "federalTaxClass": null,
+          "stateTaxClass": null,
+          "program": "CSM",
+          "grading": null,
+          "productCategory": null,
+          "batchOwner": "Ste Michelle Wine Estates",
+          "serviceOrder": null,
+          "alcoholicFermentState": "UNFERMENTED",
+          "malolacticFermentState": null,
+          "revisionName": "CWHREG240W3B.002",
+          "batchDetails": {
+            "id": 191076,
+            "name": "CWHREG240W3B",
+            "description": null,
+            "vintage": {
+              "id": 22,
+              "name": "2024",
+              "summary": null,
+              "type": "Vintage"
+            },
+            "variety": {
+              "id": 106,
+              "name": "White Riesling",
+              "summary": null,
+              "type": "Varietal"
+            },
+            "region": null
+          },
+          "physicalStateText": "Wine (white)"
+        },
+        "volOut": 0.0,
+        "volOutUnit": "gal"
+      },
+      "toVessel": null,
+      "lossDetails": null,
+      "additionOps": null,
+      "analysisOps": {
+        "vesselId": 160813,
+        "vesselName": "QPTB05",
+        "batchId": 191076,
+        "batchName": "CWHREG240W3B",
+        "templateId": 128,
+        "templateName": "CCM. SO2+AA",
+        "metrics": [
+          {
+            "id": 16,
+            "name": "Acetic Acid",
+            "value": 0.21,
+            "txtValue": "0.21",
+            "unit": "g/L"
+          },
+          {
+            "id": 9,
+            "name": "Free SO2",
+            "value": 38.0,
+            "txtValue": "38",
+            "unit": "mg/L"
+          },
+          {
+            "id": 10,
+            "name": "Total SO2",
+            "value": 124.0,
+            "txtValue": "124",
+            "unit": "mg/L"
+          }
+        ]
+      },
+      "additionalDetails": null,
+      "subOperationTypeId": 568123
+    }
+  ]
+}
