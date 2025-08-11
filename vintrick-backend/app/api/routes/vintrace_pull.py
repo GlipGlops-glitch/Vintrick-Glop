@@ -1,6 +1,11 @@
 # vintrick-backend/app/api/routes/vintrace_pull.py
 
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Depends, HTTPException, Query, Body
+from sqlalchemy.orm import Session
+from app.api.deps import get_db
+from app.vintrace_api import get_vintrace_api
+from app.schemas.trans_sum import TransSumCreate
+from app.crud import trans_sum as trans_sum_crud
 import subprocess
 import sys
 import os
@@ -19,13 +24,9 @@ def run_trans_fetch(
 ):
     """
     Runs transFetch.py in tools with parameters from the API call.
-    Returns its output or error.
+    Returns its output or error. (Legacy fetcher)
     """
-    # Absolute path to transFetch.py
-  # vintrick-backend/app/api/routes/vintrace_pull.py
     script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../tools/transFetch.py"))
-
-    # Prepare parameters as a JSON string for the legacy fetcher
     param_dict = {
         "dateFrom": dateFrom,
         "dateTo": dateTo,
@@ -34,12 +35,8 @@ def run_trans_fetch(
         "wineryName": wineryName,
         "max_workers": max_workers
     }
-    # Remove None values so they aren't passed as "null"
     param_dict = {k: v for k, v in param_dict.items() if v is not None}
-
-    # Pass parameters as a JSON string argument
     param_json = json.dumps(param_dict)
-
     try:
         result = subprocess.run(
             [sys.executable, script_path, param_json],
@@ -64,3 +61,36 @@ def run_trans_fetch(
             "status": "error",
             "error": str(ex)
         }
+
+@router.post("/pull-transactions/", tags=["vintrace"])
+def pull_transactions_from_vintrace(
+    start_date: str = Body(...),
+    end_date: str = Body(...),
+    db: Session = Depends(get_db)
+):
+    """
+    Fetches transactions from Vintrace using the REST API and uploads them to SQL DB.
+    """
+    vintrace_api = get_vintrace_api()
+    try:
+        # Pass date filters to Vintrace API
+        vintrace_data = vintrace_api["get_transaction_summaries"](start_date=start_date, end_date=end_date)
+        results = vintrace_data.get("results", [])
+        uploaded = []
+        errors = []
+        for rec in results:
+            try:
+                payload = TransSumCreate(**rec)
+                db_obj = trans_sum_crud.create_trans_sum(db, payload)
+                uploaded.append(str(getattr(db_obj, "operation_id", getattr(db_obj, "id", None))) or "unknown")
+            except Exception as e:
+                errors.append({"record": rec, "error": str(e)})
+        return {
+            "start_date": start_date,
+            "end_date": end_date,
+            "uploaded_count": len(uploaded),
+            "uploaded_ids": uploaded,
+            "errors": errors,
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Vintrace integration error: {e}")

@@ -12,7 +12,7 @@ class VintraceSmartClient:
 
     def __init__(self, api_key=None, endpoint_map_path=None):
         self.api_key = api_key or os.getenv("VINTRACE_API_TOKEN")
-        endpoint_map_path = endpoint_map_path or os.getenv("VINTRACE_ENDPOINT_MAP_PATH")
+        endpoint_map_path = endpoint_map_path or os.getenv("ENDPOINT_MAP_PATH")
         if not self.api_key:
             raise RuntimeError("VINTRACE_API_TOKEN must be set in .env or passed in.")
         if not endpoint_map_path or not os.path.exists(endpoint_map_path):

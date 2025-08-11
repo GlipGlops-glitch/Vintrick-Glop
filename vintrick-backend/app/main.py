@@ -5,16 +5,16 @@ from fastapi.responses import JSONResponse
 from fastapi.exceptions import RequestValidationError
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.routes import trans_sum_sync
-from app.api.routes import harvestloads
-from app.api.routes import shipments
-from app.api.routes import blends
-from app.api.routes import trans_sum
-from app.api.routes import vintrace_pull
-from app.api.routes import meta
 
-# FIXED Import for the Vintrace API helper
-from app.vintrace_api import get_vintrace_api
+
+
+from app.api.routes.harvestloads import router as harvestloads_router
+
+from app.api.routes.blends import router as blends_router
+from app.api.routes.trans_sum import router as trans_sum_router
+from app.api.routes.vintrace_pull import router as vintrace_pull_router
+from app.api.routes.meta import router as meta_router
+from app.api.routes.trans_sum_sync import router as trans_sum_sync_router
 
 app = FastAPI(debug=True)
 
@@ -27,26 +27,22 @@ app.add_middleware(
     allow_headers=["*"],      # Allow all headers
 )
 
-# Register the routers
-app.include_router(harvestloads.router, prefix="/api", tags=["harvestloads"])
-app.include_router(shipments.router,   prefix="/api", tags=["shipments"])
-app.include_router(blends.router,      prefix="/api", tags=["blends"])
-app.include_router(trans_sum.router, prefix="/api", tags=["trans_sum"])
-app.include_router(vintrace_pull.router, prefix="/api", tags=["vintrace"])
-app.include_router(trans_sum_sync.router, prefix="/api", tags=["trans_sum"])
-app.include_router(meta.router, prefix="/api/meta", tags=["meta"])
+# Register all routers
+# app.include_router(bulk_wine_router,   prefix="/api", tags=["bulk_wine"])
+# app.include_router(harvest_router,     prefix="/api", tags=["harvest"])
+# app.include_router(jobs_router,        prefix="/api", tags=["jobs"])
+# app.include_router(legacy_router,      prefix="/api", tags=["legacy"])
+# app.include_router(sales_router,       prefix="/api", tags=["sales"])
+# app.include_router(search_router,      prefix="/api", tags=["search"])
+# app.include_router(stock_router,       prefix="/api", tags=["stock"])
+# app.include_router(shipments_router,    prefix="/api", tags=["shipments"])
 
-# Example Vintrace endpoint (can move to vintrace_pull.router for better organization)
-@app.get("/api/vintrace/wine/{wine_id}", tags=["vintrace"])
-async def get_wine_from_vintrace(wine_id: str):
-    vintrace_api = get_vintrace_api()
-    try:
-        # Replace 'get_wine_details' with the correct generated client method
-        wine = vintrace_api.get_wine_details(wine_id=wine_id)
-        return wine
-    except Exception as e:
-        logging.error(f"Vintrace API error: {e}", exc_info=True)
-        raise HTTPException(status_code=500, detail=str(e))
+app.include_router(harvestloads_router, prefix="/api", tags=["harvestloads"])
+app.include_router(blends_router,       prefix="/api", tags=["blends"])
+app.include_router(trans_sum_router,    prefix="/api", tags=["trans_sum"])
+app.include_router(vintrace_pull_router, prefix="/api", tags=["vintrace"])
+app.include_router(trans_sum_sync_router, prefix="/api", tags=["trans_sum"])
+app.include_router(meta_router,          prefix="/api/meta", tags=["meta"])
 
 # Exception handler for HTTP exceptions
 @app.exception_handler(StarletteHTTPException)
