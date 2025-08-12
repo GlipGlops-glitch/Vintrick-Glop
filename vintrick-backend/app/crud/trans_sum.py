@@ -2,27 +2,19 @@
 
 from sqlalchemy.orm import Session
 from app.models.trans_sum import (
-    VesselDetails, FromVessel, ToVessel, LossDetails,
+    VesselDetails, Vessels, LossDetails,
     Additives, AdditionOps, MetricAnalysis, AnalysisOps, TransSum
 )
 from app.schemas.trans_sum import TransSumCreate
 from typing import Optional, List
-from datetime import datetime, timezone
-
-# ----------- FIX: create_trans_sum should call insert_trans_sum_transaction -----------
 
 def create_trans_sum(db: Session, trans_sum: TransSumCreate) -> TransSum:
     """
     Creates a new TransSum record with all relationships, using a TransSumCreate Pydantic model.
     """
-    # Convert Pydantic to dict for nested processing
     tx = trans_sum.model_dump()
-    # Optionally set last_modified if your model expects it
-    tx["last_modified"] = datetime.now(timezone.utc)
-    # Use the normalized insert function
+    # Removed last_modified
     return insert_trans_sum_transaction(db, tx)
-
-# ----------- Existing normalized insert function -----------
 
 def insert_trans_sum_transaction(db: Session, tx: dict):
     # Vessel Details helpers
@@ -45,37 +37,27 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
         db.flush()
         return vd.id
 
-    # FromVessel
-    from_vessel_id = None
-    if tx.get("fromVessel"):
-        before_id = insert_vessel_details(tx["fromVessel"].get("beforeDetails"))
-        after_id = insert_vessel_details(tx["fromVessel"].get("afterDetails"))
-        fv = FromVessel(
-            name=tx["fromVessel"].get("name"),
+    # Vessels (handles both from and to vessel)
+    def insert_vessel(vessel, is_from=True):
+        if not vessel:
+            return None
+        before_id = insert_vessel_details(vessel.get("beforeDetails"))
+        after_id = insert_vessel_details(vessel.get("afterDetails"))
+        v = Vessels(
+            name=vessel.get("name"),
             before_details_id=before_id,
             after_details_id=after_id,
-            vol_out=tx["fromVessel"].get("volOut"),
-            vol_out_unit=tx["fromVessel"].get("volOutUnit"),
+            vol_out=vessel.get("volOut") if is_from else None,
+            vol_out_unit=vessel.get("volOutUnit") if is_from else None,
+            vol_in=vessel.get("volIn") if not is_from else None,
+            vol_in_unit=vessel.get("volInUnit") if not is_from else None
         )
-        db.add(fv)
+        db.add(v)
         db.flush()
-        from_vessel_id = fv.id
+        return v.id
 
-    # ToVessel
-    to_vessel_id = None
-    if tx.get("toVessel"):
-        before_id = insert_vessel_details(tx["toVessel"].get("beforeDetails"))
-        after_id = insert_vessel_details(tx["toVessel"].get("afterDetails"))
-        tv = ToVessel(
-            name=tx["toVessel"].get("name"),
-            before_details_id=before_id,
-            after_details_id=after_id,
-            vol_in=tx["toVessel"].get("volIn"),
-            vol_in_unit=tx["toVessel"].get("volInUnit"),
-        )
-        db.add(tv)
-        db.flush()
-        to_vessel_id = tv.id
+    from_vessel_id = insert_vessel(tx.get("fromVessel"), is_from=True)
+    to_vessel_id = insert_vessel(tx.get("toVessel"), is_from=False)
 
     # LossDetails
     loss_details_id = None
@@ -93,6 +75,7 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
     additive_id = None
     if tx.get("additionOps") and tx["additionOps"].get("additive"):
         ad = Additives(
+            additive_id=tx["additionOps"]["additive"].get("additive_id"),
             name=tx["additionOps"]["additive"].get("name"),
             description=tx["additionOps"]["additive"].get("description"),
         )
@@ -114,6 +97,7 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
             volume=tx["additionOps"].get("volume"),
             amount=tx["additionOps"].get("amount"),
             unit=tx["additionOps"].get("unit"),
+            lot_numbers=tx["additionOps"].get("lotNumbers"),
             additive_id=additive_id,
         )
         db.add(ao)
@@ -134,7 +118,6 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
         db.add(ao)
         db.flush()
         analysis_ops_id = ao.id
-        # Insert each metric
         for metric in tx["analysisOps"].get("metrics", []):
             m = MetricAnalysis(
                 analysis_ops_id=analysis_ops_id,
@@ -145,7 +128,6 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
             )
             db.add(m)
 
-    # TransSum
     trans_sum = TransSum(
         formatted_date=tx.get("formattedDate"),
         date=tx.get("date"),
@@ -166,17 +148,16 @@ def insert_trans_sum_transaction(db: Session, tx: dict):
         addition_ops_id=addition_ops_id,
         analysis_ops_id=analysis_ops_id,
         additional_details=tx.get("additionalDetails"),
-        last_modified=tx.get("last_modified", datetime.now(timezone.utc)),
+        # Removed last_modified
     )
     db.add(trans_sum)
     db.commit()
     db.refresh(trans_sum)
     return trans_sum
 
-# ----------- Query/Update/Delete functions -----------
-
 def get_all_trans_sums(db: Session, skip: int = 0, limit: int = 50):
-    query = db.query(TransSum).order_by(TransSum.last_modified.desc(), TransSum.id.desc())
+    # Removed sorting by last_modified
+    query = db.query(TransSum).order_by(TransSum.id.desc())
     total = query.count()
     if skip:
         query = query.offset(skip)
@@ -194,7 +175,7 @@ def update_trans_sum(db: Session, uid: str, updates: TransSumCreate) -> Optional
     update_data = updates.model_dump(exclude_unset=True)
     for key, value in update_data.items():
         setattr(db_obj, key, value)
-    db_obj.last_modified = datetime.now(timezone.utc)
+    # Removed update of last_modified
     db.commit()
     db.refresh(db_obj)
     return db_obj
